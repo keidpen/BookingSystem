@@ -66,7 +66,6 @@ namespace BookingSystem
             pnlBooking.Visible = true;
             BtnSeatArray();
 
-            
         }
 
         private void lblCostumer_Click_1(object sender, EventArgs e)
@@ -91,7 +90,6 @@ namespace BookingSystem
             pnlBooking.Controls.Clear();
             BtnSeatArray();
         }
-
 
         public void BtnSeatArray()
         {
@@ -153,7 +151,6 @@ namespace BookingSystem
                     {
                         y+=15;
                     }
-
                 }
 
 
@@ -236,7 +233,6 @@ namespace BookingSystem
                 form.GetData(btn.Text,date,screen);
                 form.Visible = true;
             }
-
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
