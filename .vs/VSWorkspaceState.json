@@ -3,10 +3,9 @@
     "",
     "\\BookingSystem",
     "\\BookingSystem\\bin",
-    "\\BookingSystem\\bin\\Debug",
     "\\BookingSystem\\obj",
     "\\BookingSystem\\Properties"
   ],
-  "SelectedNode": "\\BookingSystem\\Form1.cs",
+  "SelectedNode": "\\BookingSystem\\Form2.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

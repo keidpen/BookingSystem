@@ -30,24 +30,66 @@ namespace BookingSystem
 
         }
 
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = Color.DarkViolet;
+            lblBooking.ForeColor = Color.Black;
+            lblMovie.ForeColor = Color.Black;
+        }
+
         private void lblMovie_Click(object sender, EventArgs e)
         {
-           
+            lblMovie.ForeColor = Color.DarkViolet;
+            lblHome.ForeColor = Color.Black;
+            lblBooking.ForeColor = Color.Black;
+
+            lblSeats.Visible = false;
+            lblCostumer.Visible = false;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void lblBooking_Click_1(object sender, EventArgs e)
         {
+            lblBooking.ForeColor = Color.DarkViolet;
+            lblHome.ForeColor = Color.Black;
+            lblMovie.ForeColor = Color.Black;
+
+            dataGridView1.Visible = false;
+            btnSearch.Visible = false;
+            tbSearch.Visible = false;
+
+            lblCostumer.ForeColor = Color.Black;
+            lblSeats.ForeColor = Color.DarkViolet;
             lblSeats.Visible = true;
             lblCostumer.Visible = true;
+            dateTimePicker1.Visible = true;
             comboBox1.Visible = true;
             pnlBooking.Visible = true;
-            dateTimePicker1.Visible = true;
             BtnSeatArray();
+
+            
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void lblCostumer_Click_1(object sender, EventArgs e)
         {
+            lblSeats.ForeColor = Color.Black;
+            lblCostumer.ForeColor = Color.DarkViolet;
+            comboBox1.Visible = false;
+            pnlBooking.Visible = false;
+            dateTimePicker1.Visible = false;
 
+            btnSearch.Visible = true;
+            tbSearch.Visible = true;
+
+            dbViewCstmrBkngs();
+            dataGridView1.Visible = true;
+            
+        }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnlBooking.Controls.Clear();
+            BtnSeatArray();
         }
 
 
@@ -61,21 +103,19 @@ namespace BookingSystem
 
             date = dateTimePicker1.Value.Date.ToString("MM-dd-yyyy");
             screen = comboBox1.SelectedItem.ToString();
-            MessageBox.Show(screen);
-            MessageBox.Show(dateTimePicker1.Value.Date.ToString("MM-dd-yyyy"));
+            
 
-            int x = 10, y = 10, z = 18;
+            int x = 10, y = 10, z = 28;
 
-
-            for (int i = 1; i <= 144; i++)
+            for (int i = 1; i <= 308; i++)
             {
                 Button btnSeats = new Button();
-                btnSeats.Size = new Size(60, 50);
+                btnSeats.Size = new Size(35, 35);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
-                btnSeats.Font = new Font("Arial", 12, FontStyle.Bold);
-
-
+                btnSeats.Font = new Font("Arial", 8, FontStyle.Regular);
+                
+                //Database read seat
                 MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM bookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo = '" + i + "' ", db.conn);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -92,48 +132,95 @@ namespace BookingSystem
                 btnSeats.Click += btn_Click;
                 pnlBooking.Controls.Add(btnSeats);
 
-                if ((i>=1 && i<=36) || (i>=109 && i<=144))
+                if ((i>=1 && i<=56) || (i>=225 && i<=308))
                 {
-                    x += 62;
+                    x += 41;
                 }
                 else
                 {
-                    x += 60;
+                   x += 40;
                 }
 
                 // Create new layer for btn
                 if (i == z)
                 {
                     x = 10;
-                    y += 50;
-                    z += 18;
+                    y += 40;
+                    z += 28;
                     
                     // Split chair per row
-                    if (z == 54 || z == 90 || z == 126 )
+                    if (z == 84 || z == 168 || z == 252 )
                     {
-                        y+=20;
+                        y+=15;
                     }
 
                 }
 
 
                 // Split chair per column
-                if (i == 42 || i == 60 || i == 48 || i ==66 )
+                if (i==65 || i==93 || i==121 || i==75 || i==103 || i==131) //seat B,C, D
                 {
-                    x += 20;
-                }else if ( i == 81 || i == 99)
+                    x += 15;
+                }else if (i==154 || i== 182 || i==210) //seat E,F
                 {
-                    x += 40;
+                    x += 25;
                 }
-
             }
 
         }
 
+        public void dbViewCstmrBkngs()
+        {
+            try
+            {
+                Database db = new Database();
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT Name,SeatNo,Date,Time,Screen FROM bookingdb.bookedseats", db.conn);
+
+                db.conn.Open();
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "bookedseats");
+                dataGridView1.DataSource = ds.Tables["bookedseats"];
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                db.conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void dbSearchCstmrBkngs(String keyword)
+        {
+            try
+            {
+                Database db = new Database();
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT Name,SeatNo,Date,Time,Screen FROM bookingdb.bookedseats WHERE Name='"+keyword+"'", db.conn);
+
+                db.conn.Open();
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "bookedseats");
+                dataGridView1.DataSource = ds.Tables["bookedseats"];
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                db.conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
         public void btn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            MessageBox.Show("Fuck dont click me! "+ btn.Text, "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("You click no:  "+ btn.Text, "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             if (btn.BackColor == System.Drawing.Color.Red)
             {
@@ -142,6 +229,12 @@ namespace BookingSystem
             else
             {
                 btn.BackColor = Color.Red;
+                String date = dateTimePicker1.Value.Date.ToString("MM-dd-yyyy");
+                String screen = comboBox1.SelectedItem.ToString();
+
+                Form3 form = new Form3();
+                form.GetData(btn.Text,date,screen);
+                form.Visible = true;
             }
 
         }
@@ -157,15 +250,31 @@ namespace BookingSystem
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+
+        
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            pnlBooking.Controls.Clear();
-            BtnSeatArray();
+            String keyword =tbSearch.Text.ToString();
+            if (!keyword.Equals(""))
+            {
+                dbSearchCstmrBkngs(keyword);
+            }
+            else
+            {
+                MessageBox.Show("Please Input Something!");
+                dbViewCstmrBkngs();
+            }
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
