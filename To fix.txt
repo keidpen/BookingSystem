@@ -1,0 +1,7 @@
+Events Login UI - press Enter, press Escape, press Tab. if password !empty && unamefld press Enter, click sign in.
+
+ADMIN UI - 
+database query for admin status : true or false; if true, go to admin ui. if false, go to employee ui.
+
+db ui search - add combo box - name - seat # - cinema #
+
