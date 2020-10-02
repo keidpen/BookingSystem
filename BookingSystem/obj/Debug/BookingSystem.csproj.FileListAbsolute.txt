@@ -25,3 +25,13 @@ C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csproj.CopyComplete
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.pdb
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe.config
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form1.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form2.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form3.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Properties.Resources.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csproj.GenerateResource.cache
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csproj.CoreCompileInputs.cache
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.pdb
