@@ -27,6 +27,12 @@ namespace BookingSystem
         private void btEnter_Click(object sender, EventArgs e)
         {
             dbAddBooking();
+            Form2 form = new Form2();
+            form.BookingRefresh();
+            form.Visible = true;
+
+            this.Visible = false;
+
         }
 
         String newSeatNo="", newDate = "", newScreen="";
@@ -35,7 +41,8 @@ namespace BookingSystem
         {
             lblSeatNo.Text = "Seat No: " + seatNo;
             lblDate.Text ="Date: " + Date;
-            newSeatNo = seatNo;
+            
+            newSeatNo =seatNo;
             newDate = Date;
             newScreen = screen;
         }
@@ -45,13 +52,12 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query = "INSERT INTO bookingdb.bookedseats(Name,SeatNo,Date,Time,Screen) VALUES('"+tbName.Text+"','"+newSeatNo+"','"+newDate+"','"+"10:00 am - 12:30 pm"+"','"+newScreen+"')";
+                String name = tbName.Text.Trim();
+                String query1 = "INSERT INTO bookingdb.tblcustomer(Name,ContactNo,Email) VALUES ('"+name+"','"+"093123"+"','"+"nolss@gmail"+"')";
                 db.conn.Open();
-
-                MySqlCommand command = new MySqlCommand(query,db.conn);
-                if(command.ExecuteNonQuery()==1)
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                if (command1.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Booked Seat!");
                     this.Visible = false;
                 }
                 else
@@ -60,6 +66,27 @@ namespace BookingSystem
                 }
 
                 db.conn.Close();
+
+                 
+
+
+                String query2 = "INSERT INTO bookingdb.bookedseats(SeatNo,customerID,Date,Time,Screen) VALUES('"+newSeatNo+"',(SELECT customerID FROM tblcustomer WHERE customerID = (SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')),'"+newDate+"','"+"10:00 am - 12:30 pm"+"','"+newScreen+"')";
+                db.conn.Open();
+
+                MySqlCommand command2 = new MySqlCommand(query2,db.conn);
+                if(command2.ExecuteNonQuery()==1)
+                {
+                    MessageBox.Show("Booked Seat!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to Book Seat");
+                }
+
+                db.conn.Close();
+
+
+
 
             }
             catch(Exception ex)

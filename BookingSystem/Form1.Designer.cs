@@ -60,6 +60,7 @@
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassword.ForeColor = System.Drawing.Color.Black;
             this.tbPassword.Location = new System.Drawing.Point(507, 187);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(177, 26);

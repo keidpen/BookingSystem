@@ -1,0 +1,5 @@
+* Can Select Multiple Seats
+* Fix database and query
+
+Note!
+* Please Replace/Update the database (Marami akong binago)

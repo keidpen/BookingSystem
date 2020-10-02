@@ -13,9 +13,11 @@ namespace BookingSystem
 {
     public partial class Form2 : Form
     {
+        Database dbtest = new Database();
         public Form2()
         {
             InitializeComponent();
+            
         }
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -49,6 +51,13 @@ namespace BookingSystem
 
         private void lblBooking_Click_1(object sender, EventArgs e)
         {
+            BookingRefresh();   
+        }
+
+        public void BookingRefresh()
+        {
+            seatnum = "";
+
             lblBooking.ForeColor = Color.DarkViolet;
             lblHome.ForeColor = Color.Black;
             lblMovie.ForeColor = Color.Black;
@@ -56,6 +65,8 @@ namespace BookingSystem
             dataGridView1.Visible = false;
             btnSearch.Visible = false;
             tbSearch.Visible = false;
+
+            btnPayment.Visible = true;
 
             lblCostumer.ForeColor = Color.Black;
             lblSeats.ForeColor = Color.DarkViolet;
@@ -65,9 +76,8 @@ namespace BookingSystem
             comboBox1.Visible = true;
             pnlBooking.Visible = true;
             BtnSeatArray();
-
-            
         }
+
 
         private void lblCostumer_Click_1(object sender, EventArgs e)
         {
@@ -76,15 +86,18 @@ namespace BookingSystem
             comboBox1.Visible = false;
             pnlBooking.Visible = false;
             dateTimePicker1.Visible = false;
+            btnPayment.Visible = false;
 
             btnSearch.Visible = true;
             tbSearch.Visible = true;
 
             dbViewCstmrBkngs();
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.Visible = true;
             
         }
 
+        
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -95,7 +108,7 @@ namespace BookingSystem
 
         public void BtnSeatArray()
         {
-
+            
             String date = DateTime.Now.ToString("MM-dd-yyyy");
             String screen = "Screen 2";
 
@@ -114,9 +127,12 @@ namespace BookingSystem
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
                 btnSeats.Font = new Font("Arial", 8, FontStyle.Regular);
-                
+
+
+
+
                 //Database read seat
-                MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM bookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo = '" + i + "' ", db.conn);
+                MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM bookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% "+ i +",%' ", db.conn);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
@@ -174,7 +190,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT Name,SeatNo,Date,Time,Screen FROM bookingdb.bookedseats", db.conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID ORDER BY bookedseats.Date DESC ", db.conn);
 
                 db.conn.Open();
 
@@ -197,7 +213,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT Name,SeatNo,Date,Time,Screen FROM bookingdb.bookedseats WHERE Name='"+keyword+"'", db.conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword+"'", db.conn);
 
                 db.conn.Open();
 
@@ -207,6 +223,12 @@ namespace BookingSystem
                 dataGridView1.AutoResizeColumns();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 db.conn.Close();
+
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows == null)
+                {
+                    MessageBox.Show("No Result Found");
+                    dbViewCstmrBkngs();
+                }
 
             }
             catch (Exception ex)
@@ -222,21 +244,43 @@ namespace BookingSystem
             Button btn = (Button)sender;
             MessageBox.Show("You click no:  "+ btn.Text, "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
-            if (btn.BackColor == System.Drawing.Color.Red)
+            if (btn.BackColor == System.Drawing.Color.SkyBlue)
             {
                 btn.BackColor = Color.Yellow;
             }
+            else if (btn.BackColor == System.Drawing.Color.Red)
+            {
+                MessageBox.Show("This is already reserve!");
+
+            }
             else
             {
-                btn.BackColor = Color.Red;
+                btn.BackColor = Color.SkyBlue;
+                seatnum += " "+btn.Text + ",";
+
+            }
+
+        }
+
+        String seatnum = "";
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            if (seatnum.Equals("") || seatnum.Equals(null))
+            {
+                MessageBox.Show("Please Select Seat Number!");
+            }
+            else
+            {
                 String date = dateTimePicker1.Value.Date.ToString("MM-dd-yyyy");
                 String screen = comboBox1.SelectedItem.ToString();
 
                 Form3 form = new Form3();
-                form.GetData(btn.Text,date,screen);
+                form.GetData(seatnum, date, screen);
                 form.Visible = true;
-            }
 
+                this.Visible = false;
+            }
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -250,8 +294,6 @@ namespace BookingSystem
 
         }
 
-
-        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -276,5 +318,7 @@ namespace BookingSystem
         {
 
         }
+
+        
     }
 }
