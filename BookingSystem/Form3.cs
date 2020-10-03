@@ -37,12 +37,21 @@ namespace BookingSystem
 
         String newSeatNo="", newDate = "", newScreen="";
 
-        public void GetData(String seatNo , String Date,String screen)
+        public void GetData(String[] seatNo , String Date,String screen)
         {
-            lblSeatNo.Text = "Seat No: " + seatNo;
-            lblDate.Text ="Date: " + Date;
             
-            newSeatNo =seatNo;
+            foreach (string seat in seatNo)
+            {
+                if (seat != null)
+                {
+                    newSeatNo += " "+seat +",";
+                    MessageBox.Show(seat);
+                }
+            }
+
+            lblDate.Text = "Date: " + Date;
+            lblSeatNo.Text = "Seat No: " + newSeatNo;
+
             newDate = Date;
             newScreen = screen;
         }

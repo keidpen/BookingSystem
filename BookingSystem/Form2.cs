@@ -56,7 +56,7 @@ namespace BookingSystem
 
         public void BookingRefresh()
         {
-            seatnum = "";
+            Array.Clear(seatnum,0,seatnum.Length);
 
             lblBooking.ForeColor = Color.DarkViolet;
             lblHome.ForeColor = Color.Black;
@@ -92,9 +92,7 @@ namespace BookingSystem
             tbSearch.Visible = true;
 
             dbViewCstmrBkngs();
-            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.Visible = true;
-            
         }
 
         
@@ -238,7 +236,8 @@ namespace BookingSystem
 
         }
 
-
+        String[] seatnum = new String[12];
+        int seatnumcount = 0;
         public void btn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -246,7 +245,20 @@ namespace BookingSystem
             
             if (btn.BackColor == System.Drawing.Color.SkyBlue)
             {
-                btn.BackColor = Color.Yellow;
+                if (seatnum.Contains(btn.Text))
+                {
+                    int pos = Array.IndexOf(seatnum, btn.Text);
+                    seatnum = seatnum.Where(val => val != btn.Text).ToArray();
+
+                    if (seatnum[pos] == null)
+                    {
+                        seatnum[pos] = seatnum[pos + 1];
+                    }
+
+                    btn.BackColor = Color.Yellow;
+                    seatnumcount--;
+                }
+                
             }
             else if (btn.BackColor == System.Drawing.Color.Red)
             {
@@ -255,14 +267,22 @@ namespace BookingSystem
             }
             else
             {
-                btn.BackColor = Color.SkyBlue;
-                seatnum += " "+btn.Text + ",";
+                if (seatnumcount<10)
+                {
+                    btn.BackColor = Color.SkyBlue;
+                    seatnum[seatnumcount] = btn.Text;
+                    seatnumcount++;
+                }
+                else
+                {
+                    MessageBox.Show("You input maximum booking!");
+                }
+                
 
             }
 
         }
 
-        String seatnum = "";
         private void btnPayment_Click(object sender, EventArgs e)
         {
             if (seatnum.Equals("") || seatnum.Equals(null))
