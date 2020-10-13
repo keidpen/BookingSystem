@@ -59,12 +59,14 @@ namespace BookingSystem
                 if (cbUsertype.SelectedItem.Equals("Admin"))
                 {
                     Form2 home = new Form2();
+                    home.LockBooking();
                     home.Show();
                     this.Hide();
                 }
                 else if (cbUsertype.SelectedItem.Equals("Employee"))
                 {
                     Form2 home = new Form2();
+                    home.LockMovie();
                     home.Show();
                     this.Hide();
                 }

@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BookingSystem
@@ -13,8 +15,18 @@ namespace BookingSystem
         public Form2()
         {
             InitializeComponent();
-
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
         }
+
+        public void LockMovie()
+        {
+            lblMovie.Enabled = false;
+        }
+        public void LockBooking()
+        {
+            lblBooking.Enabled = false;
+        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -33,13 +45,32 @@ namespace BookingSystem
             lblHome.ForeColor = Color.DarkViolet;
             lblBooking.ForeColor = Color.Black;
             lblMovie.ForeColor = Color.Black;
+
+            DisableUnderMovie();
+            DisableUnderBooking();
         }
+        //////////////////////////////////////////Disable under Home /////////////////////
+        
+        public void DisableUnderHome()
+        {
+
+        }
+
+
+        ///////////////////////////////////////////End of Disabling Home/////////////////////
 
         private void lblMovie_Click(object sender, EventArgs e)
         {
             lblMovie.ForeColor = Color.DarkViolet;
             lblHome.ForeColor = Color.Black;
             lblBooking.ForeColor = Color.Black;
+
+            
+            lblAdd.ForeColor = Color.DarkViolet;
+            lblSetSched.ForeColor = Color.Black;
+            lblUpdate.ForeColor = Color.Black;
+
+            lblAdd.Visible = true;
 
             btnSearch.Visible = false;
             tbSearch.Visible = false;
@@ -55,58 +86,140 @@ namespace BookingSystem
             lblSeats.Visible = false;
             lblCostumer.Visible = false;
 
-            
+            picBoxMovie.Visible = true;
+            btnSelectImg.Visible = true;
+            btnAddMovie.Visible = true;
+            lblAddTitle.Visible = true;
+            lblSetSched.Visible = true;
+            lblUpdate.Visible = true;
+            lblAddDirector.Visible = true;
+            lblAddDuration.Visible = true;
+            lblAddPrice.Visible = true;
+            lblAddSynopsis.Visible = true;
+            tbSynopsis.Visible = true;
+            tbTitle.Visible = true;
+            tbDirector.Visible = true;
+            tbDuration.Visible = true;
+            tbPrice.Visible = true;
+            lblAddGenre.Visible = true;
+            cbGenre.Visible = true;
+
         }
+
+        //////////////////////////////////// Disable under Movie//////////////////////////////
+        private void DisableUnderMovie()
+        {
+            lblAdd.Visible = false;
+            lblSetSched.Visible = false;
+            lblUpdate.Visible = false;
+            DisableUnderAddMovie();
+        }
+
+        private void DisableUnderAddMovie()
+        {
+            picBoxMovie.Visible = false;
+            btnSelectImg.Visible = false;
+            btnAddMovie.Visible = false;
+            lblAddTitle.Visible = false;
+            lblAddDirector.Visible = false;
+            lblAddDuration.Visible = false;
+            lblAddPrice.Visible = false;
+            lblAddSynopsis.Visible = false;
+            tbSynopsis.Visible = false;
+            tbTitle.Visible = false;
+            tbDirector.Visible = false;
+            tbDuration.Visible = false;
+            tbPrice.Visible = false;
+            lblAddGenre.Visible = false;
+            cbGenre.Visible = false;
+        }
+
+        private void DisableUnderUpdateMovie()
+        {
+
+        }
+
+        private void DisableUnderSetSchedule()
+        {
+
+        }
+
+        //////////////////////////////////////////////////////////// END OF DISABLING MOVIE//////////////////////////////////
 
         private void lblBooking_Click_1(object sender, EventArgs e)
         {
+            lblBooking.ForeColor = Color.DarkViolet;
+            lblHome.ForeColor = Color.Black;
+            lblMovie.ForeColor = Color.Black;
+
+            lblCostumer.ForeColor = Color.Black;
+            lblSeats.ForeColor = Color.DarkViolet;
+
+            DisableUnderMovie();
             BookingRefresh();
         }
 
         public void BookingRefresh()
         {
-
+            DisableUnderBookingCostumer();
             pnlBooking.Controls.Clear();
             seatnum.Clear();
             seatnumcount = 0;
 
-            lblBooking.ForeColor = Color.DarkViolet;
-            lblHome.ForeColor = Color.Black;
-            lblMovie.ForeColor = Color.Black;
+            
 
-            dataGridView1.Visible = false;
-            btnSearch.Visible = false;
-            tbSearch.Visible = false;
-
-            btnPayment.Visible = true;
-
-            lblCostumer.ForeColor = Color.Black;
-            lblSeats.ForeColor = Color.DarkViolet;
             lblSeats.Visible = true;
             lblCostumer.Visible = true;
+            btnPayment.Visible = true;
+            
             dateTimePicker1.Visible = true;
             comboBox1.Visible = true;
-            pnlBooking.Visible = true;
-
             comboBox1.SelectedIndex = 0;
-
+            pnlBooking.Visible = true;
+            
             dbToListSched();
             BtnSeatArray();
-            
-            
+        }
+        ////////////////////////////////////////// Disabling Booking //////////////////////////////////
+        
+        public void DisableUnderBooking()
+        {
+            pnlBooking.Controls.Clear();
+            seatnum.Clear();
+            seatnumcount = 0;
 
+            lblSeats.Visible = false;
+            lblCostumer.Visible = false;
+
+            DisableUnderBookingSeats();
+            DisableUnderBookingCostumer();
         }
 
-
-        private void lblCostumer_Click_1(object sender, EventArgs e)
+        public void DisableUnderBookingSeats()
         {
-            lblSeats.ForeColor = Color.Black;
-            lblCostumer.ForeColor = Color.DarkViolet;
+            
             comboBox1.Visible = false;
             pnlBooking.Visible = false;
             dateTimePicker1.Visible = false;
             btnPayment.Visible = false;
             cbSched.Visible = false;
+        }
+        public void DisableUnderBookingCostumer()
+        {
+            
+            dataGridView1.Visible = false;
+            btnSearch.Visible = false;
+            tbSearch.Visible = false;
+        }
+
+        //////////////////////////////////////////End of Disabling Booking///////////////////////////
+
+        private void lblCostumer_Click_1(object sender, EventArgs e)
+        {
+            lblSeats.ForeColor = Color.Black;
+            lblCostumer.ForeColor = Color.DarkViolet;
+
+            DisableUnderBookingSeats();
 
             btnSearch.Visible = true;
             tbSearch.Visible = true;
@@ -211,26 +324,57 @@ namespace BookingSystem
 
         }
 
+        
         public void dbViewCstmrBkngs()
         {
             try
             {
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+              
+                dataGridView1.ColumnCount = 8;
+                dataGridView1.Columns[0].Name = "ORNo.";
+                dataGridView1.Columns[1].Name = "Name";
+                dataGridView1.Columns[2].Name = "Seat No.";
+                dataGridView1.Columns[3].Name = "Date";
+                dataGridView1.Columns[4].Name = "Time";
+                dataGridView1.Columns[5].Name = "Screen";
+                dataGridView1.Columns[6].Name = "ContactNo.";
+                dataGridView1.Columns[7].Name = "Email";
+
                 Database db = new Database();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
-                                                                "FROM bookingdb.bookedseats bs " +
-                                                                "JOIN tblcustomer " +
-                                                                "ON tblcustomer.customerID = bs.customerID " +
-                                                                "ORDER BY bs.Date DESC ", db.conn);
+
+                String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                                "FROM bookingdb.bookedseats bs " +
+                                "JOIN tblcustomer " +
+                                "ON tblcustomer.customerID = bs.customerID " +
+                                "ORDER BY bs.Date DESC ";
 
                 db.conn.Open();
+                ArrayList AL = new ArrayList();
 
-                DataSet ds = new DataSet();
-                adapter.Fill(ds, "bookedseats");
-                dataGridView1.DataSource = ds.Tables["bookedseats"];
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataReader reader = command1.ExecuteReader();
+                while (reader.Read())
+                {
+                    AL = new ArrayList();
+                    AL.Add(reader[0].ToString());
+                    AL.Add(reader[1].ToString());
+                    AL.Add(reader[2].ToString());
+                    AL.Add(reader[3].ToString());
+                    AL.Add(reader[4].ToString());
+                    AL.Add(reader[5].ToString());
+                    AL.Add(reader[6].ToString());
+                    AL.Add(reader[7].ToString());
+                    dataGridView1.Rows.Add(AL.ToArray());
+                }
+                reader.Close();
+                command1.Dispose();
+
                 dataGridView1.AutoResizeColumns();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                db.conn.Close();
 
+                db.conn.Close();
             }
             catch (Exception ex)
             {
@@ -242,17 +386,37 @@ namespace BookingSystem
         {
             try
             {
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+
                 Database db = new Database();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT bookedseats.ORNO, tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword + "'", db.conn);
+                String query1 = "SELECT bookedseats.ORNO, tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword + "'";
 
                 db.conn.Open();
+                ArrayList AL = new ArrayList();
 
-                DataSet ds = new DataSet();
-                adapter.Fill(ds, "bookedseats");
-                dataGridView1.DataSource = ds.Tables["bookedseats"];
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataReader reader = command1.ExecuteReader();
+                while (reader.Read())
+                {
+                    AL = new ArrayList();
+                    AL.Add(reader[0].ToString());
+                    AL.Add(reader[1].ToString());
+                    AL.Add(reader[2].ToString().Trim());
+                    AL.Add(reader[3].ToString());
+                    AL.Add(reader[4].ToString());
+                    AL.Add(reader[5].ToString());
+                    AL.Add(reader[6].ToString());
+                    AL.Add(reader[7].ToString());
+                    dataGridView1.Rows.Add(AL.ToArray());
+                }
+                reader.Close();
+                command1.Dispose();
+
                 dataGridView1.AutoResizeColumns();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 db.conn.Close();
+
 
                 if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows == null)
                 {
@@ -441,7 +605,126 @@ namespace BookingSystem
             BtnSeatArray();
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
         //////////////////////////////////////////////////          Movie Module               //////////////////////////////
+
+        private void lblAdd_Click(object sender, EventArgs e)
+        {
+            lblUpdate.ForeColor = Color.Black;
+            lblAdd.ForeColor = Color.DarkViolet;
+            lblSetSched.ForeColor = Color.Black;
+        }
+
+        private void lblUpdate_Click(object sender, EventArgs e)
+        {
+            lblUpdate.ForeColor = Color.DarkViolet;
+            lblAdd.ForeColor = Color.Black;
+            lblSetSched.ForeColor = Color.Black;
+            DisableUnderAddMovie();
+        }
+
+        private void lblSetSched_Click(object sender, EventArgs e)
+        {
+            lblUpdate.ForeColor = Color.Black;
+            lblAdd.ForeColor = Color.Black;
+            lblSetSched.ForeColor = Color.DarkViolet;
+            DisableUnderAddMovie();
+        }
+
+        private void btnSelectImg_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose Image(*.jpg; *png)|*.jpg; *png";
+
+            if (opf.ShowDialog()==DialogResult.OK)
+            {
+                picBoxMovie.Image = Image.FromFile(opf.FileName);
+            }
+
+            
+            
+        }
+
+        private void tbPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void btnAddMovie_Click(object sender, EventArgs e)
+        {
+            MemoryStream ms = new MemoryStream();
+            picBoxMovie.Image.Save(ms, picBoxMovie.Image.RawFormat);
+            byte[] img = ms.ToArray();
+
+            String genre = "",check="";
+            foreach (string s in cbGenre.CheckedItems)
+            {
+                genre += s + ", ";
+                check += s;
+            }
+
+
+
+            if (img == null ||check.Equals("") || tbTitle.Text.Equals(null) || tbDirector.Text.Equals(null) || tbDuration.Text.Equals(null) || tbSynopsis.Text.Equals(null) || tbPrice.Text.Equals(null))
+            {
+                MessageBox.Show("Everything is empty");
+            }
+            else
+            {
+                
+
+                try
+                {
+                    Database db = new Database();
+                    String query1 = "INSERT INTO bookingdb.movieinfo(Title,Director,Genre,Duration,Synopsis,Price,isDeleted,imgPath) " +
+                                    "VALUES('" + tbTitle.Text + "' , '"+tbDirector.Text+"' , '" + genre + "'  , '" + tbDuration.Text + "' , '"+tbSynopsis.Text+"' ,'" + tbPrice.Text + "' , '"+"false"+ "' , '" + img + "')";
+                    db.conn.Open();
+
+                    MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                    if (command1.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Added new Movie");
+                    }
+                    command1.Dispose();
+                    db.conn.Close();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
 
 
 
