@@ -11,12 +11,45 @@ namespace BookingSystem
 {
     public partial class Form2 : Form
     {
-        Database dbtest = new Database();
+        
         public Form2()
         {
             InitializeComponent();
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            SocialDistancingMode();
         }
+
+        /// ////////////////////////TEST ///////////////////////////////////
+        String sdDate ="";
+        bool sdMode;
+        public void SocialDistancingMode()
+        {
+            if (selectedDate.Equals(null) || selectedDate.Equals(""))
+            {
+                sdDate = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                sdDate = selectedDate;
+            }
+
+            Database db = new Database();
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblsettings WHERE sdmode = 'true' AND '" + sdDate + "' BETWEEN StartDate AND EndDate", db.conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+
+
+            if (dt.Rows[0][0].ToString() == "1")
+            {
+                sdMode = true;
+            }
+            else
+            {
+                sdMode = false;
+            }
+        }
+
+        ////////////////////////////End of TEST//////////////////////////////////////
 
         public void LockMovie()
         {
@@ -56,7 +89,6 @@ namespace BookingSystem
 
         }
 
-
         ///////////////////////////////////////////End of Disabling Home/////////////////////
 
         private void lblMovie_Click(object sender, EventArgs e)
@@ -69,6 +101,8 @@ namespace BookingSystem
             lblAdd.ForeColor = Color.DarkViolet;
             lblSetSched.ForeColor = Color.Black;
             lblUpdate.ForeColor = Color.Black;
+
+            DisableUnderUpdateMovie();
 
             lblAdd.Visible = true;
 
@@ -136,7 +170,23 @@ namespace BookingSystem
 
         private void DisableUnderUpdateMovie()
         {
+            picBoxUpdate.Visible = false;
+            lblUpdTitle.Visible = false;
+            lblUpdDirector.Visible = false;
+            lblUpdGenre.Visible = false;
+            lblUpdDuration.Visible = false;
+            lblUpdSynopsis.Visible = false;
+            lblUpdPrice.Visible = false;
 
+            cbUpdTitle.Visible = false;
+            cbUpdGenre.Visible = false;
+            tbUpdDirector.Visible = false;
+            tbUpdDuration.Visible = false;
+            tbUpdSynopsis.Visible = false;
+            tbUpdPrice.Visible = false;
+            btnUpdSelectImg.Visible = false;
+            btnUpdate.Visible = false;
+            btnSearchIdMov.Visible = false;
         }
 
         private void DisableUnderSetSchedule()
@@ -166,15 +216,13 @@ namespace BookingSystem
             seatnum.Clear();
             seatnumcount = 0;
 
-            
-
             lblSeats.Visible = true;
             lblCostumer.Visible = true;
-            btnPayment.Visible = true;
-            
+
             dateTimePicker1.Visible = true;
             comboBox1.Visible = true;
             comboBox1.SelectedIndex = 0;
+            btnPayment.Visible = true;
             pnlBooking.Visible = true;
             
             dbToListSched();
@@ -240,11 +288,12 @@ namespace BookingSystem
         }
 
         String selectedDate = "", SelSchedTime = "";
+        bool nextlayer = true;
         public void BtnSeatArray()
         {
 
             String date = DateTime.Now.ToString("yyyy-MM-dd");
-            String screen = "Screen 2";
+            String screen = "";
 
             Database db = new Database();
 
@@ -255,19 +304,30 @@ namespace BookingSystem
             {
                 SelSchedTime = cbSched.SelectedItem.ToString();
             }
-            
 
+            SocialDistancingMode();
 
             int x = 10, y = 10, z = 28;
 
+            
             for (int i = 1; i <= 308; i++)
             {
                 Button btnSeats = new Button();
                 btnSeats.Size = new Size(35, 35);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
-                btnSeats.Font = new Font("Arial", 8, FontStyle.Regular);
+                btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
 
+                if (sdMode==true && i%2==0 && nextlayer==true)
+                {
+                    btnSeats.Enabled = false;
+                    btnSeats.Text = "";
+                }
+                else if (sdMode == true && i%2 != 0 && nextlayer ==false)
+                {
+                    btnSeats.Enabled = false;
+                    btnSeats.Text = "";
+                }
 
                 //Database read seat
                 MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM bookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
@@ -276,11 +336,23 @@ namespace BookingSystem
 
                 if (dt.Rows[0][0].ToString() == "1")
                 {
-                    btnSeats.BackColor = Color.Red;
+                    //this should be Green
+                    btnSeats.BackColor = Color.FromArgb(119, 221, 119);
                 }
                 else
                 {
-                    btnSeats.BackColor = Color.Yellow;
+                    if (btnSeats.Text.Equals(""))
+                    {
+                        //this should be Orange or red
+                       // btnSeats.BackColor = Color.FromArgb(255, 179, 71);
+                        btnSeats.BackColor = Color.FromArgb(255, 105, 97);
+                    }
+                    else
+                    {
+                        //this shoud be White
+                        btnSeats.BackColor = Color.White;
+                    }
+                    
                 }
 
                 btnSeats.Click += btn_Click;
@@ -301,6 +373,14 @@ namespace BookingSystem
                     x = 10;
                     y += 40;
                     z += 28;
+                    if (nextlayer==true)
+                    {
+                        nextlayer=false;
+                    }
+                    else
+                    {
+                        nextlayer = true;
+                    }
 
                     // Split chair per row
                     if (z == 84 || z == 168 || z == 252)
@@ -488,12 +568,13 @@ namespace BookingSystem
                 if (seatnum.Contains(btn.Text))
                 {
                     seatnum.Remove(btn.Text);
-                    btn.BackColor = Color.Yellow;
+                    //this should be white
+                    btn.BackColor = Color.White;
                     seatnumcount--;
                 }
 
             }
-            else if (btn.BackColor == System.Drawing.Color.Red)
+            else if (btn.BackColor == System.Drawing.Color.FromArgb(119, 221, 119))
             {
                 MessageBox.Show("This is already reserve!");
 
@@ -642,14 +723,36 @@ namespace BookingSystem
             lblUpdate.ForeColor = Color.Black;
             lblAdd.ForeColor = Color.DarkViolet;
             lblSetSched.ForeColor = Color.Black;
+
+            DisableUnderUpdateMovie();
         }
 
         private void lblUpdate_Click(object sender, EventArgs e)
         {
+            dbSelect();
             lblUpdate.ForeColor = Color.DarkViolet;
             lblAdd.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.Black;
             DisableUnderAddMovie();
+            
+            picBoxUpdate.Visible = true;
+            lblUpdTitle.Visible = true;
+            lblUpdDirector.Visible = true;
+            lblUpdGenre.Visible = true;
+            lblUpdDuration.Visible = true;
+            lblUpdSynopsis.Visible = true;
+            lblUpdPrice.Visible = true;
+            cbUpdTitle.Visible = true;
+            cbUpdGenre.Visible = true;
+
+            tbUpdDirector.Visible = true;
+            tbUpdDuration.Visible = true;
+            tbUpdSynopsis.Visible = true;
+            tbUpdPrice.Visible = true;
+            btnUpdSelectImg.Visible = true;
+            btnUpdate.Visible = true;
+            btnSearchIdMov.Visible = true;
+
         }
 
         private void lblSetSched_Click(object sender, EventArgs e)
@@ -658,8 +761,10 @@ namespace BookingSystem
             lblAdd.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.DarkViolet;
             DisableUnderAddMovie();
+            DisableUnderUpdateMovie();
         }
 
+        String img = "";
         private void btnSelectImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog();
@@ -668,24 +773,17 @@ namespace BookingSystem
             if (opf.ShowDialog()==DialogResult.OK)
             {
                 picBoxMovie.Image = Image.FromFile(opf.FileName);
+                String replace = opf.FileName;
+                img = replace.Replace("\\","\\\\");
             }
-
             
-            
-        }
-
-        private void tbPrice_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         
 
+
         private void btnAddMovie_Click(object sender, EventArgs e)
         {
-            MemoryStream ms = new MemoryStream();
-            picBoxMovie.Image.Save(ms, picBoxMovie.Image.RawFormat);
-            byte[] img = ms.ToArray();
 
             String genre = "",check="";
             foreach (string s in cbGenre.CheckedItems)
@@ -726,6 +824,115 @@ namespace BookingSystem
             }
         }
 
+        //////////////////////////////////////////Update
+
+        List<string> sortList = new List<string>();
+
+        public void dbSelect()
+        {
+            try
+            {
+                String query1 = "";
+                if (sortList.Count <= 0)
+                {
+                    query1 = "SELECT Title FROM movieinfo";
+                }
+                else
+                {
+                  //  query1 = "SELECT Title FROM movieinfo WHERE Title LIKE '%" + cbUpdTitle.Text + "%'";
+                    //sortList.Clear();
+                   // cbUpdTitle.Items.Clear();
+                }
+
+                Database db = new Database();
+                db.conn.Open();
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataReader reader = command1.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    sortList.Add(reader[0].ToString());
+                }
+                reader.Close();
+                command1.Dispose();
+                db.conn.Close();
+
+                foreach (String str in sortList)
+                {
+                    cbUpdTitle.Items.Add(str);
+                }
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        public void dbDisplayAfterSelect()
+        {
+            try{
+                Database db = new Database();
+                String query1 = "SELECT * FROM movieinfo WHERE Title = '"+cbUpdTitle.Text+"'";
+                db.conn.Open();
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command1);
+                DataTable table = new DataTable();
+
+                adapter.Fill(table);
+
+                tbUpdDirector.Text = table.Rows[0][2].ToString();
+                tbUpdDuration.Text = table.Rows[0][4].ToString();
+                tbUpdSynopsis.Text = table.Rows[0][5].ToString();
+                tbUpdPrice.Text = table.Rows[0][6].ToString();
+                var imgs = table.Rows[0][8].ToString();
+
+                picBoxUpdate.Image = Image.FromFile(imgs);
+
+                adapter.Dispose();
+                db.conn.Close();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            
+        }
+
+
+
+//////////DB
+        private void btnUpdSelectImg_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose Image(*.jpg; *png)|*.jpg; *png";
+
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                picBoxUpdate.Image = Image.FromFile(opf.FileName);
+            }
+        }
+
+        private void btnSearchIdMov_Click(object sender, EventArgs e)
+        {
+            dbDisplayAfterSelect();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picBoxUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 

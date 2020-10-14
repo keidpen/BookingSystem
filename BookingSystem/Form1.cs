@@ -44,8 +44,6 @@ namespace BookingSystem
         private void btnSignIn_Click(object sender, EventArgs e)
         {
 
-            string user = tbUsername.Text;
-            string pass = tbPassword.Text;
             Database db = new Database();
             MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM userfield WHERE Username = '"+tbUsername.Text+"' AND Password = '"+tbPassword.Text+"' AND Usertype = '"+cbUsertype.SelectedItem.ToString()+"' ", db.conn);
             DataTable dt = new DataTable();

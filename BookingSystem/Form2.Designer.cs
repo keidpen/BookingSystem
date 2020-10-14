@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblHome = new System.Windows.Forms.Label();
             this.lblMovie = new System.Windows.Forms.Label();
             this.lblBooking = new System.Windows.Forms.Label();
@@ -45,7 +45,6 @@
             this.cbSched = new System.Windows.Forms.ComboBox();
             this.lblAdd = new System.Windows.Forms.Label();
             this.lblUpdate = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddMovie = new System.Windows.Forms.Button();
             this.lblSetSched = new System.Windows.Forms.Label();
             this.lblAddTitle = new System.Windows.Forms.Label();
@@ -62,9 +61,27 @@
             this.lblAddDirector = new System.Windows.Forms.Label();
             this.tbDirector = new System.Windows.Forms.TextBox();
             this.btnSelectImg = new System.Windows.Forms.Button();
+            this.btnUpdSelectImg = new System.Windows.Forms.Button();
+            this.lblUpdDirector = new System.Windows.Forms.Label();
+            this.picBoxUpdate = new System.Windows.Forms.PictureBox();
+            this.cbUpdGenre = new System.Windows.Forms.CheckedListBox();
+            this.tbUpdPrice = new System.Windows.Forms.TextBox();
+            this.tbUpdSynopsis = new System.Windows.Forms.TextBox();
+            this.tbUpdDuration = new System.Windows.Forms.TextBox();
+            this.lblUpdPrice = new System.Windows.Forms.Label();
+            this.lblUpdSynopsis = new System.Windows.Forms.Label();
+            this.lblUpdDuration = new System.Windows.Forms.Label();
+            this.lblUpdGenre = new System.Windows.Forms.Label();
+            this.lblUpdTitle = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.cbUpdTitle = new System.Windows.Forms.ComboBox();
+            this.btnSearchIdMov = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tbUpdDirector = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHome
@@ -104,9 +121,9 @@
             // pnlBooking
             // 
             this.pnlBooking.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlBooking.Location = new System.Drawing.Point(48, 182);
+            this.pnlBooking.Location = new System.Drawing.Point(48, 669);
             this.pnlBooking.Name = "pnlBooking";
-            this.pnlBooking.Size = new System.Drawing.Size(1162, 508);
+            this.pnlBooking.Size = new System.Drawing.Size(504, 21);
             this.pnlBooking.TabIndex = 3;
             this.pnlBooking.Visible = false;
             this.pnlBooking.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBooking_Paint);
@@ -166,24 +183,24 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(48, 190);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(30);
@@ -263,16 +280,6 @@
             this.lblUpdate.Text = "Update";
             this.lblUpdate.Visible = false;
             this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(36, 129);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1198, 558);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnAddMovie
             // 
@@ -391,7 +398,6 @@
             this.tbPrice.Size = new System.Drawing.Size(269, 26);
             this.tbPrice.TabIndex = 31;
             this.tbPrice.Visible = false;
-            this.tbPrice.TextChanged += new System.EventHandler(this.tbPrice_TextChanged);
             // 
             // cbGenre
             // 
@@ -461,11 +467,220 @@
             this.btnSelectImg.Visible = false;
             this.btnSelectImg.Click += new System.EventHandler(this.btnSelectImg_Click);
             // 
+            // btnUpdSelectImg
+            // 
+            this.btnUpdSelectImg.Location = new System.Drawing.Point(282, 615);
+            this.btnUpdSelectImg.Name = "btnUpdSelectImg";
+            this.btnUpdSelectImg.Size = new System.Drawing.Size(144, 27);
+            this.btnUpdSelectImg.TabIndex = 51;
+            this.btnUpdSelectImg.Text = "Select New Image";
+            this.btnUpdSelectImg.UseVisualStyleBackColor = true;
+            this.btnUpdSelectImg.Visible = false;
+            this.btnUpdSelectImg.Click += new System.EventHandler(this.btnUpdSelectImg_Click);
+            // 
+            // lblUpdDirector
+            // 
+            this.lblUpdDirector.AutoSize = true;
+            this.lblUpdDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdDirector.Location = new System.Drawing.Point(680, 221);
+            this.lblUpdDirector.Name = "lblUpdDirector";
+            this.lblUpdDirector.Size = new System.Drawing.Size(78, 20);
+            this.lblUpdDirector.TabIndex = 49;
+            this.lblUpdDirector.Text = "Director:";
+            this.lblUpdDirector.Visible = false;
+            // 
+            // picBoxUpdate
+            // 
+            this.picBoxUpdate.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.picBoxUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxUpdate.Location = new System.Drawing.Point(146, 154);
+            this.picBoxUpdate.Name = "picBoxUpdate";
+            this.picBoxUpdate.Size = new System.Drawing.Size(406, 447);
+            this.picBoxUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBoxUpdate.TabIndex = 48;
+            this.picBoxUpdate.TabStop = false;
+            this.picBoxUpdate.Visible = false;
+            this.picBoxUpdate.Click += new System.EventHandler(this.picBoxUpdate_Click);
+            // 
+            // cbUpdGenre
+            // 
+            this.cbUpdGenre.FormattingEnabled = true;
+            this.cbUpdGenre.Items.AddRange(new object[] {
+            "Adventure",
+            "Action",
+            "Drama",
+            "Documentary",
+            "Comedy",
+            "Fantasy",
+            "Horror",
+            "Romance",
+            "Sci-Fi",
+            "Sports",
+            "Thriller"});
+            this.cbUpdGenre.Location = new System.Drawing.Point(773, 261);
+            this.cbUpdGenre.Name = "cbUpdGenre";
+            this.cbUpdGenre.Size = new System.Drawing.Size(272, 79);
+            this.cbUpdGenre.TabIndex = 47;
+            this.cbUpdGenre.Visible = false;
+            // 
+            // tbUpdPrice
+            // 
+            this.tbUpdPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUpdPrice.Location = new System.Drawing.Point(772, 491);
+            this.tbUpdPrice.Name = "tbUpdPrice";
+            this.tbUpdPrice.Size = new System.Drawing.Size(269, 26);
+            this.tbUpdPrice.TabIndex = 46;
+            this.tbUpdPrice.Visible = false;
+            // 
+            // tbUpdSynopsis
+            // 
+            this.tbUpdSynopsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUpdSynopsis.Location = new System.Drawing.Point(774, 414);
+            this.tbUpdSynopsis.Multiline = true;
+            this.tbUpdSynopsis.Name = "tbUpdSynopsis";
+            this.tbUpdSynopsis.Size = new System.Drawing.Size(269, 54);
+            this.tbUpdSynopsis.TabIndex = 45;
+            this.tbUpdSynopsis.Visible = false;
+            // 
+            // tbUpdDuration
+            // 
+            this.tbUpdDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUpdDuration.Location = new System.Drawing.Point(774, 361);
+            this.tbUpdDuration.Name = "tbUpdDuration";
+            this.tbUpdDuration.Size = new System.Drawing.Size(269, 26);
+            this.tbUpdDuration.TabIndex = 44;
+            this.tbUpdDuration.Visible = false;
+            // 
+            // lblUpdPrice
+            // 
+            this.lblUpdPrice.AutoSize = true;
+            this.lblUpdPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdPrice.Location = new System.Drawing.Point(696, 491);
+            this.lblUpdPrice.Name = "lblUpdPrice";
+            this.lblUpdPrice.Size = new System.Drawing.Size(54, 20);
+            this.lblUpdPrice.TabIndex = 42;
+            this.lblUpdPrice.Text = "Price:";
+            this.lblUpdPrice.Visible = false;
+            // 
+            // lblUpdSynopsis
+            // 
+            this.lblUpdSynopsis.AutoSize = true;
+            this.lblUpdSynopsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdSynopsis.Location = new System.Drawing.Point(673, 408);
+            this.lblUpdSynopsis.Name = "lblUpdSynopsis";
+            this.lblUpdSynopsis.Size = new System.Drawing.Size(86, 20);
+            this.lblUpdSynopsis.TabIndex = 41;
+            this.lblUpdSynopsis.Text = "Synopsis:";
+            this.lblUpdSynopsis.Visible = false;
+            // 
+            // lblUpdDuration
+            // 
+            this.lblUpdDuration.AutoSize = true;
+            this.lblUpdDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdDuration.Location = new System.Drawing.Point(673, 359);
+            this.lblUpdDuration.Name = "lblUpdDuration";
+            this.lblUpdDuration.Size = new System.Drawing.Size(83, 20);
+            this.lblUpdDuration.TabIndex = 40;
+            this.lblUpdDuration.Text = "Duration:";
+            this.lblUpdDuration.Visible = false;
+            // 
+            // lblUpdGenre
+            // 
+            this.lblUpdGenre.AutoSize = true;
+            this.lblUpdGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdGenre.Location = new System.Drawing.Point(693, 260);
+            this.lblUpdGenre.Name = "lblUpdGenre";
+            this.lblUpdGenre.Size = new System.Drawing.Size(64, 20);
+            this.lblUpdGenre.TabIndex = 39;
+            this.lblUpdGenre.Text = "Genre:";
+            this.lblUpdGenre.Visible = false;
+            // 
+            // lblUpdTitle
+            // 
+            this.lblUpdTitle.AutoSize = true;
+            this.lblUpdTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdTitle.Location = new System.Drawing.Point(661, 174);
+            this.lblUpdTitle.Name = "lblUpdTitle";
+            this.lblUpdTitle.Size = new System.Drawing.Size(99, 20);
+            this.lblUpdTitle.TabIndex = 38;
+            this.lblUpdTitle.Text = "Movie Title:";
+            this.lblUpdTitle.Visible = false;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(860, 596);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(180, 60);
+            this.btnUpdate.TabIndex = 37;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // cbUpdTitle
+            // 
+            this.cbUpdTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbUpdTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbUpdTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbUpdTitle.FormattingEnabled = true;
+            this.cbUpdTitle.Location = new System.Drawing.Point(774, 171);
+            this.cbUpdTitle.Name = "cbUpdTitle";
+            this.cbUpdTitle.Size = new System.Drawing.Size(266, 28);
+            this.cbUpdTitle.TabIndex = 52;
+            this.cbUpdTitle.Visible = false;
+            // 
+            // btnSearchIdMov
+            // 
+            this.btnSearchIdMov.Location = new System.Drawing.Point(1059, 172);
+            this.btnSearchIdMov.Name = "btnSearchIdMov";
+            this.btnSearchIdMov.Size = new System.Drawing.Size(88, 28);
+            this.btnSearchIdMov.TabIndex = 53;
+            this.btnSearchIdMov.Text = "Select";
+            this.btnSearchIdMov.UseVisualStyleBackColor = true;
+            this.btnSearchIdMov.Visible = false;
+            this.btnSearchIdMov.Click += new System.EventHandler(this.btnSearchIdMov_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(36, 127);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1198, 558);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // tbUpdDirector
+            // 
+            this.tbUpdDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUpdDirector.Location = new System.Drawing.Point(773, 218);
+            this.tbUpdDirector.Name = "tbUpdDirector";
+            this.tbUpdDirector.Size = new System.Drawing.Size(269, 26);
+            this.tbUpdDirector.TabIndex = 54;
+            this.tbUpdDirector.Visible = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 705);
+            this.Controls.Add(this.tbUpdDirector);
+            this.Controls.Add(this.btnSearchIdMov);
+            this.Controls.Add(this.cbUpdTitle);
+            this.Controls.Add(this.btnUpdSelectImg);
+            this.Controls.Add(this.lblUpdDirector);
+            this.Controls.Add(this.picBoxUpdate);
+            this.Controls.Add(this.cbUpdGenre);
+            this.Controls.Add(this.tbUpdPrice);
+            this.Controls.Add(this.tbUpdSynopsis);
+            this.Controls.Add(this.tbUpdDuration);
+            this.Controls.Add(this.lblUpdPrice);
+            this.Controls.Add(this.lblUpdSynopsis);
+            this.Controls.Add(this.lblUpdDuration);
+            this.Controls.Add(this.lblUpdGenre);
+            this.Controls.Add(this.lblUpdTitle);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSelectImg);
             this.Controls.Add(this.tbDirector);
             this.Controls.Add(this.lblAddDirector);
@@ -484,7 +699,6 @@
             this.Controls.Add(this.btnAddMovie);
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.lblAdd);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cbSched);
             this.Controls.Add(this.btnPayment);
             this.Controls.Add(this.tbSearch);
@@ -504,8 +718,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,7 +743,6 @@
         private System.Windows.Forms.ComboBox cbSched;
         private System.Windows.Forms.Label lblAdd;
         private System.Windows.Forms.Label lblUpdate;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnAddMovie;
         private System.Windows.Forms.Label lblSetSched;
         private System.Windows.Forms.Label lblAddTitle;
@@ -545,5 +759,22 @@
         private System.Windows.Forms.Label lblAddDirector;
         private System.Windows.Forms.TextBox tbDirector;
         private System.Windows.Forms.Button btnSelectImg;
+        private System.Windows.Forms.Button btnUpdSelectImg;
+        private System.Windows.Forms.Label lblUpdDirector;
+        private System.Windows.Forms.PictureBox picBoxUpdate;
+        private System.Windows.Forms.CheckedListBox cbUpdGenre;
+        private System.Windows.Forms.TextBox tbUpdPrice;
+        private System.Windows.Forms.TextBox tbUpdSynopsis;
+        private System.Windows.Forms.TextBox tbUpdDuration;
+        private System.Windows.Forms.Label lblUpdPrice;
+        private System.Windows.Forms.Label lblUpdSynopsis;
+        private System.Windows.Forms.Label lblUpdDuration;
+        private System.Windows.Forms.Label lblUpdGenre;
+        private System.Windows.Forms.Label lblUpdTitle;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.ComboBox cbUpdTitle;
+        private System.Windows.Forms.Button btnSearchIdMov;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox tbUpdDirector;
     }
 }
