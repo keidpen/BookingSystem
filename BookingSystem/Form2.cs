@@ -862,7 +862,21 @@ namespace BookingSystem
             
         }
 
+        //////////update
+        
+        public void UpdateMovieInfo()
+        {
+            try
+            {
 
+                String query1 = "UPDATE bookingdb.movieinfo SET";
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
 
 //////////DB
         private void btnUpdSelectImg_Click(object sender, EventArgs e)
