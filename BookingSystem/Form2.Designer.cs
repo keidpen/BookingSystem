@@ -121,9 +121,9 @@
             // pnlBooking
             // 
             this.pnlBooking.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlBooking.Location = new System.Drawing.Point(48, 669);
+            this.pnlBooking.Location = new System.Drawing.Point(48, 190);
             this.pnlBooking.Name = "pnlBooking";
-            this.pnlBooking.Size = new System.Drawing.Size(504, 21);
+            this.pnlBooking.Size = new System.Drawing.Size(1186, 500);
             this.pnlBooking.TabIndex = 3;
             this.pnlBooking.Visible = false;
             this.pnlBooking.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBooking_Paint);
@@ -210,7 +210,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1162, 500);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.Visible = false;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnSearch
             // 
@@ -232,7 +231,6 @@
             this.tbSearch.Size = new System.Drawing.Size(205, 26);
             this.tbSearch.TabIndex = 11;
             this.tbSearch.Visible = false;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // btnPayment
             // 
@@ -368,7 +366,6 @@
             this.tbTitle.Size = new System.Drawing.Size(269, 26);
             this.tbTitle.TabIndex = 28;
             this.tbTitle.Visible = false;
-            this.tbTitle.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // tbDuration
             // 
@@ -378,7 +375,6 @@
             this.tbDuration.Size = new System.Drawing.Size(269, 26);
             this.tbDuration.TabIndex = 29;
             this.tbDuration.Visible = false;
-            this.tbDuration.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // tbSynopsis
             // 
@@ -419,7 +415,6 @@
             this.cbGenre.Size = new System.Drawing.Size(272, 79);
             this.cbGenre.TabIndex = 32;
             this.cbGenre.Visible = false;
-            this.cbGenre.SelectedIndexChanged += new System.EventHandler(this.cbGenre_SelectedIndexChanged);
             // 
             // picBoxMovie
             // 
@@ -432,7 +427,6 @@
             this.picBoxMovie.TabIndex = 33;
             this.picBoxMovie.TabStop = false;
             this.picBoxMovie.Visible = false;
-            this.picBoxMovie.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // lblAddDirector
             // 
@@ -444,7 +438,6 @@
             this.lblAddDirector.TabIndex = 34;
             this.lblAddDirector.Text = "Director:";
             this.lblAddDirector.Visible = false;
-            this.lblAddDirector.Click += new System.EventHandler(this.label7_Click);
             // 
             // tbDirector
             // 
@@ -454,7 +447,6 @@
             this.tbDirector.Size = new System.Drawing.Size(269, 26);
             this.tbDirector.TabIndex = 35;
             this.tbDirector.Visible = false;
-            this.tbDirector.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // btnSelectImg
             // 

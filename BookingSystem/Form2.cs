@@ -147,6 +147,7 @@ namespace BookingSystem
             lblSetSched.Visible = false;
             lblUpdate.Visible = false;
             DisableUnderAddMovie();
+            DisableUnderUpdateMovie();
         }
 
         private void DisableUnderAddMovie()
@@ -643,17 +644,6 @@ namespace BookingSystem
 
         }
 
-        private void lblSeats_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             String keyword = tbSearch.Text.ToString();
@@ -668,15 +658,6 @@ namespace BookingSystem
             }
         }
 
-        private void tbSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -684,38 +665,7 @@ namespace BookingSystem
             seatnumcount = 0;
             pnlBooking.Controls.Clear();
             BtnSeatArray();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbGenre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
+        } 
         //////////////////////////////////////////////////          Movie Module               //////////////////////////////
 
         private void lblAdd_Click(object sender, EventArgs e)
@@ -793,14 +743,12 @@ namespace BookingSystem
             }
 
 
-
             if (img == null ||check.Equals("") || tbTitle.Text.Equals(null) || tbDirector.Text.Equals(null) || tbDuration.Text.Equals(null) || tbSynopsis.Text.Equals(null) || tbPrice.Text.Equals(null))
             {
                 MessageBox.Show("Everything is empty");
             }
             else
             {
-                
 
                 try
                 {
@@ -813,6 +761,17 @@ namespace BookingSystem
                     if (command1.ExecuteNonQuery() == 1)
                     {
                         MessageBox.Show("Added new Movie");
+                        tbTitle.Text = "";
+                        tbDirector.Text = "";
+                        tbSynopsis.Text = "";
+                        tbDuration.Text = "";
+                        tbPrice.Text = "";
+                        img = "";
+                        picBoxMovie.Image = null;
+                        for (int i=0;i <cbGenre.Items.Count ;i++)
+                        {
+                            cbGenre.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
+                        }
                     }
                     command1.Dispose();
                     db.conn.Close();
@@ -832,17 +791,20 @@ namespace BookingSystem
         {
             try
             {
+                sortList.Clear();
+                cbUpdTitle.Items.Clear();
+
                 String query1 = "";
-                if (sortList.Count <= 0)
-                {
+              //  if (sortList.Count <= 0)
+              //  {
                     query1 = "SELECT Title FROM movieinfo";
-                }
-                else
-                {
+               // }
+               // else
+              //  {
                   //  query1 = "SELECT Title FROM movieinfo WHERE Title LIKE '%" + cbUpdTitle.Text + "%'";
                     //sortList.Clear();
                    // cbUpdTitle.Items.Clear();
-                }
+               // }
 
                 Database db = new Database();
                 db.conn.Open();
@@ -933,6 +895,9 @@ namespace BookingSystem
         {
 
         }
+
+
+
 
 
 
