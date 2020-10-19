@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnSetSelect = new System.Windows.Forms.Button();
             this.lblHome = new System.Windows.Forms.Label();
             this.lblMovie = new System.Windows.Forms.Label();
             this.lblBooking = new System.Windows.Forms.Label();
@@ -78,11 +79,42 @@
             this.btnSearchIdMov = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbUpdDirector = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSet = new System.Windows.Forms.Button();
+            this.dtpSetStartDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpSetEndDate = new System.Windows.Forms.DateTimePicker();
+            this.cbSetScreen = new System.Windows.Forms.ComboBox();
+            this.lblSetTit = new System.Windows.Forms.Label();
+            this.lblSetDir = new System.Windows.Forms.Label();
+            this.dtpSetEndTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpSetStartTime = new System.Windows.Forms.DateTimePicker();
+            this.cbSetTitle = new System.Windows.Forms.ComboBox();
+            this.lblSetScreen = new System.Windows.Forms.Label();
+            this.lblSetTime = new System.Windows.Forms.Label();
+            this.lblSetDate = new System.Windows.Forms.Label();
+            this.lblTo1 = new System.Windows.Forms.Label();
+            this.lblTo2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblSetDirDis = new System.Windows.Forms.Label();
+            this.picBoxSet = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnSetSelect
+            // 
+            this.btnSetSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetSelect.Location = new System.Drawing.Point(1059, 174);
+            this.btnSetSelect.Name = "btnSetSelect";
+            this.btnSetSelect.Size = new System.Drawing.Size(88, 26);
+            this.btnSetSelect.TabIndex = 68;
+            this.btnSetSelect.Text = "Select";
+            this.btnSetSelect.UseVisualStyleBackColor = true;
+            this.btnSetSelect.Visible = false;
+            this.btnSetSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // lblHome
             // 
@@ -121,9 +153,9 @@
             // pnlBooking
             // 
             this.pnlBooking.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlBooking.Location = new System.Drawing.Point(48, 190);
+            this.pnlBooking.Location = new System.Drawing.Point(48, 626);
             this.pnlBooking.Name = "pnlBooking";
-            this.pnlBooking.Size = new System.Drawing.Size(1186, 500);
+            this.pnlBooking.Size = new System.Drawing.Size(263, 64);
             this.pnlBooking.TabIndex = 3;
             this.pnlBooking.Visible = false;
             this.pnlBooking.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBooking_Paint);
@@ -183,24 +215,24 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(48, 190);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(30);
@@ -418,8 +450,7 @@
             // 
             // picBoxMovie
             // 
-            this.picBoxMovie.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.picBoxMovie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxMovie.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.picBoxMovie.Location = new System.Drawing.Point(146, 154);
             this.picBoxMovie.Name = "picBoxMovie";
             this.picBoxMovie.Size = new System.Drawing.Size(406, 447);
@@ -483,8 +514,7 @@
             // 
             // picBoxUpdate
             // 
-            this.picBoxUpdate.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.picBoxUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxUpdate.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.picBoxUpdate.Location = new System.Drawing.Point(146, 154);
             this.picBoxUpdate.Name = "picBoxUpdate";
             this.picBoxUpdate.Size = new System.Drawing.Size(406, 447);
@@ -492,7 +522,6 @@
             this.picBoxUpdate.TabIndex = 48;
             this.picBoxUpdate.TabStop = false;
             this.picBoxUpdate.Visible = false;
-            this.picBoxUpdate.Click += new System.EventHandler(this.picBoxUpdate_Click);
             // 
             // cbUpdGenre
             // 
@@ -601,7 +630,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(860, 596);
+            this.btnUpdate.Location = new System.Drawing.Point(967, 596);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(180, 60);
             this.btnUpdate.TabIndex = 37;
@@ -641,6 +670,7 @@
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tbUpdDirector
             // 
@@ -651,11 +681,249 @@
             this.tbUpdDirector.TabIndex = 54;
             this.tbUpdDirector.Visible = false;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.Red;
+            this.btnDelete.Location = new System.Drawing.Point(772, 596);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(180, 60);
+            this.btnDelete.TabIndex = 55;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSet
+            // 
+            this.btnSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSet.Location = new System.Drawing.Point(860, 595);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(185, 60);
+            this.btnSet.TabIndex = 56;
+            this.btnSet.Text = "SET";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Visible = false;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
+            // 
+            // dtpSetStartDate
+            // 
+            this.dtpSetStartDate.CustomFormat = "MMMM dd,yyyy";
+            this.dtpSetStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSetStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSetStartDate.Location = new System.Drawing.Point(766, 415);
+            this.dtpSetStartDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpSetStartDate.Name = "dtpSetStartDate";
+            this.dtpSetStartDate.Size = new System.Drawing.Size(182, 26);
+            this.dtpSetStartDate.TabIndex = 57;
+            this.dtpSetStartDate.Visible = false;
+            this.dtpSetStartDate.ValueChanged += new System.EventHandler(this.dtpSetStartDate_ValueChanged);
+            // 
+            // dtpSetEndDate
+            // 
+            this.dtpSetEndDate.CustomFormat = "MMMM dd,yyyy";
+            this.dtpSetEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSetEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSetEndDate.Location = new System.Drawing.Point(993, 415);
+            this.dtpSetEndDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpSetEndDate.Name = "dtpSetEndDate";
+            this.dtpSetEndDate.Size = new System.Drawing.Size(179, 26);
+            this.dtpSetEndDate.TabIndex = 58;
+            this.dtpSetEndDate.Visible = false;
+            this.dtpSetEndDate.ValueChanged += new System.EventHandler(this.dtpSetEnd_ValueChanged);
+            // 
+            // cbSetScreen
+            // 
+            this.cbSetScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSetScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSetScreen.FormattingEnabled = true;
+            this.cbSetScreen.Items.AddRange(new object[] {
+            "Screen 1",
+            "Screen 2",
+            "Screen 3"});
+            this.cbSetScreen.Location = new System.Drawing.Point(766, 287);
+            this.cbSetScreen.Name = "cbSetScreen";
+            this.cbSetScreen.Size = new System.Drawing.Size(274, 28);
+            this.cbSetScreen.TabIndex = 59;
+            this.cbSetScreen.Visible = false;
+            this.cbSetScreen.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged_1);
+            // 
+            // lblSetTit
+            // 
+            this.lblSetTit.AutoSize = true;
+            this.lblSetTit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetTit.Location = new System.Drawing.Point(658, 176);
+            this.lblSetTit.Name = "lblSetTit";
+            this.lblSetTit.Size = new System.Drawing.Size(99, 20);
+            this.lblSetTit.TabIndex = 60;
+            this.lblSetTit.Text = "Movie Title:";
+            this.lblSetTit.Visible = false;
+            this.lblSetTit.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblSetDir
+            // 
+            this.lblSetDir.AutoSize = true;
+            this.lblSetDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetDir.Location = new System.Drawing.Point(668, 233);
+            this.lblSetDir.Name = "lblSetDir";
+            this.lblSetDir.Size = new System.Drawing.Size(78, 20);
+            this.lblSetDir.TabIndex = 61;
+            this.lblSetDir.Text = "Director:";
+            this.lblSetDir.Visible = false;
+            this.lblSetDir.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // dtpSetEndTime
+            // 
+            this.dtpSetEndTime.CustomFormat = "hh:mm tt";
+            this.dtpSetEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSetEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSetEndTime.Location = new System.Drawing.Point(942, 353);
+            this.dtpSetEndTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpSetEndTime.Name = "dtpSetEndTime";
+            this.dtpSetEndTime.ShowUpDown = true;
+            this.dtpSetEndTime.Size = new System.Drawing.Size(127, 26);
+            this.dtpSetEndTime.TabIndex = 63;
+            this.dtpSetEndTime.Visible = false;
+            this.dtpSetEndTime.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            // 
+            // dtpSetStartTime
+            // 
+            this.dtpSetStartTime.CustomFormat = "hh:mm tt";
+            this.dtpSetStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSetStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSetStartTime.Location = new System.Drawing.Point(765, 353);
+            this.dtpSetStartTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpSetStartTime.Name = "dtpSetStartTime";
+            this.dtpSetStartTime.ShowUpDown = true;
+            this.dtpSetStartTime.Size = new System.Drawing.Size(128, 26);
+            this.dtpSetStartTime.TabIndex = 62;
+            this.dtpSetStartTime.Visible = false;
+            this.dtpSetStartTime.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
+            // 
+            // cbSetTitle
+            // 
+            this.cbSetTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSetTitle.FormattingEnabled = true;
+            this.cbSetTitle.Location = new System.Drawing.Point(766, 172);
+            this.cbSetTitle.Name = "cbSetTitle";
+            this.cbSetTitle.Size = new System.Drawing.Size(274, 28);
+            this.cbSetTitle.TabIndex = 64;
+            this.cbSetTitle.Visible = false;
+            this.cbSetTitle.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // lblSetScreen
+            // 
+            this.lblSetScreen.AutoSize = true;
+            this.lblSetScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetScreen.Location = new System.Drawing.Point(673, 290);
+            this.lblSetScreen.Name = "lblSetScreen";
+            this.lblSetScreen.Size = new System.Drawing.Size(71, 20);
+            this.lblSetScreen.TabIndex = 65;
+            this.lblSetScreen.Text = "Screen:";
+            this.lblSetScreen.Visible = false;
+            this.lblSetScreen.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // lblSetTime
+            // 
+            this.lblSetTime.AutoSize = true;
+            this.lblSetTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetTime.Location = new System.Drawing.Point(694, 350);
+            this.lblSetTime.Name = "lblSetTime";
+            this.lblSetTime.Size = new System.Drawing.Size(52, 20);
+            this.lblSetTime.TabIndex = 66;
+            this.lblSetTime.Text = "Time:";
+            this.lblSetTime.Visible = false;
+            this.lblSetTime.Click += new System.EventHandler(this.label2_Click_1);
+            // 
+            // lblSetDate
+            // 
+            this.lblSetDate.AutoSize = true;
+            this.lblSetDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetDate.Location = new System.Drawing.Point(693, 419);
+            this.lblSetDate.Name = "lblSetDate";
+            this.lblSetDate.Size = new System.Drawing.Size(53, 20);
+            this.lblSetDate.TabIndex = 67;
+            this.lblSetDate.Text = "Date:";
+            this.lblSetDate.Visible = false;
+            this.lblSetDate.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // lblTo1
+            // 
+            this.lblTo1.AutoSize = true;
+            this.lblTo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo1.Location = new System.Drawing.Point(906, 355);
+            this.lblTo1.Name = "lblTo1";
+            this.lblTo1.Size = new System.Drawing.Size(25, 20);
+            this.lblTo1.TabIndex = 69;
+            this.lblTo1.Text = "to";
+            this.lblTo1.Visible = false;
+            // 
+            // lblTo2
+            // 
+            this.lblTo2.AutoSize = true;
+            this.lblTo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo2.Location = new System.Drawing.Point(962, 419);
+            this.lblTo2.Name = "lblTo2";
+            this.lblTo2.Size = new System.Drawing.Size(25, 20);
+            this.lblTo2.TabIndex = 70;
+            this.lblTo2.Text = "to";
+            this.lblTo2.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(765, 242);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 71;
+            // 
+            // lblSetDirDis
+            // 
+            this.lblSetDirDis.AutoSize = true;
+            this.lblSetDirDis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetDirDis.Location = new System.Drawing.Point(771, 233);
+            this.lblSetDirDis.Name = "lblSetDirDis";
+            this.lblSetDirDis.Size = new System.Drawing.Size(74, 20);
+            this.lblSetDirDis.TabIndex = 72;
+            this.lblSetDirDis.Text = "             ";
+            this.lblSetDirDis.Visible = false;
+            // 
+            // picBoxSet
+            // 
+            this.picBoxSet.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.picBoxSet.Location = new System.Drawing.Point(101, 158);
+            this.picBoxSet.Name = "picBoxSet";
+            this.picBoxSet.Size = new System.Drawing.Size(434, 514);
+            this.picBoxSet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBoxSet.TabIndex = 73;
+            this.picBoxSet.TabStop = false;
+            this.picBoxSet.Visible = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 705);
+            this.Controls.Add(this.picBoxSet);
+            this.Controls.Add(this.lblSetDirDis);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblTo2);
+            this.Controls.Add(this.lblTo1);
+            this.Controls.Add(this.btnSetSelect);
+            this.Controls.Add(this.lblSetDate);
+            this.Controls.Add(this.lblSetTime);
+            this.Controls.Add(this.lblSetScreen);
+            this.Controls.Add(this.cbSetTitle);
+            this.Controls.Add(this.dtpSetEndTime);
+            this.Controls.Add(this.dtpSetStartTime);
+            this.Controls.Add(this.lblSetDir);
+            this.Controls.Add(this.lblSetTit);
+            this.Controls.Add(this.cbSetScreen);
+            this.Controls.Add(this.dtpSetEndDate);
+            this.Controls.Add(this.dtpSetStartDate);
+            this.Controls.Add(this.btnSet);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.tbUpdDirector);
             this.Controls.Add(this.btnSearchIdMov);
             this.Controls.Add(this.cbUpdTitle);
@@ -672,7 +940,6 @@
             this.Controls.Add(this.lblUpdGenre);
             this.Controls.Add(this.lblUpdTitle);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSelectImg);
             this.Controls.Add(this.tbDirector);
             this.Controls.Add(this.lblAddDirector);
@@ -713,6 +980,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,5 +1036,24 @@
         private System.Windows.Forms.Button btnSearchIdMov;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tbUpdDirector;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSet;
+        private System.Windows.Forms.DateTimePicker dtpSetStartDate;
+        private System.Windows.Forms.DateTimePicker dtpSetEndDate;
+        private System.Windows.Forms.ComboBox cbSetScreen;
+        private System.Windows.Forms.Label lblSetTit;
+        private System.Windows.Forms.Label lblSetDir;
+        private System.Windows.Forms.DateTimePicker dtpSetEndTime;
+        private System.Windows.Forms.DateTimePicker dtpSetStartTime;
+        private System.Windows.Forms.ComboBox cbSetTitle;
+        private System.Windows.Forms.Label lblSetScreen;
+        private System.Windows.Forms.Label lblSetTime;
+        private System.Windows.Forms.Label lblSetDate;
+        private System.Windows.Forms.Label lblTo1;
+        private System.Windows.Forms.Label lblTo2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSetDirDis;
+        private System.Windows.Forms.PictureBox picBoxSet;
+        private System.Windows.Forms.Button btnSetSelect;
     }
 }

@@ -103,6 +103,7 @@ namespace BookingSystem
             lblUpdate.ForeColor = Color.Black;
 
             DisableUnderUpdateMovie();
+            DisableUnderSetSchedule();
 
             lblAdd.Visible = true;
 
@@ -148,6 +149,7 @@ namespace BookingSystem
             lblUpdate.Visible = false;
             DisableUnderAddMovie();
             DisableUnderUpdateMovie();
+            DisableUnderSetSchedule();
         }
 
         private void DisableUnderAddMovie()
@@ -167,6 +169,19 @@ namespace BookingSystem
             tbPrice.Visible = false;
             lblAddGenre.Visible = false;
             cbGenre.Visible = false;
+
+            tbTitle.Text = "";
+            tbDirector.Text = "";
+            tbSynopsis.Text = "";
+            tbDuration.Text = "";
+            tbPrice.Text = "";
+            img = "";
+            picBoxMovie.Image = null;
+            for (int i = 0; i < cbGenre.Items.Count; i++)
+            {
+                cbGenre.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
+            }
+
         }
 
         private void DisableUnderUpdateMovie()
@@ -188,11 +203,46 @@ namespace BookingSystem
             btnUpdSelectImg.Visible = false;
             btnUpdate.Visible = false;
             btnSearchIdMov.Visible = false;
+            btnDelete.Visible = false;
+
+            movieInfoID = "";
+            cbUpdTitle.Text = "";
+            tbUpdDirector.Text = "";
+            tbUpdDuration.Text = "";
+            tbUpdSynopsis.Text = "";
+            tbUpdPrice.Text = "";
+            imgUpdate = "";
+            picBoxUpdate.Image = null;
+            for (int i = 0; i < cbUpdGenre.Items.Count; i++)
+            {
+                cbUpdGenre.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
+            }
         }
 
         private void DisableUnderSetSchedule()
         {
+            movieInfoID = "";
+            cbSetTitle.Text = "";
+            lblSetDirDis.Text = "";
+            picBoxSet.Image = null;
 
+            lblSetTit.Visible = false;
+            lblSetDir.Visible = false;
+            lblSetDirDis.Visible = false;
+            lblSetScreen.Visible = false;
+            lblSetTime.Visible = false;
+            lblSetDate.Visible = false;
+            lblTo1.Visible = false;
+            lblTo2.Visible = false;
+            cbSetScreen.Visible = false;
+            cbSetTitle.Visible = false;
+            dtpSetStartTime.Visible = false;
+            dtpSetEndTime.Visible = false;
+            dtpSetStartDate.Visible = false;
+            dtpSetEndDate.Visible = false;
+            btnSetSelect.Visible = false;
+            btnSet.Visible = false;
+            picBoxSet.Visible = false;
         }
 
         //////////////////////////////////////////////////////////// END OF DISABLING MOVIE//////////////////////////////////
@@ -675,6 +725,7 @@ namespace BookingSystem
             lblSetSched.ForeColor = Color.Black;
 
             DisableUnderUpdateMovie();
+            DisableUnderSetSchedule();
         }
 
         private void lblUpdate_Click(object sender, EventArgs e)
@@ -684,7 +735,8 @@ namespace BookingSystem
             lblAdd.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.Black;
             DisableUnderAddMovie();
-            
+            DisableUnderSetSchedule();
+
             picBoxUpdate.Visible = true;
             lblUpdTitle.Visible = true;
             lblUpdDirector.Visible = true;
@@ -702,16 +754,39 @@ namespace BookingSystem
             btnUpdSelectImg.Visible = true;
             btnUpdate.Visible = true;
             btnSearchIdMov.Visible = true;
+            btnDelete.Visible = true;
 
         }
 
         private void lblSetSched_Click(object sender, EventArgs e)
         {
+            dbSelect();
+
             lblUpdate.ForeColor = Color.Black;
             lblAdd.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.DarkViolet;
             DisableUnderAddMovie();
             DisableUnderUpdateMovie();
+
+            cbSetScreen.SelectedIndex = 0;
+
+            lblSetTit.Visible = true;
+            lblSetDir.Visible = true;
+            lblSetDirDis.Visible = true;
+            lblSetScreen.Visible = true;
+            lblSetTime.Visible = true;
+            lblSetDate.Visible = true;
+            lblTo1.Visible = true;
+            lblTo2.Visible = true;
+            cbSetScreen.Visible = true;
+            cbSetTitle.Visible = true;
+            dtpSetStartTime.Visible = true;
+            dtpSetEndTime.Visible = true;
+            dtpSetStartDate.Visible = true;
+            dtpSetEndDate.Visible = true;
+            btnSetSelect.Visible = true;
+            btnSet.Visible = true;
+            picBoxSet.Visible = true;
         }
 
         String img = "";
@@ -793,11 +868,12 @@ namespace BookingSystem
             {
                 sortList.Clear();
                 cbUpdTitle.Items.Clear();
+                cbSetTitle.Items.Clear();
 
                 String query1 = "";
               //  if (sortList.Count <= 0)
               //  {
-                    query1 = "SELECT Title FROM movieinfo";
+                    query1 = "SELECT Title FROM movieinfo WHERE isDeleted ='false'";
                // }
                // else
               //  {
@@ -822,6 +898,7 @@ namespace BookingSystem
                 foreach (String str in sortList)
                 {
                     cbUpdTitle.Items.Add(str);
+                    cbSetTitle.Items.Add(str);
                 }
 
             }
@@ -831,6 +908,7 @@ namespace BookingSystem
             }
         }
 
+        String movieInfoID = "";
         public void dbDisplayAfterSelect()
         {
             try{
@@ -843,6 +921,7 @@ namespace BookingSystem
 
                 adapter.Fill(table);
 
+                movieInfoID = table.Rows[0][0].ToString();
                 tbUpdDirector.Text = table.Rows[0][2].ToString();
                 tbUpdDuration.Text = table.Rows[0][4].ToString();
                 tbUpdSynopsis.Text = table.Rows[0][5].ToString();
@@ -850,6 +929,8 @@ namespace BookingSystem
                 var imgs = table.Rows[0][8].ToString();
 
                 picBoxUpdate.Image = Image.FromFile(imgs);
+                String replace = imgs.Replace("\\","\\\\");
+                imgUpdate = replace;
 
                 adapter.Dispose();
                 db.conn.Close();
@@ -859,17 +940,36 @@ namespace BookingSystem
             {
                 MessageBox.Show(err.Message);
             }
-            
         }
 
-        //////////update
-        
-        public void UpdateMovieInfo()
+
+        //set
+
+        public void dbDisplayAfterSelectForSet()
         {
             try
             {
+                Database db = new Database();
+                String query1 = "SELECT * FROM movieinfo WHERE Title = '" + cbSetTitle.Text + "'";
+                db.conn.Open();
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command1);
+                DataTable table = new DataTable();
 
-                String query1 = "UPDATE bookingdb.movieinfo SET";
+                adapter.Fill(table);
+
+                movieInfoID = table.Rows[0][0].ToString();
+                lblSetDirDis.Text = table.Rows[0][2].ToString();
+              //  tbUpdDuration.Text = table.Rows[0][4].ToString();
+              //  tbUpdSynopsis.Text = table.Rows[0][5].ToString();
+              //  tbUpdPrice.Text = table.Rows[0][6].ToString();
+                var imgs = table.Rows[0][8].ToString();
+
+                picBoxSet.Image = Image.FromFile(imgs);
+
+
+                adapter.Dispose();
+                db.conn.Close();
 
             }
             catch (Exception err)
@@ -878,7 +978,85 @@ namespace BookingSystem
             }
         }
 
-//////////DB
+        //////////update or remove
+
+        public void UpdateOrDeleteMovieInfo(String isDeleted)
+        {
+            String genre = "", check = "";
+            foreach (string s in cbUpdGenre.CheckedItems)
+            {
+                genre += s + ", ";
+                check += s; 
+            }
+
+            if ( imgUpdate == null || (check.Equals("") && isDeleted.Equals("false")) || cbUpdTitle.Text.Equals(null) || tbUpdDirector.Text.Equals(null) || tbUpdDuration.Text.Equals(null) || tbUpdSynopsis.Text.Equals(null) || tbUpdPrice.Text.Equals(null))
+            {
+                MessageBox.Show("Everything is not fill");
+            }
+            else
+            {
+                try
+                {
+                    Database db = new Database();
+
+                    String query1 = "";
+
+                    if (isDeleted.Equals("false"))
+                    {
+                        query1 = "UPDATE bookingdb.movieinfo " +
+                                 "SET Title ='" + cbUpdTitle.Text + "',Director ='" + tbUpdDirector.Text + "' , Genre= '" + genre + "'  , Duration = '" + tbUpdDuration.Text + "' , Synopsis = '" + tbUpdSynopsis.Text + "' , Price = '" + tbUpdPrice.Text + "' , isDeleted = 'false' , imgPath = '" + imgUpdate + "' " +
+                                 "WHERE movieID = '" + movieInfoID + "'";
+                    }else if (isDeleted.Equals("true"))
+                    {
+                        query1 = "UPDATE bookingdb.movieinfo " +
+                                 "SET isDeleted = 'true'" +
+                                 "WHERE movieID = '" + movieInfoID + "'";
+                    }
+                        
+                    db.conn.Open();
+                    MySqlCommand command = new MySqlCommand(query1, db.conn);
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        if (isDeleted.Equals("false"))
+                        {
+                            MessageBox.Show("Movie info updated");
+                        }
+                        else if(isDeleted.Equals("true"))
+                        {
+                            MessageBox.Show("Movie info is Deleted");
+                        }
+
+                        movieInfoID = "";
+                        cbUpdTitle.Text = "";
+                        tbUpdDirector.Text = "";
+                        tbUpdDuration.Text = "";
+                        tbUpdSynopsis.Text = "";
+                        tbUpdPrice.Text = "";
+                        imgUpdate = "";
+                        picBoxUpdate.Image = null;
+                        for (int i = 0; i < cbUpdGenre.Items.Count; i++)
+                        {
+                            cbUpdGenre.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
+                        }
+                        dbSelect();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Movie info update failed");
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        //////////DB
+
+        String imgUpdate = "";
+
         private void btnUpdSelectImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog();
@@ -887,6 +1065,8 @@ namespace BookingSystem
             if (opf.ShowDialog() == DialogResult.OK)
             {
                 picBoxUpdate.Image = Image.FromFile(opf.FileName);
+                String replace = opf.FileName;
+                imgUpdate = replace.Replace("\\", "\\\\");
             }
         }
 
@@ -895,23 +1075,101 @@ namespace BookingSystem
             dbDisplayAfterSelect();
         }
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void picBoxUpdate_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to DELETE?", "Delete Movie?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                UpdateOrDeleteMovieInfo("true");
+            }
         }
+
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to Update?", "Update Movie?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                UpdateOrDeleteMovieInfo("false");
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpSetEnd_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpSetStartDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
 
 
+        ////                     ////                            ////
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            dbSelect();
+            dbDisplayAfterSelectForSet();
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            String timedisplay = "";
+            String date = dtpSetEndDate.Value.ToString("yyyy-MM-dd") + dtpSetEndTime.Value.ToString(" HH:mm:00");
+            MessageBox.Show("END DATE: " + date);
+        }
 
 
 
