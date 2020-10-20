@@ -575,7 +575,8 @@ namespace BookingSystem
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = comboBox1.SelectedItem.ToString();
 
-                String query = "SELECT Time FROM bookingdb.moviesched WHERE  '" + date + "' BETWEEN StartDate AND EndDate AND moviesched.Screen='" + screen + "' ORDER BY Time ASC";
+                String query ="SELECT Time FROM bookingdb.moviesched WHERE  '" + date + "' BETWEEN CAST(StartDate AS DATE) AND EndDate AND moviesched.Screen='" + screen + "' ORDER BY Time ASC";
+                
                 db.conn.Open();
                 MySqlCommand command = new MySqlCommand(query, db.conn);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -1053,6 +1054,70 @@ namespace BookingSystem
             }
         }
 
+
+        public void dbCheckSchedule(String Sdate, String Edate)
+        {
+            try
+            {
+                // BETWEEN CAST('"+ Edate +"'AS DATE) AND CAST('" + Sdate+ "' AS DATE)
+
+                Database db = new Database();
+                String query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
+                                "WHERE " +
+                                "'"+Sdate+"' NOT BETWEEN StartDate AND EndDate AND "+
+                                "'+Edate+' NOT BETWEEN StartDate AND EndDate "+
+                                //"CAST(StartDate AS DATE) BETWEEN CAST('" + Sdate + "' AS DATE) AND CAST('" + Edate + "' AS DATE) " +
+                                //"AND CAST(EndDate AS DATE)  BETWEEN CAST('" + Sdate + "' AS DATE) AND CAST('" + Edate + "' AS DATE) " +
+                                //"AND CAST('"+Sdate+"' AS TIME) NOT BETWEEN CAST(StartDate AS TIME) AND CAST(EndDate AS TIME) " +
+                                //"AND CAST('"+Edate+ "' AS TIME) NOT BETWEEN CAST(StartDate AS TIME) AND CAST(EndDate AS TIME) " +
+                                "AND Screen = 'Screen 1'";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                int i = Convert.ToInt32(dt.Rows[0][0].ToString());
+
+                if (i>=1)
+                {
+                    MessageBox.Show("Conflict yung sched");
+                    MessageBox.Show(dt.Rows[0][0].ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Not conflict sa scher");
+                    MessageBox.Show(dt.Rows[0][0].ToString());
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            
+        }
+
+        public void dbSetSchedule(String Sdate, String Edate, String SnEtime, String Screen, String movieID)
+        {
+            Database db = new Database();
+
+            String query = "INSERT INTO bookingdb.moviesched (StartDate, EndDate, Time , Screen, MovieID)" +
+                            "VALUES('"+Sdate+"' , '"+ Edate+"' , '"+SnEtime+"', '"+Screen+"' , '"+movieID+"')";
+            db.conn.Open();
+            MySqlCommand command = new MySqlCommand(query, db.conn);
+            if (command.ExecuteNonQuery() == 1)
+            {
+                MessageBox.Show("Inserted");
+            }
+            else
+            {
+                MessageBox.Show("insert Failed!");
+            }
+
+            command.Dispose();
+            db.conn.Close();
+            
+        }
+
+
         //////////DB
 
         String imgUpdate = "";
@@ -1164,11 +1229,22 @@ namespace BookingSystem
             dbDisplayAfterSelectForSet();
         }
 
+        private void picBoxSet_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnSet_Click(object sender, EventArgs e)
         {
-            String timedisplay = "";
-            String date = dtpSetEndDate.Value.ToString("yyyy-MM-dd") + dtpSetEndTime.Value.ToString(" HH:mm:00");
-            MessageBox.Show("END DATE: " + date);
+            String timedisplay = dtpSetStartTime.Value.ToString(" hh:mm tt")+ " - " + dtpSetEndTime.Value.ToString(" hh:mm tt");
+            String Sdate = dtpSetStartDate.Value.ToString("yyyy-MM-dd") + dtpSetStartTime.Value.ToString(" HH:mm:00");
+            String Edate = dtpSetEndDate.Value.ToString("yyyy-MM-dd") + dtpSetEndTime.Value.ToString(" HH:mm:00");
+            MessageBox.Show(timedisplay);
+            
+
+            //dbCheckSchedule(Sdate , Edate);
+
+            dbSetSchedule(Sdate, Edate, timedisplay, cbSetScreen.Text, movieInfoID);
         }
 
 
