@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BookingSystem
@@ -29,6 +31,8 @@ namespace BookingSystem
             if(!tbName.Text.Trim().Equals("")  && !tbContact.Text.Trim().Equals("") && !tbEmail.Text.Trim().Equals(""))
             {
                 dbAddBooking();
+                PrintReceipt();
+
                 Form2 form = new Form2();
                 form.BookingRefresh();
                 form.Visible = true;
@@ -39,9 +43,19 @@ namespace BookingSystem
             {
                 MessageBox.Show("Please input some infor!");
             }
-            
 
         }
+
+        public void PrintReceipt()
+        {
+            StreamWriter file = new StreamWriter("Receipt " + ORnum.Peek()+".txt");
+            file.Write("=================   OR No.:"+ORnum.Peek()+"    =====================\r\n\n");
+            file.Write("Schedule Date: "+ newDate);
+            file.Write("\r\nScreen No.: "+ newScreen);
+            file.Write("\r\nBooked Seat No.: "+ newSeatNo);
+            file.Close();
+        }
+
 
         String newSeatNo="", newDate = "", newScreen="", SelSchedTime="";
 
@@ -102,7 +116,11 @@ namespace BookingSystem
 
 
 
-                String query3 = "INSERT INTO bookingdb.bookedseats(ORNO, SeatNo,customerID,Date,Time,Screen) VALUES('"+"OR-"+ORnum.Peek() + "','"+newSeatNo+"',(SELECT customerID FROM tblcustomer WHERE customerID = (SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')),'"+newDate+"','"+ SelSchedTime + "','"+newScreen+"')";
+                String query3 = "INSERT INTO bookingdb.bookedseats(ORNO, SeatNo,customerID,Date,Time,Screen) " +
+                    "VALUES('"+"OR-"+ORnum.Peek() + "','"+newSeatNo+"'," +
+                    "(SELECT customerID FROM tblcustomer WHERE customerID = " +
+                    "(SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')),'"+newDate+"','"+ SelSchedTime + "','"+newScreen+"')";
+                
                 db.conn.Open();
 
                 MySqlCommand command3 = new MySqlCommand(query3,db.conn);

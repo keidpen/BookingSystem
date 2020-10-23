@@ -80,11 +80,11 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(64, 86);
+            this.lblDate.Location = new System.Drawing.Point(46, 86);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(33, 13);
+            this.lblDate.Size = new System.Drawing.Size(75, 13);
             this.lblDate.TabIndex = 4;
-            this.lblDate.Text = "Date:";
+            this.lblDate.Text = "Booking Date:";
             // 
             // lblContact
             // 
