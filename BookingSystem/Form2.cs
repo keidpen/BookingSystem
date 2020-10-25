@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -221,28 +222,10 @@ namespace BookingSystem
 
         private void DisableUnderSetSchedule()
         {
-            movieInfoID = "";
-            cbSetTitle.Text = "";
-            lblSetDirDis.Text = "";
-            picBoxSet.Image = null;
-
-            lblSetTit.Visible = false;
-            lblSetDir.Visible = false;
-            lblSetDirDis.Visible = false;
-            lblSetScreen.Visible = false;
-            lblSetTime.Visible = false;
-            lblSetDate.Visible = false;
-            lblTo1.Visible = false;
-            lblTo2.Visible = false;
+            cbSetDate.Visible = false;
             cbSetScreen.Visible = false;
-            cbSetTitle.Visible = false;
-            dtpSetStartTime.Visible = false;
-            dtpSetEndTime.Visible = false;
-            dtpSetStartDate.Visible = false;
-            dtpSetEndDate.Visible = false;
-            btnSetSelect.Visible = false;
-            btnSet.Visible = false;
-            picBoxSet.Visible = false;
+            pnlTime.Visible = false;
+            pnlSched.Visible = false;
         }
 
         //////////////////////////////////////////////////////////// END OF DISABLING MOVIE//////////////////////////////////
@@ -761,33 +744,22 @@ namespace BookingSystem
 
         private void lblSetSched_Click(object sender, EventArgs e)
         {
-            dbSelect();
+            getStartAndEndDate();
+            cbSetScreen.SelectedIndex = 0;
+            cbSetDate.SelectedIndex = 0;
+            btnSchedArray();
 
+            
+            cbSetDate.Visible = true;
+            cbSetScreen.Visible = true;
+            pnlTime.Visible = true;
+            pnlSched.Visible = true;
             lblUpdate.ForeColor = Color.Black;
             lblAdd.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.DarkViolet;
             DisableUnderAddMovie();
             DisableUnderUpdateMovie();
 
-            cbSetScreen.SelectedIndex = 0;
-
-            lblSetTit.Visible = true;
-            lblSetDir.Visible = true;
-            lblSetDirDis.Visible = true;
-            lblSetScreen.Visible = true;
-            lblSetTime.Visible = true;
-            lblSetDate.Visible = true;
-            lblTo1.Visible = true;
-            lblTo2.Visible = true;
-            cbSetScreen.Visible = true;
-            cbSetTitle.Visible = true;
-            dtpSetStartTime.Visible = true;
-            dtpSetEndTime.Visible = true;
-            dtpSetStartDate.Visible = true;
-            dtpSetEndDate.Visible = true;
-            btnSetSelect.Visible = true;
-            btnSet.Visible = true;
-            picBoxSet.Visible = true;
         }
 
         String img = "";
@@ -869,7 +841,6 @@ namespace BookingSystem
             {
                 sortList.Clear();
                 cbUpdTitle.Items.Clear();
-                cbSetTitle.Items.Clear();
 
                 String query1 = "";
               //  if (sortList.Count <= 0)
@@ -899,7 +870,6 @@ namespace BookingSystem
                 foreach (String str in sortList)
                 {
                     cbUpdTitle.Items.Add(str);
-                    cbSetTitle.Items.Add(str);
                 }
 
             }
@@ -951,7 +921,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query1 = "SELECT * FROM movieinfo WHERE Title = '" + cbSetTitle.Text + "'";
+                String query1 = "SELECT * FROM movieinfo WHERE Title = ' The rocket '";
                 db.conn.Open();
                 MySqlCommand command1 = new MySqlCommand(query1, db.conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command1);
@@ -960,13 +930,10 @@ namespace BookingSystem
                 adapter.Fill(table);
 
                 movieInfoID = table.Rows[0][0].ToString();
-                lblSetDirDis.Text = table.Rows[0][2].ToString();
               //  tbUpdDuration.Text = table.Rows[0][4].ToString();
               //  tbUpdSynopsis.Text = table.Rows[0][5].ToString();
               //  tbUpdPrice.Text = table.Rows[0][6].ToString();
                 var imgs = table.Rows[0][8].ToString();
-
-                picBoxSet.Image = Image.FromFile(imgs);
 
 
                 adapter.Dispose();
@@ -1054,71 +1021,10 @@ namespace BookingSystem
             }
         }
 
-
-        public void dbCheckSchedule(String Sdate, String Edate)
-        {
-            try
-            {
-                // BETWEEN CAST('"+ Edate +"'AS DATE) AND CAST('" + Sdate+ "' AS DATE)
-
-                Database db = new Database();
-                String query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
-                                "WHERE " +
-                                "'"+Sdate+"' NOT BETWEEN StartDate AND EndDate AND "+
-                                "'+Edate+' NOT BETWEEN StartDate AND EndDate "+
-                                //"CAST(StartDate AS DATE) BETWEEN CAST('" + Sdate + "' AS DATE) AND CAST('" + Edate + "' AS DATE) " +
-                                //"AND CAST(EndDate AS DATE)  BETWEEN CAST('" + Sdate + "' AS DATE) AND CAST('" + Edate + "' AS DATE) " +
-                                //"AND CAST('"+Sdate+"' AS TIME) NOT BETWEEN CAST(StartDate AS TIME) AND CAST(EndDate AS TIME) " +
-                                //"AND CAST('"+Edate+ "' AS TIME) NOT BETWEEN CAST(StartDate AS TIME) AND CAST(EndDate AS TIME) " +
-                                "AND Screen = 'Screen 1'";
-                MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-
-                int i = Convert.ToInt32(dt.Rows[0][0].ToString());
-
-                if (i>=1)
-                {
-                    MessageBox.Show("Conflict yung sched");
-                    MessageBox.Show(dt.Rows[0][0].ToString());
-                }
-                else
-                {
-                    MessageBox.Show("Not conflict sa scher");
-                    MessageBox.Show(dt.Rows[0][0].ToString());
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            
-        }
-
-        public void dbSetSchedule(String Sdate, String Edate, String SnEtime, String Screen, String movieID)
-        {
-            Database db = new Database();
-
-            String query = "INSERT INTO bookingdb.moviesched (StartDate, EndDate, Time , Screen, MovieID)" +
-                            "VALUES('"+Sdate+"' , '"+ Edate+"' , '"+SnEtime+"', '"+Screen+"' , '"+movieID+"')";
-            db.conn.Open();
-            MySqlCommand command = new MySqlCommand(query, db.conn);
-            if (command.ExecuteNonQuery() == 1)
-            {
-                MessageBox.Show("Inserted");
-            }
-            else
-            {
-                MessageBox.Show("insert Failed!");
-            }
-
-            command.Dispose();
-            db.conn.Close();
-            
-        }
+        //
 
 
-        //////////DB
+        ////////// DB END
 
         String imgUpdate = "";
 
@@ -1164,90 +1070,180 @@ namespace BookingSystem
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpSetEnd_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpSetStartDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         ////                     ////                            ////
 
-        private void btnSelect_Click(object sender, EventArgs e)
+
+        public void getStartAndEndDate()
         {
-            dbSelect();
-            dbDisplayAfterSelectForSet();
+            cbSetDate.Items.Clear();
+            DateTime dt = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            DateTime dt2 = dt.AddDays(7).AddSeconds(-1);
+            cbSetDate.Items.Add(dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy"));
+            cbSetDate.SelectedIndex = 0;
+
+            int addDays = 8;
+            for (int i=0; i <=12 ;i++)
+            {
+                DateTime dt3 = dt.AddDays(addDays).AddSeconds(-1);
+                DateTime dt4 = dt3.AddDays(6).AddSeconds(-1);
+                addDays += 7;
+                cbSetDate.Items.Add(dt3.ToString("MMM dd,yyyy") +" --to-- "+ dt4.ToString("MMM dd,yyyy")); ;
+            }
         }
 
-        private void picBoxSet_Click(object sender, EventArgs e)
+        String SetbtnImg = "", strSetMovieName = "", newMovieInfoID ="";
+        public void GetNameAndImgMovie(String pos)
         {
+            Database db = new Database();
+            String query2 = "SELECT movieID,Title,imgPath FROM movieinfo WHERE movieID = " +
+                "ANY (SELECT movieID FROM moviesched WHERE Screen='" + cbSetScreen.Text +"' " +
+                "AND Date = '" + cbSetDate.Text + "' AND SchedPosition = '" + pos + "' )";
+            db.conn.Open();
+            MySqlCommand command = new MySqlCommand(query2, db.conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            newMovieInfoID = table.Rows[0][0].ToString();
+            strSetMovieName = table.Rows[0][1].ToString();
+            SetbtnImg = table.Rows[0][2].ToString();
+            
+        }
+
+        public void btnSchedArray()
+        {
+            Database db = new Database();
+            int Xsched = 10, Ysched = 35, Zsched = 7;
+            int Xday = 40;
+            string[] day ={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+
+            for (int i=0;i<7 ;i++)
+            {
+                Label lblday = new Label();
+                lblday.Text = day[i].ToString();
+                lblday.TextAlign = ContentAlignment.MiddleCenter;
+                lblday.Location = new Point(Xday,10);
+                lblday.BackColor = Color.Transparent;
+                lblday.Font = new Font("Arial", 12, FontStyle.Bold);
+                pnlSched.Controls.Add(lblday);
+                Xday += 164;
+            }
+
+            for (int i = 1; i <= 35; i++)
+            {
+                Button btnSched = new Button();
+                btnSched.Name = i.ToString();
+                btnSched.Size = new Size(162, 92);
+                btnSched.Location = new System.Drawing.Point(Xsched, Ysched);
+                btnSched.Font = new Font("Arial", 12, FontStyle.Bold);
+                btnSched.BackColor = Color.White;
+                
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
+                        "WHERE Date ='" + cbSetDate.SelectedItem.ToString() + "' " +
+                        "AND Screen = '" + cbSetScreen.Text.ToString() + "' " +
+                        "AND SchedPosition = '" + i + "'";
+
+                    MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+
+                    if (dt.Rows[0][0].ToString() == "1")
+                    {
+                        String pos = btnSched.Name.ToString();
+                        GetNameAndImgMovie(pos);
+                        btnSched.Text= strSetMovieName;
+//                        btnSched.BackgroundImageLayout = ImageLayout.Stretch;
+                    //    btnSched.Image = Image.FromFile(SetbtnImg);
+                        btnSched.Image = new Bitmap(Image.FromFile(SetbtnImg), new Size(217, 151));
+                    }
+                    else
+                    {
+                        btnSched.Text = "No Movie " + i.ToString();
+                        btnSched.Font = new Font("Arial", 12, FontStyle.Regular);
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+
+                btnSched.Click += btnSched_Click;
+                pnlSched.Controls.Add(btnSched);
+
+                ///position
+                if (i == Zsched)
+                {
+                    Xsched = 10;
+                    Ysched += 92;
+                    Zsched += 7;
+                }
+                else
+                {
+                    Xsched += 163;
+                }
+            }
 
         }
 
-        private void btnSet_Click(object sender, EventArgs e)
+
+        public void btnSched_Click(object sender, EventArgs e)
         {
-            String timedisplay = dtpSetStartTime.Value.ToString(" hh:mm tt")+ " - " + dtpSetEndTime.Value.ToString(" hh:mm tt");
-            String Sdate = dtpSetStartDate.Value.ToString("yyyy-MM-dd") + dtpSetStartTime.Value.ToString(" HH:mm:00");
-            String Edate = dtpSetEndDate.Value.ToString("yyyy-MM-dd") + dtpSetEndTime.Value.ToString(" HH:mm:00");
-            MessageBox.Show(timedisplay);
+            Button btnSched = (Button)sender;
+            MessageBox.Show(btnSched.Name.ToString());
+
+            //Sunday    = 1,8,15,22,29
+            //Monday    = 2,9,16,23,30
+            //Tuesday   = 3,10,24,31
+            //Wednesday =4,11,25,32
+            //Thursday  =5,12,26,33
+            //Friday    =6,13,27,34
+            //Saturday  =7,14,28,35
+            String time = "";
+            int pos = Convert.ToInt32(btnSched.Name);
+            if ( pos >= 1 && pos <=7)
+            {
+                time = "7:00 AM to 10:00 AM";
+            }
+            else if (pos >= 8 && pos <= 14)
+            {
+                time = "11:00 AM to 1:00 PM";
+            }
+            else if(pos >=15 && pos <=21){
+                time = "1:00 PM to 4:00 PM";
+            }
+            else if (pos >=22 && pos <=28)
+            {
+                time = "4:00 PM to 7:00 PM";
+            }
+            else if (pos >=29 && pos <=35)
+            {
+                time = "7:00 PM to 10:00 PM";
+            }
             
 
-            //dbCheckSchedule(Sdate , Edate);
-
-            dbSetSchedule(Sdate, Edate, timedisplay, cbSetScreen.Text, movieInfoID);
+            if (btnSched.Name=="1")
+            {
+                Form4 form = new Form4();
+                form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time);
+                form.Visible = true;
+            }
         }
 
+        private void cbSetScreen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnlSched.Controls.Clear();
+            btnSchedArray();
+        }
 
+        private void cbSetDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnlSched.Controls.Clear();
+            btnSchedArray();
+        }
 
     }
 }
