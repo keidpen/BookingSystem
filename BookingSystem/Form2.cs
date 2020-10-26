@@ -423,8 +423,6 @@ namespace BookingSystem
                     }
 
                 }
-
-
                 // Split chair per column
                 if (i == 65 || i == 93 || i == 121 || i == 75 || i == 103 || i == 131) //seat B,C, D
                 {
@@ -555,37 +553,60 @@ namespace BookingSystem
                 cbSched.Items.Clear();
                 sched.Clear();
                 Database db = new Database();
-                String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+                //String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = comboBox1.SelectedItem.ToString();
+//dito na
+                DateTime dt = dateTimePicker1.Value.Date.StartOfWeek(DayOfWeek.Sunday);
+                DateTime dt2 = dt.AddDays(7).AddSeconds(-1);
+                String day = dateTimePicker1.Value.DayOfWeek.ToString();
+                String daypos1 = "", daypos2 = "", daypos3 = "", daypos4 = "", daypos5 = "";
+                if (day.Equals("Sunday")){
+                    daypos1 = " 1,"; daypos2 = " 8,"; daypos3 = " 15,"; daypos4 = " 22,";daypos5 = " 29";
+                }else if (day.Equals("Monday")){
+                    daypos1 = " 2,"; daypos2 = " 9,"; daypos3 = " 16,"; daypos4 = " 23,"; daypos5 = " 30,";
+                }else  if (day.Equals("Tuesday")){
+                    daypos1 = " 3,"; daypos2 = " 10,"; daypos3 = " 17,"; daypos4 = " 24,"; daypos5 = " 31,";
+                }else if (day.Equals("Wednesday")){
+                    daypos1 = " 4,"; daypos2 = " 11,"; daypos3 = " 18,"; daypos4 = " 25,"; daypos5 = " 32,";
+                }else if (day.Equals("Thursday")){
+                    daypos1 = " 5,"; daypos2 = " 12,"; daypos3 = " 19,"; daypos4 = " 26,"; daypos5 = " 33,";
+                }else if (day.Equals("Friday")){
+                    daypos1 = " 6,"; daypos2 = " 13,"; daypos3 = " 20,"; daypos4 = " 27,"; daypos5 = " 34,";
+                }else if (day.Equals("Saturday")){
+                    daypos1 = " 7,"; daypos2 = " 14,"; daypos3 = " 21,"; daypos4 = " 28,"; daypos5 = " 35,";
+                }
 
-                String query ="SELECT Time FROM bookingdb.moviesched WHERE  '" + date + "' BETWEEN CAST(StartDate AS DATE) AND EndDate AND moviesched.Screen='" + screen + "' ORDER BY Time ASC";
+                String date = dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy");
+
+                String query = "SELECT Time FROM bookingdb.moviesched " +
+                    "WHERE Date = '"+date+ "' AND moviesched.Screen='" + screen + "' " +
+                    "AND SchedPosition LIKE '%"+daypos1+ "%' OR SchedPosition LIKE '%"+daypos2+"%' " +
+                    "OR SchedPosition LIKE '%"+daypos3+"%' OR SchedPosition LIKE '%"+daypos4+"%' " +
+                    "OR SchedPosition LIKE '%"+daypos5+"%' ORDER BY Time ASC";
+
+                //String query ="SELECT Time FROM bookingdb.moviesched WHERE  '" + date + "' BETWEEN CAST(StartDate AS DATE) AND EndDate AND moviesched.Screen='" + screen + "' ORDER BY Time ASC";
                 
                 db.conn.Open();
                 MySqlCommand command = new MySqlCommand(query, db.conn);
                 MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
+                while (reader.Read()){
                     sched.Enqueue(reader[0].ToString());
                 }
                 reader.Close();
                 command.Dispose();
                 db.conn.Close();
 
-                foreach (String str in sched)
-                {
+                foreach (String str in sched){
                     cbSched.Items.Add(str);
                 }
 
-                if (cbSched.Items.Count <= 0)
-                {
+                if (cbSched.Items.Count <= 0){
                     cbSched.Items.Add("No Available");
                 }
 
                 cbSched.SelectedIndex = 0;
                 cbSched.Visible = true;
-            }
-            catch (Exception err)
-            {
+            }catch (Exception err){
                 MessageBox.Show(err.Message);
             }
         }
@@ -1099,12 +1120,14 @@ namespace BookingSystem
             Database db = new Database();
             String query2 = "SELECT movieID,Title,imgPath FROM movieinfo WHERE movieID = " +
                 "ANY (SELECT movieID FROM moviesched WHERE Screen='" + cbSetScreen.Text +"' " +
-                "AND Date = '" + cbSetDate.Text + "' AND SchedPosition = '" + pos + "' )";
+                "AND Date = '" + cbSetDate.Text + "' AND SchedPosition LIKE '% "+pos+",%' )";
+
             db.conn.Open();
             MySqlCommand command = new MySqlCommand(query2, db.conn);
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
+            db.conn.Close();
 
             newMovieInfoID = table.Rows[0][0].ToString();
             strSetMovieName = table.Rows[0][1].ToString();
@@ -1130,11 +1153,11 @@ namespace BookingSystem
                 pnlSched.Controls.Add(lblday);
                 Xday += 164;
             }
-
+            db.conn.Open();
             for (int i = 1; i <= 35; i++)
             {
                 Button btnSched = new Button();
-                btnSched.Name = i.ToString();
+                btnSched.Tag = i.ToString();
                 btnSched.Size = new Size(162, 92);
                 btnSched.Location = new System.Drawing.Point(Xsched, Ysched);
                 btnSched.Font = new Font("Arial", 12, FontStyle.Bold);
@@ -1145,7 +1168,7 @@ namespace BookingSystem
                     string query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
                         "WHERE Date ='" + cbSetDate.SelectedItem.ToString() + "' " +
                         "AND Screen = '" + cbSetScreen.Text.ToString() + "' " +
-                        "AND SchedPosition = '" + i + "'";
+                        "AND SchedPosition LIKE '% "+i+",%'";
 
                     MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
                     DataTable dt = new DataTable();
@@ -1153,16 +1176,14 @@ namespace BookingSystem
 
                     if (dt.Rows[0][0].ToString() == "1")
                     {
-                        String pos = btnSched.Name.ToString();
+                        String pos = btnSched.Tag.ToString();
                         GetNameAndImgMovie(pos);
                         btnSched.Text= strSetMovieName;
-//                        btnSched.BackgroundImageLayout = ImageLayout.Stretch;
-                    //    btnSched.Image = Image.FromFile(SetbtnImg);
                         btnSched.Image = new Bitmap(Image.FromFile(SetbtnImg), new Size(217, 151));
                     }
                     else
                     {
-                        btnSched.Text = "No Movie " + i.ToString();
+                        btnSched.Text = "No Movie";
                         btnSched.Font = new Font("Arial", 12, FontStyle.Regular);
                     }
                 }
@@ -1173,7 +1194,7 @@ namespace BookingSystem
 
                 btnSched.Click += btnSched_Click;
                 pnlSched.Controls.Add(btnSched);
-
+                db.conn.Close();
                 ///position
                 if (i == Zsched)
                 {
@@ -1193,7 +1214,7 @@ namespace BookingSystem
         public void btnSched_Click(object sender, EventArgs e)
         {
             Button btnSched = (Button)sender;
-            MessageBox.Show(btnSched.Name.ToString());
+            MessageBox.Show(btnSched.Tag.ToString());
 
             //Sunday    = 1,8,15,22,29
             //Monday    = 2,9,16,23,30
@@ -1203,7 +1224,8 @@ namespace BookingSystem
             //Friday    =6,13,27,34
             //Saturday  =7,14,28,35
             String time = "";
-            int pos = Convert.ToInt32(btnSched.Name);
+            //String 
+            int pos = Convert.ToInt32(btnSched.Tag);
             if ( pos >= 1 && pos <=7)
             {
                 time = "7:00 AM to 10:00 AM";
@@ -1224,9 +1246,11 @@ namespace BookingSystem
                 time = "7:00 PM to 10:00 PM";
             }
             
+            
 
-            if (btnSched.Name=="1")
+            if ( pos >=1 && btnSched.Text !="No Movie" )
             {
+                GetNameAndImgMovie(pos.ToString());
                 Form4 form = new Form4();
                 form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time);
                 form.Visible = true;
