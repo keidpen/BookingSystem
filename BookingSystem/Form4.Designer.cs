@@ -35,13 +35,14 @@
             this.lblScreen = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.picBoxMovie = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.cbSaturday = new System.Windows.Forms.CheckBox();
+            this.cbFriday = new System.Windows.Forms.CheckBox();
+            this.cbThursday = new System.Windows.Forms.CheckBox();
+            this.cbWednesday = new System.Windows.Forms.CheckBox();
+            this.cbTuesday = new System.Windows.Forms.CheckBox();
+            this.cbMonday = new System.Windows.Forms.CheckBox();
+            this.cbSunday = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             this.btnPullout.TabIndex = 0;
             this.btnPullout.Text = "PULL OUT";
             this.btnPullout.UseVisualStyleBackColor = true;
+            this.btnPullout.Click += new System.EventHandler(this.btnPullout_Click);
             // 
             // btnUpdate
             // 
@@ -64,6 +66,7 @@
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSet
             // 
@@ -74,6 +77,7 @@
             this.btnSet.TabIndex = 2;
             this.btnSet.Text = "SET";
             this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // lblMovieTitle
             // 
@@ -113,88 +117,99 @@
             this.picBoxMovie.TabIndex = 6;
             this.picBoxMovie.TabStop = false;
             // 
-            // checkBox1
+            // cbSaturday
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(396, 388);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(68, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Saturday";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbSaturday.AutoSize = true;
+            this.cbSaturday.Location = new System.Drawing.Point(396, 388);
+            this.cbSaturday.Name = "cbSaturday";
+            this.cbSaturday.Size = new System.Drawing.Size(68, 17);
+            this.cbSaturday.TabIndex = 7;
+            this.cbSaturday.Text = "Saturday";
+            this.cbSaturday.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbFriday
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(396, 365);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(54, 17);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "Friday";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbFriday.AutoSize = true;
+            this.cbFriday.Location = new System.Drawing.Point(396, 365);
+            this.cbFriday.Name = "cbFriday";
+            this.cbFriday.Size = new System.Drawing.Size(54, 17);
+            this.cbFriday.TabIndex = 8;
+            this.cbFriday.Text = "Friday";
+            this.cbFriday.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cbThursday
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(396, 342);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(70, 17);
-            this.checkBox3.TabIndex = 10;
-            this.checkBox3.Text = "Thursday";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cbThursday.AutoSize = true;
+            this.cbThursday.Location = new System.Drawing.Point(396, 342);
+            this.cbThursday.Name = "cbThursday";
+            this.cbThursday.Size = new System.Drawing.Size(70, 17);
+            this.cbThursday.TabIndex = 10;
+            this.cbThursday.Text = "Thursday";
+            this.cbThursday.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // cbWednesday
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(396, 319);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(83, 17);
-            this.checkBox4.TabIndex = 9;
-            this.checkBox4.Text = "Wednesday";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.cbWednesday.AutoSize = true;
+            this.cbWednesday.Location = new System.Drawing.Point(396, 319);
+            this.cbWednesday.Name = "cbWednesday";
+            this.cbWednesday.Size = new System.Drawing.Size(83, 17);
+            this.cbWednesday.TabIndex = 9;
+            this.cbWednesday.Text = "Wednesday";
+            this.cbWednesday.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // cbTuesday
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(396, 293);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(67, 17);
-            this.checkBox5.TabIndex = 11;
-            this.checkBox5.Text = "Tuesday";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.cbTuesday.AutoSize = true;
+            this.cbTuesday.Location = new System.Drawing.Point(396, 293);
+            this.cbTuesday.Name = "cbTuesday";
+            this.cbTuesday.Size = new System.Drawing.Size(67, 17);
+            this.cbTuesday.TabIndex = 11;
+            this.cbTuesday.Text = "Tuesday";
+            this.cbTuesday.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // cbMonday
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(396, 270);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(64, 17);
-            this.checkBox6.TabIndex = 12;
-            this.checkBox6.Text = "Monday";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.cbMonday.AutoSize = true;
+            this.cbMonday.Location = new System.Drawing.Point(396, 270);
+            this.cbMonday.Name = "cbMonday";
+            this.cbMonday.Size = new System.Drawing.Size(64, 17);
+            this.cbMonday.TabIndex = 12;
+            this.cbMonday.Text = "Monday";
+            this.cbMonday.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // cbSunday
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(396, 247);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(62, 17);
-            this.checkBox7.TabIndex = 13;
-            this.checkBox7.Text = "Sunday";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.cbSunday.AutoSize = true;
+            this.cbSunday.Location = new System.Drawing.Point(396, 247);
+            this.cbSunday.Name = "cbSunday";
+            this.cbSunday.Size = new System.Drawing.Size(62, 17);
+            this.cbSunday.TabIndex = 13;
+            this.cbSunday.Text = "Sunday";
+            this.cbSunday.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listBox1.Location = new System.Drawing.Point(28, 343);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 160);
+            this.listBox1.TabIndex = 14;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 542);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.cbSunday);
+            this.Controls.Add(this.cbMonday);
+            this.Controls.Add(this.cbTuesday);
+            this.Controls.Add(this.cbThursday);
+            this.Controls.Add(this.cbWednesday);
+            this.Controls.Add(this.cbFriday);
+            this.Controls.Add(this.cbSaturday);
             this.Controls.Add(this.picBoxMovie);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblScreen);
@@ -204,7 +219,6 @@
             this.Controls.Add(this.btnPullout);
             this.Name = "Form4";
             this.Text = "Form4";
-            this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -220,12 +234,13 @@
         private System.Windows.Forms.Label lblScreen;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.PictureBox picBoxMovie;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox cbSaturday;
+        private System.Windows.Forms.CheckBox cbFriday;
+        private System.Windows.Forms.CheckBox cbThursday;
+        private System.Windows.Forms.CheckBox cbWednesday;
+        private System.Windows.Forms.CheckBox cbTuesday;
+        private System.Windows.Forms.CheckBox cbMonday;
+        private System.Windows.Forms.CheckBox cbSunday;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
