@@ -881,6 +881,8 @@ namespace BookingSystem
                 {
                     sortList.Add(reader[0].ToString());
                 }
+                
+
                 reader.Close();
                 command1.Dispose();
                 db.conn.Close();
@@ -927,7 +929,7 @@ namespace BookingSystem
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.Message+"Wlalang lumabas");
             }
         }
 
@@ -1092,22 +1094,40 @@ namespace BookingSystem
 
         ////                     ////                            ////
 
-
-        public void getStartAndEndDate()
-        {
+        String WholeWeek = "";
+        List<int> listofPos = new List<int>();
+        public void getStartAndEndDate() {            
             cbSetDate.Items.Clear();
             DateTime dt = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
             DateTime dt2 = dt.AddDays(7).AddSeconds(-1);
+            WholeWeek = dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy");
             cbSetDate.Items.Add(dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy"));
             cbSetDate.SelectedIndex = 0;
 
             int addDays = 8;
-            for (int i=0; i <=12 ;i++)
+            for (int i = 0; i <= 12; i++)
             {
                 DateTime dt3 = dt.AddDays(addDays).AddSeconds(-1);
                 DateTime dt4 = dt3.AddDays(6).AddSeconds(-1);
                 addDays += 7;
-                cbSetDate.Items.Add(dt3.ToString("MMM dd,yyyy") +" --to-- "+ dt4.ToString("MMM dd,yyyy")); ;
+                cbSetDate.Items.Add(dt3.ToString("MMM dd,yyyy") + " --to-- " + dt4.ToString("MMM dd,yyyy")); ;
+            }
+
+            int[,] Arrday = new int[7,5] { 
+                { 1, 8, 15, 22, 29},   { 2, 9, 16, 23, 30}, { 3, 10, 17, 24, 31 }, 
+                { 4, 11, 18, 25, 32 }, { 5, 12, 19, 26, 33 }, { 6, 13, 20, 27, 34 },
+                { 7, 14, 21, 28, 35 }};
+
+            String dayToday = DateTime.Now.DayOfWeek.ToString();
+            string[] day = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            for (int i=0; i<day.Length-1 ;i++) {
+                if (dayToday == day[i].ToString()){
+                    for (int j=i-1;j >= 0;j--){
+                        for (int k =0; k<5 ;k++){
+                            listofPos.Add(Arrday[j, k]);
+                        }
+                    }
+                } 
             }
         }
 
@@ -1138,7 +1158,13 @@ namespace BookingSystem
             int Xsched = 10, Ysched = 35, Zsched = 7;
             int Xday = 40;
             string[] day ={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-            DateTime dat = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            // DateTime dat = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            int x = cbSetDate.SelectedIndex;
+            int y =0;
+            for (int i =0; i<x ;i++){
+                y += 7;
+            }
+            DateTime dat = DateTime.Now.AddDays(y).StartOfWeek(DayOfWeek.Sunday);
             for (int i=0;i<7 ;i++)
             {
                 DateTime dt2 = dat.AddDays(i);
@@ -1152,6 +1178,7 @@ namespace BookingSystem
                 pnlSched.Controls.Add(lblday);
                 Xday += 164;
             }
+
             db.conn.Open();
             for (int i = 1; i <= 35; i++)
             {
@@ -1161,7 +1188,15 @@ namespace BookingSystem
                 btnSched.Location = new System.Drawing.Point(Xsched, Ysched);
                 btnSched.Font = new Font("Arial", 12, FontStyle.Bold);
                 btnSched.BackColor = Color.White;
-                
+
+                if (WholeWeek == cbSetDate.SelectedItem.ToString())
+                {
+                    if (listofPos.Contains(i))
+                    {
+                        btnSched.Enabled = false;
+                    }
+                }
+
                 try
                 {
                     String query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
@@ -1218,11 +1253,11 @@ namespace BookingSystem
 
             //Sunday    = 1,8,15,22,29
             //Monday    = 2,9,16,23,30
-            //Tuesday   = 3,10,24,31
-            //Wednesday =4,11,25,32
-            //Thursday  =5,12,26,33
-            //Friday    =6,13,27,34
-            //Saturday  =7,14,28,35
+            //Tuesday   = 3,10,17,24,31
+            //Wednesday = 4,11,18,25,32
+            //Thursday  = 5,12,19,26,33
+            //Friday    = 6,13,20,27,34
+            //Saturday  = 7,14,21,28,35
             String time = "";
             int pos = Convert.ToInt32(btnSched.Tag);
             if ( pos >= 1 && pos <=7){
@@ -1243,6 +1278,7 @@ namespace BookingSystem
                 form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time ,btnSched.Tag.ToString());
                 form.Visible = true;
             }else if (btnSched.Text == "No Movie"){
+                form.Run(cbSetScreen.Text, cbSetDate.Text, time, btnSched.Tag.ToString());
                 form.Visible = true;
             }
         }

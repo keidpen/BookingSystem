@@ -42,7 +42,7 @@
             this.cbTuesday = new System.Windows.Forms.CheckBox();
             this.cbMonday = new System.Windows.Forms.CheckBox();
             this.cbSunday = new System.Windows.Forms.CheckBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.cbTitle = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,22 +187,24 @@
             this.cbSunday.Text = "Sunday";
             this.cbSunday.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // cbTitle
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.listBox1.Location = new System.Drawing.Point(28, 343);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 160);
-            this.listBox1.TabIndex = 14;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.cbTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTitle.FormattingEnabled = true;
+            this.cbTitle.Location = new System.Drawing.Point(547, 58);
+            this.cbTitle.Name = "cbTitle";
+            this.cbTitle.Size = new System.Drawing.Size(212, 28);
+            this.cbTitle.TabIndex = 14;
+            this.cbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbTitle_KeyDown);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 542);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.cbTitle);
             this.Controls.Add(this.cbSunday);
             this.Controls.Add(this.cbMonday);
             this.Controls.Add(this.cbTuesday);
@@ -241,6 +243,6 @@
         private System.Windows.Forms.CheckBox cbTuesday;
         private System.Windows.Forms.CheckBox cbMonday;
         private System.Windows.Forms.CheckBox cbSunday;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ComboBox cbTitle;
     }
 }
