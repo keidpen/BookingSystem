@@ -583,12 +583,11 @@ namespace BookingSystem
                 }
 
                 String date = dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy");
-
                 String query = "SELECT Time FROM bookingdb.moviesched " +
-                    "WHERE Date = '"+date+ "' AND moviesched.Screen='" + screen + "' " +
-                    "AND SchedPosition LIKE '%"+daypos[0]+ "%' OR SchedPosition LIKE '%"+daypos[1]+"%' " +
-                    "OR SchedPosition LIKE '%"+daypos[2]+"%' OR SchedPosition LIKE '%"+daypos[3]+"%' " +
-                    "OR SchedPosition LIKE '%"+daypos[4]+"%' ORDER BY Time ASC";
+                    "WHERE Date = '"+date+ "' AND moviesched.Screen ='" + screen + "' AND isDeleted = 'false'" +
+                    "AND (SchedPosition LIKE '% "+daypos[0].ToString()+",%' OR SchedPosition LIKE '% "+daypos[1].ToString()+",%' " +
+                    "OR SchedPosition LIKE '% "+daypos[2].ToString()+",%' OR SchedPosition LIKE '% "+daypos[3].ToString()+",%' " +
+                    "OR SchedPosition LIKE '% "+daypos[4].ToString()+",%') ORDER BY Time ASC";
 
                 //String query ="SELECT Time FROM bookingdb.moviesched WHERE  '" + date + "' BETWEEN CAST(StartDate AS DATE) AND EndDate AND moviesched.Screen='" + screen + "' ORDER BY Time ASC";
                 

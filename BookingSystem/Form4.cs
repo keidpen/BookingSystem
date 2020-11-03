@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient.Authentication;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,8 @@ namespace BookingSystem
                 Database db = new Database();
                 String query = "SELECT movieinfo.Title, movieinfo.imgPath ,moviesched.SchedPosition " +
                     "FROM movieinfo LEFT JOIN moviesched ON movieinfo.movieID = moviesched.movieID " +
-                    "WHERE movieinfo.movieID = '" + id + "'";
+                    "WHERE movieinfo.movieID = '" + id +"' AND moviesched.Date ='"+WeekDate+"' AND moviesched.Time ='"+lblTime.Text+"' " +
+                    "AND moviesched.Screen = '"+lblScreen.Text+"' AND moviesched.isDeleted = 'false' ";
                 db.conn.Open();
                 MySqlCommand command = new MySqlCommand(query, db.conn);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -39,7 +41,7 @@ namespace BookingSystem
                     picBoxMovie.BackgroundImageLayout = ImageLayout.Stretch;
                     picBoxMovie.Image = Image.FromFile(reader[1].ToString());
                     SplitPos(reader[2].ToString().Trim());
-                }
+                 }
                 reader.Close();
                 command.Dispose();
                 db.conn.Close();
@@ -82,22 +84,22 @@ namespace BookingSystem
             //Thursday  =5,12,19,26,33
             //Friday    =6,13,20,27,34
             //Saturday  =7,14,21,28,35
-
+            
             GetTime();
 
             //kukunin ang day
             //
 
+            
             var checkDay = new Action[] { checkSaturday, checkMonday,checkTuesday, checkWednesday,
                                             checkThursday, checkFriday, checkSunday};
-
+            
             String[] arrpos = split.Split(',');
             for (int i = 0; i < arrpos.Length; i++)
             {
                 for (int j = start; j <= end; j++) {
                     if (arrpos[i].Contains(j.ToString()) == true)
                     {
-                        
                         int test = end - j;
                         //Thread t = new Thread(new ThreadStart(checkDay[test]));
                         //t.Start();
@@ -147,6 +149,8 @@ namespace BookingSystem
             GetIDSched();
             DisableCheckBox();
             DisableCheckbox2();
+            cbTitle.Visible = false;
+            btnSet.Enabled = false;
         }
         
 
@@ -160,6 +164,7 @@ namespace BookingSystem
             DisableCheckBox();
             DisableCheckbox2();
             RetrieveMovie();
+            btnUpdate.Enabled = false;
         }
         //      ///         ///     ///             ///
 
@@ -357,7 +362,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query = "SELECT movieID,imgPath FROM bookingdb.movieinfo WHERE Title ='" + cbTitle.Text + "'";
+                String query = "SELECT movieID,imgPath FROM bookingdb.movieinfo WHERE Title ='" + cbTitle.Text + "' OR Title = '"+lblMovieTitle.Text+"' ";
                 db.conn.Open();
                 MySqlCommand command = new MySqlCommand(query, db.conn);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -370,6 +375,40 @@ namespace BookingSystem
             catch (Exception err)
             {
                 MessageBox.Show("GetIDMovie: " + err.Message);
+            }
+        }
+
+        public void ValidateSchedule()
+        {
+            try
+            {
+                Database db = new Database();
+                String query = "SELECT schedID,SchedPosition FROM moviesched WHERE DATE = '"+WeekDate+"' AND Screen= '"+lblScreen.Text+"' " +
+                    "AND movieID ='"+movieInfoID+"' AND Time ='"+lblTime.Text+"' AND isDeleted ='false' ";
+                db.conn.Open();
+                //  MySqlDataAdapter adp = new MySqlDataAdapter(query,db.conn);
+                //  DataTable dt = new DataTable();
+                //  adp.Fill(dt);
+                //  if (dt.Rows[0][0].ToString()=="0")
+                MySqlCommand command = new MySqlCommand(query, db.conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    schedId = reader[0].ToString();
+                    GetPos();
+                    Day += reader[1].ToString();
+                    UpdateSched();
+                }
+                else
+                {
+                    GetPos();
+                    InsertMovieSchedule();
+                }
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
             }
         }
 
@@ -400,23 +439,53 @@ namespace BookingSystem
         }
 
         private void btnSet_Click(object sender, EventArgs e){
-            GetPos();
-            InsertMovieSchedule();
+            if (picBoxMovie.Image == null)
+            {
+                MessageBox.Show("Please Fill up Everything");
+            }
+            else
+            {
+                ValidateSchedule();
+            }
         }
-        
-
-
-
-
-
 
 
 
 
         //////////////////////////
-        private void btnPullout_Click(object sender, EventArgs e){
-            
+        
+        public void PullOut()
+        {
+            try
+            {
+                MessageBox.Show(movieInfoID);
+                Database db = new Database();
+                String query = "UPDATE bookingdb.moviesched SET isDeleted = 'true' " +
+                    "WHERE isDeleted = 'false' AND movieID ='"+movieInfoID+"'";
+                db.conn.Open();
 
+                MySqlCommand command = new MySqlCommand(query, db.conn);
+                if (command.ExecuteNonQuery() >= 1)
+                {
+                    MessageBox.Show("Pull out Successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to Pull out");
+                }
+                command.Dispose();
+                db.conn.Close();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void btnPullout_Click(object sender, EventArgs e){
+            GetIDMovie();
+            PullOut();
         }
 
     }
