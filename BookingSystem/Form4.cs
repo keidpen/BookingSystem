@@ -165,6 +165,7 @@ namespace BookingSystem
             DisableCheckbox2();
             RetrieveMovie();
             btnUpdate.Enabled = false;
+            btnPullout.Enabled = false;
         }
         //      ///         ///     ///             ///
 
@@ -248,8 +249,11 @@ namespace BookingSystem
         /// ///////////////////////////////BTN Update
         /// </summary>
         /// 
-        public void GetPos()
-        {
+
+        List<String> arrDay = new List<String> { };
+        int intarrDay = 0;
+        public void GetPos(){
+            intarrDay = 0;
             //7,14,21,28,35
             Day = "";
             var CheckCB = new bool[] { cbSunday.Checked, cbMonday.Checked, cbTuesday.Checked,
@@ -259,30 +263,40 @@ namespace BookingSystem
                 for (int i = 0; i < 7; i++){
                     if (CheckCB[i] == true){
                         Day += " " + (i + 1) + ",";
+                        arrDay.Add(" " + (i + 1) + ",");
+                        intarrDay++;
                     }
                 }
             }else if (lblTime.Text == "10:00 AM to 1:00 PM"){
                 for (int i = 0; i < 7; i++){
                     if (CheckCB[i] == true){
                         Day += " " + (i + 8) + ",";
+                        arrDay.Add(" " + (i + 8) + ",");
+                        intarrDay++;
                     }
                 }
             }else if (lblTime.Text == "1:00 PM to 4:00 PM"){
                 for (int i = 0; i < 7; i++){
                     if (CheckCB[i] == true){
                         Day += " " + (i + 15) + ",";
+                        arrDay.Add(" " + (i + 15) + ",");
+                        intarrDay++;
                     }
                 }
             }else if (lblTime.Text == "4:00 PM to 7:00 PM"){
                 for (int i = 0; i < 7; i++){
                     if (CheckCB[i] == true){
                         Day += " " + (i + 22) + ",";
+                        arrDay.Add(" " + (i + 22) + ",");
+                        intarrDay++;
                     }
                 }
             }else if (lblTime.Text == "7:00 PM to 10:00 PM"){
                 for (int i = 0; i < 7; i++){
                     if (CheckCB[i] == true){
                         Day += " " + (i + 29) + ",";
+                        arrDay.Add(" " + (i + 29) + ",");
+                        intarrDay++;
                     }
                 }
             }
@@ -417,19 +431,24 @@ namespace BookingSystem
             try{
 
                 Database db = new Database();
-                String query = "INSERT INTO bookingdb.moviesched(SchedPosition,Date,Time,Screen,movieID,isDeleted) " +
-                    "VALUES( '"+Day+"' , '"+WeekDate+"', '"+lblTime.Text+"', '"+lblScreen.Text+"','"+movieInfoID+"' ,'false') ";
+                //insert ka 
                 db.conn.Open();
+                for (int i= 0; i< arrDay.Count ;i++) {
+                    String query = "INSERT INTO bookingdb.moviesched(SchedPosition,Date,Time,Screen,movieID,isDeleted) " +
+                        "VALUES( '" + arrDay[i].ToString() + "' , '" + WeekDate + "', '" + lblTime.Text + "', '" + lblScreen.Text + "','" + movieInfoID + "' ,'false') ";
 
-                MySqlCommand command = new MySqlCommand(query, db.conn);
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("Set Schedule Successfully!");
+                    MySqlCommand command = new MySqlCommand(query, db.conn);
+                    if (command.ExecuteNonQuery() == 1 ){ 
+                        if(arrDay.Count-1 == i){
+                            MessageBox.Show("Set Schedule Successfully!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to Set Schedule ");
+                    } 
                 }
-                else
-                {
-                    MessageBox.Show("Failed to Set Schedule ");
-                }
+                arrDay.Clear();
                 db.conn.Close();
             }
             catch (Exception err){
@@ -445,7 +464,9 @@ namespace BookingSystem
             }
             else
             {
-                ValidateSchedule();
+                GetPos();
+                InsertMovieSchedule();
+                //ValidateSchedule();
             }
         }
 

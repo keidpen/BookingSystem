@@ -455,15 +455,15 @@ namespace BookingSystem
                 dataGridView1.Columns[7].Name = "Email";
 
                 Database db = new Database();
-
                 String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
                                 "FROM bookingdb.bookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
                                 "ORDER BY bs.Date DESC ";
-
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
+                List<Button> btnTest = new List<Button>();
+
 
                 MySqlCommand command1 = new MySqlCommand(query1, db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
@@ -477,7 +477,12 @@ namespace BookingSystem
                     AL.Add(reader[4].ToString());
                     AL.Add(reader[5].ToString());
                     AL.Add(reader[6].ToString());
-                    AL.Add(reader[7].ToString());
+                    Button Test = new Button();
+                    Test.Tag = "View";
+                    Test.Size = new Size(162, 92);
+
+                    Test.Click += btnView_Click;
+                    AL.Add(Test);
                     dataGridView1.Rows.Add(AL.ToArray());
                 }
                 reader.Close();
@@ -492,6 +497,11 @@ namespace BookingSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void btnView_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void dbSearchCstmrBkngs(String keyword)
@@ -770,6 +780,7 @@ namespace BookingSystem
 
         private void lblSetSched_Click(object sender, EventArgs e)
         {
+
             getStartAndEndDate();
             cbSetScreen.SelectedIndex = 0;
             cbSetDate.SelectedIndex = 0;
@@ -1095,8 +1106,9 @@ namespace BookingSystem
 
         String WholeWeek = "";
         List<int> listofPos = new List<int>();
-        public void getStartAndEndDate() {            
+        public void getStartAndEndDate() {
             cbSetDate.Items.Clear();
+            
             DateTime dt = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
             DateTime dt2 = dt.AddDays(7).AddSeconds(-1);
             WholeWeek = dt.ToString("MMM dd,yyyy") + " --to-- " + dt2.ToString("MMM dd,yyyy");
@@ -1226,6 +1238,7 @@ namespace BookingSystem
                     MessageBox.Show(err.Message);
                 }
 
+
                 btnSched.Click += btnSched_Click;
                 pnlSched.Controls.Add(btnSched);
                 db.conn.Close();
@@ -1248,7 +1261,7 @@ namespace BookingSystem
         public void btnSched_Click(object sender, EventArgs e)
         {
             Button btnSched = (Button)sender;
-            MessageBox.Show(btnSched.Tag.ToString());
+
 
             //Sunday    = 1,8,15,22,29
             //Monday    = 2,9,16,23,30
