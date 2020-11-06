@@ -43,13 +43,16 @@
             this.cbMonday = new System.Windows.Forms.CheckBox();
             this.cbSunday = new System.Windows.Forms.CheckBox();
             this.cbTitle = new System.Windows.Forms.ComboBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPullout
             // 
             this.btnPullout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPullout.Location = new System.Drawing.Point(227, 452);
+            this.btnPullout.Location = new System.Drawing.Point(85, 452);
             this.btnPullout.Name = "btnPullout";
             this.btnPullout.Size = new System.Drawing.Size(154, 58);
             this.btnPullout.TabIndex = 0;
@@ -60,7 +63,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(412, 452);
+            this.btnUpdate.Location = new System.Drawing.Point(436, 452);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(154, 58);
             this.btnUpdate.TabIndex = 1;
@@ -82,10 +85,10 @@
             // lblMovieTitle
             // 
             this.lblMovieTitle.AutoSize = true;
-            this.lblMovieTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMovieTitle.Location = new System.Drawing.Point(449, 58);
+            this.lblMovieTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMovieTitle.Location = new System.Drawing.Point(362, 53);
             this.lblMovieTitle.Name = "lblMovieTitle";
-            this.lblMovieTitle.Size = new System.Drawing.Size(91, 20);
+            this.lblMovieTitle.Size = new System.Drawing.Size(104, 20);
             this.lblMovieTitle.TabIndex = 3;
             this.lblMovieTitle.Text = "Movie Title: ";
             // 
@@ -93,7 +96,7 @@
             // 
             this.lblScreen.AutoSize = true;
             this.lblScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScreen.Location = new System.Drawing.Point(449, 112);
+            this.lblScreen.Location = new System.Drawing.Point(468, 102);
             this.lblScreen.Name = "lblScreen";
             this.lblScreen.Size = new System.Drawing.Size(60, 20);
             this.lblScreen.TabIndex = 4;
@@ -103,7 +106,7 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(449, 172);
+            this.lblTime.Location = new System.Drawing.Point(468, 154);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(43, 20);
             this.lblTime.TabIndex = 5;
@@ -111,9 +114,10 @@
             // 
             // picBoxMovie
             // 
+            this.picBoxMovie.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.picBoxMovie.Location = new System.Drawing.Point(28, 27);
             this.picBoxMovie.Name = "picBoxMovie";
-            this.picBoxMovie.Size = new System.Drawing.Size(274, 309);
+            this.picBoxMovie.Size = new System.Drawing.Size(320, 396);
             this.picBoxMovie.TabIndex = 6;
             this.picBoxMovie.TabStop = false;
             // 
@@ -193,17 +197,51 @@
             this.cbTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTitle.FormattingEnabled = true;
-            this.cbTitle.Location = new System.Drawing.Point(547, 58);
+            this.cbTitle.Location = new System.Drawing.Point(472, 50);
             this.cbTitle.Name = "cbTitle";
             this.cbTitle.Size = new System.Drawing.Size(212, 28);
             this.cbTitle.TabIndex = 14;
             this.cbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbTitle_KeyDown);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(257, 452);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(160, 58);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "DELETE";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(384, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 20);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Screen";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(403, 154);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Time";
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 542);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.cbTitle);
             this.Controls.Add(this.cbSunday);
             this.Controls.Add(this.cbMonday);
@@ -244,5 +282,8 @@
         private System.Windows.Forms.CheckBox cbMonday;
         private System.Windows.Forms.CheckBox cbSunday;
         private System.Windows.Forms.ComboBox cbTitle;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -347,7 +347,7 @@ namespace BookingSystem
             for (int i = 1; i <= 308; i++)
             {
                 Button btnSeats = new Button();
-                btnSeats.Size = new Size(35, 35);
+                btnSeats.Size = new Size(40, 40);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
                 btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
@@ -444,15 +444,26 @@ namespace BookingSystem
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
               
-                dataGridView1.ColumnCount = 8;
+                dataGridView1.ColumnCount = 6;
                 dataGridView1.Columns[0].Name = "ORNo.";
                 dataGridView1.Columns[1].Name = "Name";
                 dataGridView1.Columns[2].Name = "Seat No.";
                 dataGridView1.Columns[3].Name = "Date";
                 dataGridView1.Columns[4].Name = "Time";
                 dataGridView1.Columns[5].Name = "Screen";
-                dataGridView1.Columns[6].Name = "ContactNo.";
-                dataGridView1.Columns[7].Name = "Email";
+                //dataGridView1.Columns[6].Name = "ContactNo.";
+                //dataGridView1.Columns[7].Name = "Email";
+
+                DataGridViewButtonColumn Test = new DataGridViewButtonColumn();
+                Test.HeaderText = "View More";
+                Test.Name = "btn";
+                Test.Text = "More";
+                Test.FlatStyle = FlatStyle.Popup;
+                Test.DefaultCellStyle.ForeColor = Color.White;
+                Test.DefaultCellStyle.BackColor = Color.CornflowerBlue;
+                Test.UseColumnTextForButtonValue = true;
+                dataGridView1.Columns.Add(Test);
+
 
                 Database db = new Database();
                 String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
@@ -464,7 +475,7 @@ namespace BookingSystem
                 ArrayList AL = new ArrayList();
                 List<Button> btnTest = new List<Button>();
 
-
+                
                 MySqlCommand command1 = new MySqlCommand(query1, db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
                 while (reader.Read())
@@ -476,14 +487,11 @@ namespace BookingSystem
                     AL.Add(reader[3].ToString());
                     AL.Add(reader[4].ToString());
                     AL.Add(reader[5].ToString());
-                    AL.Add(reader[6].ToString());
-                    Button Test = new Button();
-                    Test.Tag = "View";
-                    Test.Size = new Size(162, 92);
-
-                    Test.Click += btnView_Click;
-                    AL.Add(Test);
+                    //AL.Add(reader[6].ToString());
                     dataGridView1.Rows.Add(AL.ToArray());
+
+
+
                 }
                 reader.Close();
                 command1.Dispose();
@@ -499,9 +507,13 @@ namespace BookingSystem
             }
         }
 
-        public void btnView_Click(object sender, EventArgs e)
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.ColumnIndex == 6)
+            {
+                var s = dataGridView1[0, e.RowIndex].Value.ToString();
+                MessageBox.Show(" Dont click me!  "+s);
+            }
         }
 
         public void dbSearchCstmrBkngs(String keyword)
@@ -880,7 +892,7 @@ namespace BookingSystem
                 cbUpdTitle.Items.Clear();
 
                 String query1 = "";
-                query1 = "SELECT Title FROM movieinfo WHERE isDeleted ='false'";
+                query1 = "SELECT Title FROM movieinfo WHERE isDeleted ='false' ORDER BY movieID DESC";
 
                 Database db = new Database();
                 db.conn.Open();
@@ -909,6 +921,10 @@ namespace BookingSystem
             }
         }
 
+        /// <summary>
+        ///  dito magseach ng movie
+        /// </summary>
+
         String movieInfoID = "";
         public void dbDisplayAfterSelect()
         {
@@ -921,9 +937,16 @@ namespace BookingSystem
                 DataTable table = new DataTable();
 
                 adapter.Fill(table);
-
+// dito check Genre
                 movieInfoID = table.Rows[0][0].ToString();
                 tbUpdDirector.Text = table.Rows[0][2].ToString();
+                String[] gen = { "Adventure", "Action", "Drama", "Documentary", "Comedy", "Fantasy", "Horror", "Romance", "Sci-Fi", "Sports", "Thriller" };
+                for (int i = 0; i<gen.Length;i++) {
+                    if (table.Rows[0][3].ToString().Contains(gen[i].ToString()))
+                    {
+                        cbUpdGenre.SetItemCheckState(i, (true ? CheckState.Checked : CheckState.Unchecked));
+                    }
+                }
                 tbUpdDuration.Text = table.Rows[0][4].ToString();
                 tbUpdSynopsis.Text = table.Rows[0][5].ToString();
                 tbUpdPrice.Text = table.Rows[0][6].ToString();

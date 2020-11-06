@@ -37,9 +37,12 @@ namespace BookingSystem
                 MySqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    lblMovieTitle.Text = reader[0].ToString();
-                    picBoxMovie.BackgroundImageLayout = ImageLayout.Stretch;
+                    //lblMovieTitle.Text = reader[0].ToString();
+                    cbTitle.Text = reader[0].ToString();
                     picBoxMovie.Image = Image.FromFile(reader[1].ToString());
+                    picBoxMovie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                   // System.Drawing.Image img = System.Drawing.Image.FromFile(reader[1].ToString());
+                  //  picBoxMovie.Image = new Bitmap(Image.FromFile(reader[1].ToString()), new Size(img.Height, img.Width));
                     SplitPos(reader[2].ToString().Trim());
                  }
                 reader.Close();
@@ -147,10 +150,19 @@ namespace BookingSystem
             WeekDate = date;
             GetNameMovie(id);
             GetIDSched();
+            RetrieveMovie();
             DisableCheckBox();
             DisableCheckbox2();
-            cbTitle.Visible = false;
+           // cbTitle.Visible = false;
             btnSet.Enabled = false;
+
+            cbSunday.Visible = false;
+            cbMonday.Visible = false;
+            cbTuesday.Visible = false;
+            cbWednesday.Visible = false;
+            cbThursday.Visible = false;
+            cbFriday.Visible = false;
+            cbSaturday.Visible = false;
         }
         
 
@@ -166,6 +178,7 @@ namespace BookingSystem
             RetrieveMovie();
             btnUpdate.Enabled = false;
             btnPullout.Enabled = false;
+            btnDelete.Enabled = false;
         }
         //      ///         ///     ///             ///
 
@@ -307,7 +320,7 @@ namespace BookingSystem
             try{
                 Database db = new Database();
                 String query = "UPDATE bookingdb.moviesched " +
-                    "SET SchedPosition = '"+Day+"' " +
+                    "SET movieID = '"+movieInfoID+"' " +
                     "WHERE schedID = '"+ schedId + "'";
                 db.conn.Open();
 
@@ -384,6 +397,7 @@ namespace BookingSystem
                 {
                     movieInfoID = reader[0].ToString();
                     picBoxMovie.Image = Image.FromFile(reader[1].ToString());
+                    picBoxMovie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                 }
             }
             catch (Exception err)
@@ -479,7 +493,6 @@ namespace BookingSystem
         {
             try
             {
-                MessageBox.Show(movieInfoID);
                 Database db = new Database();
                 String query = "UPDATE bookingdb.moviesched SET isDeleted = 'true' " +
                     "WHERE isDeleted = 'false' AND movieID ='"+movieInfoID+"'";
@@ -508,6 +521,40 @@ namespace BookingSystem
             GetIDMovie();
             PullOut();
         }
+        ////////////// Delete
+        public void DeleteSched()
+        {
+            try
+            {
+                Database db = new Database();
+                String query = "UPDATE bookingdb.moviesched SET isDeleted = 'true' " +
+                    "WHERE SchedId = '"+schedId+"' AND isDeleted = 'false' ";
+                db.conn.Open();
+
+                MySqlCommand command = new MySqlCommand(query, db.conn);
+                if (command.ExecuteNonQuery() >= 1)
+                {
+                    MessageBox.Show("Deleted!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to Delete.");
+                }
+                command.Dispose();
+                db.conn.Close();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteSched();
+        }
+
 
     }
 }

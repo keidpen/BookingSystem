@@ -33,9 +33,12 @@ namespace BookingSystem
                 dbAddBooking();
                 PrintReceipt();
 
-                Form2 form = new Form2();
-                form.BookingRefresh();
-                form.Visible = true;
+                printPreviewDialog1.Document = printDocument1;
+                printPreviewDialog1.ShowDialog();
+
+                //Form2 form = new Form2();
+                //form.BookingRefresh();
+                //form.Visible = true;
 
                 this.Visible = false;
             }
@@ -45,6 +48,12 @@ namespace BookingSystem
             }
 
         }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("Welcome to", new Font("Arial",12,FontStyle.Regular), Brushes.Black, new Point(10,10));
+        }
+
 
         public void PrintReceipt()
         {
@@ -58,6 +67,8 @@ namespace BookingSystem
 
 
         String newSeatNo="", newDate = "", newScreen="", SelSchedTime="";
+
+
 
         public void GetData(List<string> seatNo , String Date,String screen, String SelSchedTime)
         {
