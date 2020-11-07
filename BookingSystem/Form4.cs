@@ -380,6 +380,8 @@ namespace BookingSystem
             if (e.KeyCode == Keys.Enter)
             {
                 GetIDMovie();
+                btnDelete.Enabled = false;
+                btnPullout.Enabled = false;
 
             }
         }

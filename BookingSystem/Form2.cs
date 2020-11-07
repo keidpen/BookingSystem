@@ -96,6 +96,7 @@ namespace BookingSystem
         {
             lblMovie.ForeColor = Color.DarkViolet;
             lblHome.ForeColor = Color.Black;
+            lblSearch.ForeColor = Color.Black;
             lblBooking.ForeColor = Color.Black;
 
             
@@ -128,6 +129,7 @@ namespace BookingSystem
             lblAddTitle.Visible = true;
             lblSetSched.Visible = true;
             lblUpdate.Visible = true;
+            lblSearch.Visible = true;
             lblAddDirector.Visible = true;
             lblAddDuration.Visible = true;
             lblAddPrice.Visible = true;
@@ -147,10 +149,12 @@ namespace BookingSystem
         {
             lblAdd.Visible = false;
             lblSetSched.Visible = false;
+            lblSearch.Visible = false;
             lblUpdate.Visible = false;
             DisableUnderAddMovie();
             DisableUnderUpdateMovie();
             DisableUnderSetSchedule();
+            DisableUnderSearchMovie();
         }
 
         private void DisableUnderAddMovie()
@@ -218,6 +222,12 @@ namespace BookingSystem
             {
                 cbUpdGenre.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
             }
+        }
+
+        public void DisableUnderSearchMovie()
+        {
+            dataGridView2.Visible = false;
+
         }
 
         private void DisableUnderSetSchedule()
@@ -368,25 +378,18 @@ namespace BookingSystem
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
-                if (dt.Rows[0][0].ToString() == "1")
-                {
+                if (dt.Rows[0][0].ToString() == "1"){
                     //this should be Green
                     btnSeats.BackColor = Color.FromArgb(119, 221, 119);
-                }
-                else
-                {
-                    if (btnSeats.Text.Equals(""))
-                    {
+                }else{
+                    if (btnSeats.Text.Equals("")){
                         //this should be Orange or red
                        // btnSeats.BackColor = Color.FromArgb(255, 179, 71);
                         btnSeats.BackColor = Color.FromArgb(255, 105, 97);
-                    }
-                    else
-                    {
+                    }else{
                         //this shoud be White
                         btnSeats.BackColor = Color.White;
                     }
-                    
                 }
 
                 btnSeats.Click += btn_Click;
@@ -473,9 +476,7 @@ namespace BookingSystem
                                 "ORDER BY bs.Date DESC ";
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
-                List<Button> btnTest = new List<Button>();
 
-                
                 MySqlCommand command1 = new MySqlCommand(query1, db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
                 while (reader.Read())
@@ -765,9 +766,11 @@ namespace BookingSystem
             dbSelect();
             lblUpdate.ForeColor = Color.DarkViolet;
             lblAdd.ForeColor = Color.Black;
+            lblSearch.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.Black;
             DisableUnderAddMovie();
             DisableUnderSetSchedule();
+            DisableUnderSearchMovie();
 
             picBoxUpdate.Visible = true;
             lblUpdTitle.Visible = true;
@@ -792,7 +795,6 @@ namespace BookingSystem
 
         private void lblSetSched_Click(object sender, EventArgs e)
         {
-
             getStartAndEndDate();
             cbSetScreen.SelectedIndex = 0;
             cbSetDate.SelectedIndex = 0;
@@ -803,12 +805,32 @@ namespace BookingSystem
             cbSetScreen.Visible = true;
             pnlTime.Visible = true;
             pnlSched.Visible = true;
+            
             lblUpdate.ForeColor = Color.Black;
             lblAdd.ForeColor = Color.Black;
+            lblSearch.ForeColor = Color.Black;
             lblSetSched.ForeColor = Color.DarkViolet;
+
             DisableUnderAddMovie();
             DisableUnderUpdateMovie();
+            DisableUnderSearchMovie();
+        
+        }
 
+
+        private void lblSearch_Click(object sender, EventArgs e)
+        {
+            DisableUnderAddMovie();
+            DisableUnderUpdateMovie();
+            DisableUnderSetSchedule();
+
+            lblUpdate.ForeColor = Color.Black;
+            lblAdd.ForeColor = Color.Black;
+            lblSearch.ForeColor = Color.DarkViolet;
+            lblSetSched.ForeColor = Color.Black;
+
+            FetchMovieInfo();
+            dataGridView2.Visible = true;
         }
 
         String img = "";
@@ -1151,10 +1173,10 @@ namespace BookingSystem
                 { 1, 8, 15, 22, 29},   { 2, 9, 16, 23, 30}, { 3, 10, 17, 24, 31 }, 
                 { 4, 11, 18, 25, 32 }, { 5, 12, 19, 26, 33 }, { 6, 13, 20, 27, 34 },
                 { 7, 14, 21, 28, 35 }};
-
+//dito disable
             String dayToday = DateTime.Now.DayOfWeek.ToString();
             string[] day = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-            for (int i=0; i<day.Length-1 ;i++) {
+            for (int i=0; i<day.Length ;i++) {
                 if (dayToday == day[i].ToString()){
                     for (int j=i-1;j >= 0;j--){
                         for (int k =0; k<5 ;k++){
@@ -1163,6 +1185,7 @@ namespace BookingSystem
                     }
                 } 
             }
+            
         }
 
         String SetbtnImg = "", strSetMovieName = "", newMovieInfoID ="";
@@ -1221,6 +1244,7 @@ namespace BookingSystem
                 btnSched.Size = new Size(162, 92);
                 btnSched.Location = new System.Drawing.Point(Xsched, Ysched);
                 btnSched.Font = new Font("Arial", 12, FontStyle.Bold);
+                btnSched.ForeColor = Color.White;
                 btnSched.BackColor = Color.White;
 
                 if (WholeWeek == cbSetDate.SelectedItem.ToString())
@@ -1230,7 +1254,7 @@ namespace BookingSystem
                         btnSched.Enabled = false;
                     }
                 }
-
+                
                 try
                 {
                     String query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
@@ -1253,6 +1277,7 @@ namespace BookingSystem
                     else
                     {
                         btnSched.Text = "No Movie";
+                        btnSched.ForeColor = Color.Black;
                         btnSched.Font = new Font("Arial", 12, FontStyle.Regular);
                     }
                 }
@@ -1279,7 +1304,6 @@ namespace BookingSystem
             }
 
         }
-
 
         public void btnSched_Click(object sender, EventArgs e)
         {
@@ -1332,6 +1356,74 @@ namespace BookingSystem
 
         //// ////       /   //////          /////           /////
         ///
-        
+
+        ////                    /// //Retrieve all data from movie                                                  /////
+
+        public void FetchMovieInfo()
+        {
+            try
+            {
+                dataGridView2.DataSource = null;
+                dataGridView2.Rows.Clear();
+
+                Database db = new Database();
+                String query = "SELECT movieID,Title,Director,Genre,Duration,Synopsis,imgPath,isDeleted FROM bookingdb.movieinfo";
+
+                db.conn.Open();
+
+                ArrayList AL = new ArrayList();
+
+                MySqlCommand command = new MySqlCommand(query, db.conn);
+                MySqlDataAdapter ad = new MySqlDataAdapter(command);
+
+
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("Image", Type.GetType("System.Byte[]"));
+                ad.Fill(dt);
+
+                foreach (DataRow drow in dt.Rows)
+                {
+                    Image img = new Bitmap(Image.FromFile(drow["imgPath"].ToString()), new Size(210, 150));
+                    drow["Image"] = imageToByteArray(img);
+                    if (drow["isDeleted"].ToString() == "true")
+                    {
+                        drow["isDeleted"] = "Deleted";
+                    }
+                    else
+                    {
+                        drow["isDeleted"] = "Available";
+                    }
+                }
+
+                command.Dispose();
+
+
+                dataGridView2.DataSource = dt;
+                dataGridView2.Columns[0].HeaderText = "Image";
+                dataGridView2.Columns[1].HeaderText = "ID";
+                dataGridView2.Columns[8].HeaderText = "Status";
+                dataGridView2.Columns[7].Visible = false;
+
+                dataGridView2.RowTemplate.Height = 150;
+                dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                db.conn.Close();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Fetch" + err.Message);
+            }
+        }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+
     }
 }
