@@ -12,10 +12,14 @@ namespace BookingSystem
 {
     public partial class Form2 : Form
     {
-        
+        Timer timer = new Timer();
         public Form2()
         {
+            timer.Interval = 1000;
+            
             InitializeComponent();
+            
+
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
             SocialDistancingMode();
         }
@@ -54,11 +58,22 @@ namespace BookingSystem
 
         public void LockMovie()
         {
-            lblMovie.Enabled = false;
+            lblMovie.Visible = false;
+            lblBooking.Location = new Point(146, 53);
         }
         public void LockBooking()
         {
-            lblBooking.Enabled = false;
+            lblBooking.Visible = false;
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to Log-out?", "Logout", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Form1 form1 = new Form1();
+                form1.Visible = true;
+                this.Visible=false;
+            }
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -106,6 +121,7 @@ namespace BookingSystem
 
             DisableUnderUpdateMovie();
             DisableUnderSetSchedule();
+            DisableUnderSearchMovie();
 
             lblAdd.Visible = true;
 
@@ -227,6 +243,9 @@ namespace BookingSystem
         public void DisableUnderSearchMovie()
         {
             dataGridView2.Visible = false;
+            cbCategoryMovieInfo.Visible = false;
+            tbSearchMovieInfo.Visible = false;
+            btnSearchMovieInfo.Visible = false;
 
         }
 
@@ -333,8 +352,7 @@ namespace BookingSystem
 
         String selectedDate = "", SelSchedTime = "";
         bool nextlayer = true;
-        public void BtnSeatArray()
-        {
+        public void BtnSeatArray(){
 
             String date = DateTime.Now.ToString("yyyy-MM-dd");
             String screen = "";
@@ -344,31 +362,24 @@ namespace BookingSystem
             date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             selectedDate = date;
             screen = comboBox1.SelectedItem.ToString();
-            if (cbSched.Items.Count>1)
-            {
+            if (cbSched.Items.Count>1){
                 SelSchedTime = cbSched.SelectedItem.ToString();
             }
-
             SocialDistancingMode();
 
             int x = 10, y = 10, z = 28;
-
             
-            for (int i = 1; i <= 308; i++)
-            {
+            for (int i = 1; i <= 308; i++){
                 Button btnSeats = new Button();
                 btnSeats.Size = new Size(40, 40);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
                 btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
 
-                if (sdMode==true && i%2==0 && nextlayer==true)
-                {
+                if (sdMode==true && i%2==0 && nextlayer==true){
                     btnSeats.Enabled = false;
                     btnSeats.Text = "";
-                }
-                else if (sdMode == true && i%2 != 0 && nextlayer ==false)
-                {
+                }else if (sdMode == true && i%2 != 0 && nextlayer ==false){
                     btnSeats.Enabled = false;
                     btnSeats.Text = "";
                 }
@@ -439,7 +450,35 @@ namespace BookingSystem
 
         }
 
-        
+        int seatnumcount = 0;
+        public List<string> seatnum = new List<string>();
+        public void btn_Click(object sender, EventArgs e){
+            Button btn = (Button)sender;
+
+
+            if (btn.BackColor == System.Drawing.Color.SkyBlue){
+                if (seatnum.Contains(btn.Text)){
+                    seatnum.Remove(btn.Text);
+                    //this should be white
+                    btn.BackColor = Color.White;
+                    seatnumcount--;
+                }
+            }
+            else if (btn.BackColor == System.Drawing.Color.FromArgb(119, 221, 119)){
+                MessageBox.Show("This is already reserve!");
+
+            }else{
+                if (seatnumcount < 10){
+                    btn.BackColor = Color.SkyBlue;
+                    seatnum.Add(btn.Text);
+                    seatnumcount++;
+                }else{
+                    MessageBox.Show("You input maximum booking!");
+                }
+            }
+        }
+
+
         public void dbViewCstmrBkngs()
         {
             try
@@ -640,54 +679,15 @@ namespace BookingSystem
         }
 
 
-        int seatnumcount = 0;
-        public List<string> seatnum = new List<string>();
-        public void btn_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
 
 
-            if (btn.BackColor == System.Drawing.Color.SkyBlue)
-            {
-                if (seatnum.Contains(btn.Text))
-                {
-                    seatnum.Remove(btn.Text);
-                    //this should be white
-                    btn.BackColor = Color.White;
-                    seatnumcount--;
-                }
+        private void btnPayment_Click(object sender, EventArgs e){
 
-            }
-            else if (btn.BackColor == System.Drawing.Color.FromArgb(119, 221, 119))
-            {
-                MessageBox.Show("This is already reserve!");
-
-            }
-            else
-            {
-                if (seatnumcount < 10)
-                {
-                    btn.BackColor = Color.SkyBlue;
-                    seatnum.Add(btn.Text);
-                    seatnumcount++;
-                }
-                else
-                {
-                    MessageBox.Show("You input maximum booking!");
-                }
-            }
-        }
-
-
-        private void btnPayment_Click(object sender, EventArgs e)
-        {
-
-            if (seatnumcount <= 0)
-            {
+            if (seatnumcount <= 0) {
                 MessageBox.Show("Please Select Seat Number!");
-            }
-            else
-            {
+            }else if (cbSched.Text == "No Available") { 
+                MessageBox.Show("No schedule available");
+            }else {
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = comboBox1.SelectedItem.ToString();
 
@@ -695,10 +695,22 @@ namespace BookingSystem
                 form.GetData(seatnum, date, screen, SelSchedTime);
                 form.Visible = true;
 
-                this.Visible = false;
+                r = new Refresh();
+                r.GetRefreshFrame(1);
+                timer.Tick += new EventHandler(RefreshPanelSeats);
+                timer.Start();
             }
-
         }
+
+        public void RefreshPanelSeats(object sender, EventArgs e){
+            r = new Refresh();
+            if (r.SetRefreshFrame()==0){
+                dbToListSched();
+                timer.Stop();
+            }
+        }
+
+
         bool tries = true;
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -817,7 +829,6 @@ namespace BookingSystem
         
         }
 
-
         private void lblSearch_Click(object sender, EventArgs e)
         {
             DisableUnderAddMovie();
@@ -829,8 +840,13 @@ namespace BookingSystem
             lblSearch.ForeColor = Color.DarkViolet;
             lblSetSched.ForeColor = Color.Black;
 
-            FetchMovieInfo();
+
+            cbCategoryMovieInfo.SelectedIndex = 0;
+            FetchMovieInfo("");
             dataGridView2.Visible = true;
+            cbCategoryMovieInfo.Visible = true;
+            tbSearchMovieInfo.Visible = true;
+            btnSearchMovieInfo.Visible = true;
         }
 
         String img = "";
@@ -1244,8 +1260,8 @@ namespace BookingSystem
                 btnSched.Size = new Size(162, 92);
                 btnSched.Location = new System.Drawing.Point(Xsched, Ysched);
                 btnSched.Font = new Font("Arial", 12, FontStyle.Bold);
-                btnSched.ForeColor = Color.White;
-                btnSched.BackColor = Color.White;
+                
+
 
                 if (WholeWeek == cbSetDate.SelectedItem.ToString())
                 {
@@ -1273,12 +1289,13 @@ namespace BookingSystem
                         GetNameAndImgMovie(pos);
                         btnSched.Text= strSetMovieName;
                         btnSched.Image = new Bitmap(Image.FromFile(SetbtnImg), new Size(217, 151));
+                        btnSched.ForeColor = Color.White;
                     }
                     else
                     {
                         btnSched.Text = "No Movie";
                         btnSched.ForeColor = Color.Black;
-                        btnSched.Font = new Font("Arial", 12, FontStyle.Regular);
+                        btnSched.BackColor = Color.White;
                     }
                 }
                 catch (Exception err)
@@ -1304,7 +1321,7 @@ namespace BookingSystem
             }
 
         }
-
+        
         public void btnSched_Click(object sender, EventArgs e)
         {
             Button btnSched = (Button)sender;
@@ -1331,14 +1348,26 @@ namespace BookingSystem
                 time = "7:00 PM to 10:00 PM";
             }
 
+            timer.Tick += new EventHandler(RefreshPanel);
             Form4 form = new Form4();
-            if ( pos >=1 && btnSched.Text !="No Movie" ){
+            if ( pos >=1 && btnSched.Text !="No Movie") { 
                 GetNameAndImgMovie(pos.ToString());
                 form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time ,btnSched.Tag.ToString());
                 form.Visible = true;
-            }else if (btnSched.Text == "No Movie"){
+
+                r = new Refresh();
+                r.GetRefreshFrame(1);
+
+                timer.Start();
+            }
+            else if (btnSched.Text == "No Movie"){
                 form.Run(cbSetScreen.Text, cbSetDate.Text, time, btnSched.Tag.ToString());
                 form.Visible = true;
+               
+                r = new Refresh();
+                r.GetRefreshFrame(1);
+                
+                timer.Start();
             }
         }
 
@@ -1348,18 +1377,33 @@ namespace BookingSystem
             btnSchedArray();
         }
 
+
+
         private void cbSetDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlSched.Controls.Clear();
             btnSchedArray();
         }
 
+        Refresh r = new Refresh();
+        private void RefreshPanel(object sender, EventArgs e)
+        {
+            r = new Refresh();
+            if (r.SetRefreshFrame()==0)
+            {
+                pnlSched.Controls.Clear();
+                btnSchedArray();
+                timer.Stop();
+            }
+        }
+
+
         //// ////       /   //////          /////           /////
         ///
 
         ////                    /// //Retrieve all data from movie                                                  /////
 
-        public void FetchMovieInfo()
+        public void FetchMovieInfo(String query)
         {
             try
             {
@@ -1367,8 +1411,38 @@ namespace BookingSystem
                 dataGridView2.Rows.Clear();
 
                 Database db = new Database();
-                String query = "SELECT movieID,Title,Director,Genre,Duration,Synopsis,imgPath,isDeleted FROM bookingdb.movieinfo";
-
+                String sel = "SELECT movieID,Title,Director,Genre,Duration,Synopsis,imgPath,isDeleted FROM bookingdb.movieinfo";
+                String column = "";
+                if (query=="ID") {
+                    query = sel + " WHERE movieID = '" + tbSearchMovieInfo.Text + "%'";
+                    column = "movieID";
+                }
+                else if (query == "Title")
+                {
+                    query = sel+" WHERE Title LIKE '"+tbSearchMovieInfo.Text+"%'";
+                    column = "Title";
+                } else if (query == "Director")
+                {
+                    query = sel+ " WHERE Director LIKE '" + tbSearchMovieInfo.Text+"%' ";
+                    column = "Director";
+                } else if (query =="Genre")
+                {
+                    query = sel+" WHERE Genre Like '%" + tbSearchMovieInfo.Text +"%'";
+                    column = "Genre";
+                }
+                else
+                {
+                    query = "SELECT movieID,Title,Director,Genre,Duration,Synopsis,imgPath,isDeleted FROM bookingdb.movieinfo";
+                    if (cbCategoryMovieInfo.Text=="ID")
+                    {
+                        column = "movieID";
+                    }
+                    else
+                    {
+                        column = cbCategoryMovieInfo.Text;
+                    }
+                    
+                }
                 db.conn.Open();
 
                 ArrayList AL = new ArrayList();
@@ -1396,8 +1470,14 @@ namespace BookingSystem
                     }
                 }
 
+                AutoCompleteStringCollection autotext = new AutoCompleteStringCollection();
+                foreach(DataRow drow in dt.Rows)
+                {
+                    autotext.Add(drow[column].ToString());
+                }
+                tbSearchMovieInfo.AutoCompleteCustomSource = autotext;
                 command.Dispose();
-
+                
 
                 dataGridView2.DataSource = dt;
                 dataGridView2.Columns[0].HeaderText = "Image";
@@ -1407,15 +1487,23 @@ namespace BookingSystem
 
                 dataGridView2.RowTemplate.Height = 150;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                 
                 db.conn.Close();
 
+                if (dataGridView2.Rows.Count == 0)
+                {
+                    MessageBox.Show("No Result Found.");
+                    FetchMovieInfo("");
+                    tbSearchMovieInfo.Text = "";
+                }
             }
             catch (Exception err)
             {
                 MessageBox.Show("Fetch" + err.Message);
             }
         }
+
+
 
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
@@ -1425,5 +1513,36 @@ namespace BookingSystem
         }
 
 
+        private void btnSearchMovieInfo_Click(object sender, EventArgs e)
+        {
+            if (cbCategoryMovieInfo.SelectedItem.ToString() == "ID")
+            {
+                FetchMovieInfo("ID");
+            }else if (cbCategoryMovieInfo.SelectedItem.ToString()=="Title")
+            {
+                FetchMovieInfo("Title");
+            }
+            else if (cbCategoryMovieInfo.SelectedItem.ToString() == "Director")
+            {
+                FetchMovieInfo("Director");
+            }else if (cbCategoryMovieInfo.SelectedItem.ToString() == "Genre")
+            {
+                FetchMovieInfo("Genre");
+            }
+            else
+            {
+                FetchMovieInfo("");
+            }
+        }
+
+
+        private void cbCategoryMovieInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCategoryMovieInfo.SelectedIndex>0)
+            {
+                btnSearchMovieInfo_Click(sender, e);
+            }
+            
+        }
     }
 }

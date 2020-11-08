@@ -52,7 +52,7 @@
             // btnPullout
             // 
             this.btnPullout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPullout.Location = new System.Drawing.Point(85, 452);
+            this.btnPullout.Location = new System.Drawing.Point(279, 452);
             this.btnPullout.Name = "btnPullout";
             this.btnPullout.Size = new System.Drawing.Size(154, 58);
             this.btnPullout.TabIndex = 0;
@@ -63,7 +63,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(436, 452);
+            this.btnUpdate.Location = new System.Drawing.Point(605, 452);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(154, 58);
             this.btnUpdate.TabIndex = 1;
@@ -206,7 +206,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(257, 452);
+            this.btnDelete.Location = new System.Drawing.Point(439, 452);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(160, 58);
             this.btnDelete.TabIndex = 15;
@@ -257,8 +257,11 @@
             this.Controls.Add(this.btnSet);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnPullout);
+            this.MaximizeBox = false;
             this.Name = "Form4";
+            this.ShowIcon = false;
             this.Text = "Form4";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMovie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

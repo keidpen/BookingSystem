@@ -1,0 +1,5 @@
+=================   OR No.:99    =====================
+
+Schedule Date: 2020-11-09
+Screen No.: Screen 1
+Booked Seat No.:  180, 181, 210, 154,

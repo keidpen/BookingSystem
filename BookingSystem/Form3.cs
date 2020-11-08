@@ -35,11 +35,10 @@ namespace BookingSystem
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.ShowDialog();
 
-                //Form2 form = new Form2();
-                //form.BookingRefresh();
-                //form.Visible = true;
-
                 this.Visible = false;
+
+                Refresh r = new Refresh();
+                r.GetRefreshFrame(0);
             }
             else
             {

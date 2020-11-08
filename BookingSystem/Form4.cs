@@ -154,7 +154,7 @@ namespace BookingSystem
             DisableCheckBox();
             DisableCheckbox2();
            // cbTitle.Visible = false;
-            btnSet.Enabled = false;
+            btnSet.Visible = false;
 
             cbSunday.Visible = false;
             cbMonday.Visible = false;
@@ -176,9 +176,9 @@ namespace BookingSystem
             DisableCheckBox();
             DisableCheckbox2();
             RetrieveMovie();
-            btnUpdate.Enabled = false;
-            btnPullout.Enabled = false;
-            btnDelete.Enabled = false;
+            btnUpdate.Visible = false;
+            btnPullout.Visible = false;
+            btnDelete.Visible = false;
         }
         //      ///         ///     ///             ///
 
@@ -338,8 +338,14 @@ namespace BookingSystem
         }
 
         private void btnUpdate_Click(object sender, EventArgs e){
-            GetPos();
-            UpdateSched();
+            DialogResult result = MessageBox.Show("Are you sure you want to Update Movie?", "Update?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                GetPos();
+                UpdateSched();
+                Refresh r = new Refresh();
+                r.GetRefreshFrame(0);
+            }
         }
 
 
@@ -483,6 +489,8 @@ namespace BookingSystem
                 GetPos();
                 InsertMovieSchedule();
                 //ValidateSchedule();
+                Refresh r = new Refresh();
+                r.GetRefreshFrame(0);
             }
         }
 
@@ -520,8 +528,14 @@ namespace BookingSystem
         }
 
         private void btnPullout_Click(object sender, EventArgs e){
-            GetIDMovie();
-            PullOut();
+            DialogResult result = MessageBox.Show("Are you sure you want to Pull-out Movie?", "Pull-out", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                GetIDMovie();
+                PullOut();
+                Refresh r = new Refresh();
+                r.GetRefreshFrame(0);
+            }
         }
         ////////////// Delete
         public void DeleteSched()
@@ -534,27 +548,28 @@ namespace BookingSystem
                 db.conn.Open();
 
                 MySqlCommand command = new MySqlCommand(query, db.conn);
-                if (command.ExecuteNonQuery() >= 1)
-                {
+                if (command.ExecuteNonQuery() >= 1){
                     MessageBox.Show("Deleted!");
-                }
-                else
-                {
+                }else{
                     MessageBox.Show("Failed to Delete.");
                 }
                 command.Dispose();
                 db.conn.Close();
 
-            }
-            catch (Exception err)
-            {
+            }catch (Exception err){
                 MessageBox.Show(err.Message);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DeleteSched();
+            DialogResult result = MessageBox.Show("Are you sure you want to Delete Movie?", "Delete?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                DeleteSched();
+                Refresh r = new Refresh();
+                r.GetRefreshFrame(0);
+            }
         }
 
 
