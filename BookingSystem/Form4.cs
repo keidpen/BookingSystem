@@ -155,6 +155,8 @@ namespace BookingSystem
             DisableCheckbox2();
            // cbTitle.Visible = false;
             btnSet.Visible = false;
+            //  btnUpdate.Enabled = false;
+            GetIDMovie();
 
             cbSunday.Visible = false;
             cbMonday.Visible = false;
@@ -345,9 +347,15 @@ namespace BookingSystem
                 UpdateSched();
                 Refresh r = new Refresh();
                 r.GetRefreshFrame(0);
+                this.Visible = false;
             }
         }
-
+        private void cbTitle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetIDMovie();
+            btnDelete.Enabled = false;
+            btnPullout.Enabled = false;
+        }
 
         ///////// BTN SET//////////////////
 
@@ -388,6 +396,7 @@ namespace BookingSystem
                 GetIDMovie();
                 btnDelete.Enabled = false;
                 btnPullout.Enabled = false;
+                //btnUpdate.Enabled = true;
 
             }
         }
@@ -491,14 +500,16 @@ namespace BookingSystem
                 //ValidateSchedule();
                 Refresh r = new Refresh();
                 r.GetRefreshFrame(0);
+                this.Visible = false;
             }
         }
 
 
 
 
+
         //////////////////////////
-        
+
         public void PullOut()
         {
             try
@@ -535,6 +546,7 @@ namespace BookingSystem
                 PullOut();
                 Refresh r = new Refresh();
                 r.GetRefreshFrame(0);
+                this.Visible = false;
             }
         }
         ////////////// Delete
@@ -569,6 +581,7 @@ namespace BookingSystem
                 DeleteSched();
                 Refresh r = new Refresh();
                 r.GetRefreshFrame(0);
+                this.Visible = false;
             }
         }
 

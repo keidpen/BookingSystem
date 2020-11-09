@@ -21,6 +21,7 @@ namespace BookingSystem
             
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
             SocialDistancingMode();
         }
 
@@ -512,7 +513,7 @@ namespace BookingSystem
                                 "FROM bookingdb.bookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
-                                "ORDER BY bs.Date DESC ";
+                                "ORDER BY bs.ID DESC ";
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
 
@@ -564,7 +565,7 @@ namespace BookingSystem
                 dataGridView1.Rows.Clear();
 
                 Database db = new Database();
-                String query1 = "SELECT bookedseats.ORNO, tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword + "'";
+                String query1 = "SELECT bookedseats.ORNO, tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword + "' ORDER BY ID DESC";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -691,14 +692,16 @@ namespace BookingSystem
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = comboBox1.SelectedItem.ToString();
 
-                Form3 form = new Form3();
-                form.GetData(seatnum, date, screen, SelSchedTime);
-                form.Visible = true;
-
                 r = new Refresh();
                 r.GetRefreshFrame(1);
                 timer.Tick += new EventHandler(RefreshPanelSeats);
                 timer.Start();
+
+                Form3 form = new Form3();
+                form.GetData(seatnum, date, screen, SelSchedTime);
+                form.ShowDialog(this);
+
+                
             }
         }
 
@@ -1353,7 +1356,7 @@ namespace BookingSystem
             if ( pos >=1 && btnSched.Text !="No Movie") { 
                 GetNameAndImgMovie(pos.ToString());
                 form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time ,btnSched.Tag.ToString());
-                form.Visible = true;
+                form.ShowDialog(this);
 
                 r = new Refresh();
                 r.GetRefreshFrame(1);

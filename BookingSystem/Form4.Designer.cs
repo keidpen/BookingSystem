@@ -201,6 +201,7 @@
             this.cbTitle.Name = "cbTitle";
             this.cbTitle.Size = new System.Drawing.Size(212, 28);
             this.cbTitle.TabIndex = 14;
+            this.cbTitle.SelectedIndexChanged += new System.EventHandler(this.cbTitle_SelectedIndexChanged);
             this.cbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbTitle_KeyDown);
             // 
             // btnDelete

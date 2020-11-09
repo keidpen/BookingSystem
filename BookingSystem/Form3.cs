@@ -35,10 +35,11 @@ namespace BookingSystem
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.ShowDialog();
 
-                this.Visible = false;
-
                 Refresh r = new Refresh();
                 r.GetRefreshFrame(0);
+
+                this.Close();
+                
             }
             else
             {
@@ -75,7 +76,6 @@ namespace BookingSystem
                 if (seat != null)
                 {
                     newSeatNo += " "+seat +",";
-                    MessageBox.Show(seat);
                 }
             }
 
@@ -93,15 +93,16 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query1 = "SELECT MAX(ID) FROM bookingdb.bookedseats";
+                String query1 = "SELECT COALESCE(MAX(id), 0)+1  FROM bookingdb.bookedseats";
                 db.conn.Open();
                 MySqlCommand command1 = new MySqlCommand(query1,db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
                 while (reader.Read())
                 {
-                    int conNplus = (int.Parse(reader[0].ToString()))+1;
-                    ORnum.Enqueue(conNplus+"");
+                    int conNplus = (int.Parse(reader[0].ToString()));
+                    ORnum.Enqueue(conNplus + "");
                 }
+
                 reader.Close();
                 command1.Dispose();
                 db.conn.Close();
@@ -114,7 +115,7 @@ namespace BookingSystem
                 MySqlCommand command2 = new MySqlCommand(query2, db.conn);
                 if (command2.ExecuteNonQuery() == 1)
                 {
-                    this.Visible = false;
+                   // this.Close();
                 }
                 else
                 {
