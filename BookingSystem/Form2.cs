@@ -40,7 +40,7 @@ namespace BookingSystem
             }
 
             Database db = new Database();
-            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblsettings WHERE sdmode = 'true' AND '" + sdDate + "' BETWEEN StartDate AND EndDate", db.conn);
+            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblsocialdistancing WHERE sdmode = 'true' AND '" + sdDate + "'= Date ", db.conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
