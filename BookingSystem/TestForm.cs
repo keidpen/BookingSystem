@@ -45,6 +45,15 @@ namespace BookingSystem
                     Label l = new Label();
                     String dext = reader[0].ToString();
                     listView1.Items.Add(dext);
+                    String[] split = dext.Split('-');
+                    DateTime myVacation1 = new DateTime(int.Parse(split[0].ToString()), int.Parse(split[1].ToString()), int.Parse(split[2].ToString()));
+                    monthCalendar1.AddBoldedDate(myVacation1);
+                    monthCalendar1.ShowToday = true;
+                    monthCalendar1.ShowTodayCircle = true;
+                    monthCalendar1.BackColor = Color.Red;
+                    //monthCalendar1.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(0)), ((System.Byte)(192)));
+                    //monthCalendar1.TitleBackColor = System.Drawing.Color.Purple;
+                    //monthCalendar1.TitleForeColor = System.Drawing.Color.Yellow;
                 }
 
             }catch (Exception err)
@@ -66,7 +75,6 @@ namespace BookingSystem
                 {
                     MessageBox.Show("Success");
                     test2();
-                    listView1.Refresh();
                 }
             }
             catch (Exception err)

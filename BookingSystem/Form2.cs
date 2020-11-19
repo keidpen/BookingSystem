@@ -1211,8 +1211,8 @@ namespace BookingSystem
         public void GetNameAndImgMovie(String pos)
         {
             Database db = new Database();
-            String query2 = "SELECT movieID,Title,imgPath FROM movieinfo WHERE movieID = " +
-                "ANY (SELECT movieID FROM moviesched WHERE Screen='" + cbSetScreen.Text +"' " +
+            String query2 = "SELECT movieID,Title, imgPath FROM movieinfo WHERE movieID = " +
+                "ANY (SELECT movieID FROM moviesched WHERE Screen='" + cbSetScreen.Text + "' " +
                 "AND Date = '" + cbSetDate.Text + "' AND SchedPosition LIKE '% "+pos+",%' AND isDeleted = 'false')";
 
             db.conn.Open();
@@ -1224,8 +1224,16 @@ namespace BookingSystem
 
             newMovieInfoID = table.Rows[0][0].ToString();
             strSetMovieName = table.Rows[0][1].ToString();
-            SetbtnImg = table.Rows[0][2].ToString();
+            if (File.Exists(table.Rows[0][2].ToString()))
+            {
+                SetbtnImg = table.Rows[0][2].ToString();
+            }
+            else
+            {
+                SetbtnImg = "noimg.png";
+            }
             
+
         }
 
         public void btnSchedArray()
@@ -1279,7 +1287,7 @@ namespace BookingSystem
                     String query = "SELECT COUNT(*) FROM bookingdb.moviesched " +
                         "WHERE Date ='" + cbSetDate.SelectedItem.ToString() + "' " +
                         "AND Screen = '" + cbSetScreen.Text.ToString() + "' " +
-                        "AND isDeleted = 'false' " +
+                        "AND isDeleted = 'false' AND (movieID !=0 OR movieID !=null)" +
                         "AND SchedPosition LIKE '% "+i+",%'";
 
                     MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
@@ -1355,13 +1363,16 @@ namespace BookingSystem
             Form4 form = new Form4();
             if ( pos >=1 && btnSched.Text !="No Movie") { 
                 GetNameAndImgMovie(pos.ToString());
-                form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time ,btnSched.Tag.ToString());
-                form.ShowDialog(this);
 
                 r = new Refresh();
                 r.GetRefreshFrame(1);
 
                 timer.Start();
+
+                form.FetchInfo(newMovieInfoID, cbSetScreen.Text,cbSetDate.Text,time ,btnSched.Tag.ToString());
+                form.ShowDialog(this);
+
+                
             }
             else if (btnSched.Text == "No Movie"){
                 form.Run(cbSetScreen.Text, cbSetDate.Text, time, btnSched.Tag.ToString());
