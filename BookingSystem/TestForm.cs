@@ -13,7 +13,7 @@ namespace BookingSystem
         {
             InitializeComponent();
             test();
-            test2();
+            test2("");
         }
 
         private void TestForm_Load(object sender, EventArgs e)
@@ -23,26 +23,43 @@ namespace BookingSystem
 
 
 
-        public void test2()
+        public void test2(String date)
         {
             try
             {
+                listView1.Clear();
                 monthCalendar1.RemoveAllBoldedDates();
-                listView1.Items.Clear();
-                Database db = new Database();
+
                 DateTime dFirstDayOfThisMonth = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
-                DateTime dt2 = dFirstDayOfThisMonth.AddMonths(-1);
-                String query1 = "SELECT DATE_FORMAT(Date,'%Y-%m-%d') FROM tblsocialdistancing WHERE sdmode ='true' AND Date > '" + dt2.ToString("yyyy-MM-dd") + "'  ORDER BY tblsocialdistancing.Date ";
+                DateTime dt2 = dFirstDayOfThisMonth.AddMonths(+2).AddMinutes(-1);
+                
+                bool SwitchOn = true;
+                String query1 = "";
+                if (date == "" || date == null || date == dFirstDayOfThisMonth.ToString("yyyy-MM") || date == dt2.ToString("yyyy-MM"))
+                {
+                    query1 = "SELECT DATE_FORMAT(Date,'%Y-%m-%d') FROM tblsocialdistancing WHERE sdmode ='true' AND Date BETWEEN '" + dFirstDayOfThisMonth.ToString("yyyy-MM-dd") + "' AND'" + dt2.ToString("yyyy-MM-dd") + "'  ORDER BY tblsocialdistancing.Date ";
+                }
+                else
+                {
+                    String[] Arrdate = date.Split('-');
+                    query1 = "SELECT DATE_FORMAT(Date,'%Y-%m-%d') FROM tblsocialdistancing WHERE sdmode ='true' AND  YEAR(Date) = '" + Arrdate[0].ToString() + "' ORDER BY Date ASC";
+                    SwitchOn = false;
+                }
+
+                int x = 0, intMonthRef = 0, y = 0;
+                
+
+                Database db = new Database();
                 db.conn.Open();
-                ArrayList AL = new ArrayList();
 
                 MySqlCommand command1 = new MySqlCommand(query1, db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
+
+                ArrayList AL = new ArrayList();
+
                 listView1.View = View.Tile;
-                //ListViewGroup month;
                 List<ListViewGroup> month = new List<ListViewGroup>();
-                int x = 0, intMonthRef = 0, y = 0;
-                bool turnOff = true, turnOff2 = true;
+                bool turnOff = true;
                 flowLayoutPanel1.Controls.Clear();
                 while (reader.Read())
                 {
@@ -51,78 +68,88 @@ namespace BookingSystem
                     String[] split = dext.Split('-');
                     DateTime myVacation1 = new DateTime(int.Parse(split[0].ToString()), int.Parse(split[1].ToString()), int.Parse(split[2].ToString()));
                     monthCalendar1.AddBoldedDate(myVacation1);
-                    //                    monthCalendar1.ShowTodayCircle = true;
-                    //monthCalendar1.BackColor = Color.Red;
-                    //monthCalendar1.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(0)), ((System.Byte)(192)));
-                    //monthCalendar1.TitleBackColor = System.Drawing.Color.Purple;
-                    //monthCalendar1.TitleForeColor = System.Drawing.Color.Yellow; 
-                    monthCalendar1.Refresh();
 
-                    String[] ArrMonth = { "", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+                    String[] whichMonth = { "This Month", "Next Month", "Future Date" };
+                    String[] ArrMonth = { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
                     int IntMonth = 0;
                     String strMonth = "";
+
                     for (int i = 1; i <= ArrMonth.Length; i++)
                     {
-                        if (split[1].ToString() == i.ToString())
+                        if (int.Parse(split[1].ToString()) == i)
                         {
+                            
                             IntMonth = i;
                             strMonth = ArrMonth[i].ToString();
                             if (turnOff == true)
                             {
                                 intMonthRef = IntMonth;
                                 turnOff = false;
-                                y = 1;
                             }
                             break;
                         }
                     }
-                    if (IntMonth != intMonthRef)
+                    if (SwitchOn == true)
                     {
-                        listView1.Groups.Add(month[x]);
-                        //month.Clear();
-                        month = new List<ListViewGroup>();
-                        x = 0;
+                        //if (IntMonth != intMonthRef)
+                        //{
+                        //    listView1.Groups.Add(month[x]);
+                        //    //month.Clear();
+                        //    month = new List<ListViewGroup>();
+                        //    x = 0;
 
-                        turnOff = true;
-                        if (intMonthRef > IntMonth)
+                        //    turnOff = true;
+                        //    if (intMonthRef > IntMonth)
+                        //    {
+                        //        break;
+                        //    }
+                        //    intMonthRef = IntMonth;
+
+                        //}
+
+
+                        //month.Add(new ListViewGroup(ArrMonth[IntMonth].ToString() + " " + split[0].ToString(), HorizontalAlignment.Left));
+                        //listView1.Items.Add(new ListViewItem(reader[0].ToString(), month[x]));
+                        DateTime dt3 = DateTime.Parse(reader[0].ToString());
+
+
+                        if (IntMonth != intMonthRef)
                         {
-                            break;
+                            listView1.Groups.Add(month[x]);
+                            x = 0;
+                            y++;
+                            intMonthRef = IntMonth;
+                            month.Clear();
                         }
-                        intMonthRef = IntMonth;
+                        if (dt3.ToString("yyyy-MM") != currentDate.ToString("yyyy-MM"))
+                        {
+                            y = 1;
+                        }
+                        month.Add(new ListViewGroup(ArrMonth[IntMonth].ToString() + " " + split[0].ToString() + "( " + whichMonth[y].ToString() + ")", HorizontalAlignment.Left));
 
                     }
+                    else
+                    {
+                        if (IntMonth != intMonthRef)
+                        {
+                            listView1.Groups.Add(month[x]);
+                            x = 0;
+                            intMonthRef = IntMonth;
+                            month.Clear();
+                        }
 
-
-                    month.Add(new ListViewGroup(ArrMonth[IntMonth].ToString() + " " + split[0].ToString(), HorizontalAlignment.Left));
+                        month.Add(new ListViewGroup(ArrMonth[IntMonth].ToString() + " " + split[0].ToString() + "( " + whichMonth[2].ToString() + ")", HorizontalAlignment.Left));
+                    }
                     listView1.Items.Add(new ListViewItem(reader[0].ToString(), month[x]));
 
-                    //if (IntMonth != intMonthRef)
-                    //{
-                    //    listView1.Groups.Add(month[x]);
-                    //    x = 0;
-                    //    intMonthRef = IntMonth;
-                    //    month.Clear();
-                    //}
-
-                    if (intMonthRef != IntMonth || y == 1)
-                    {
-                        Label lbl2 = new Label();
-                        lbl2.Text = strMonth + "----------";
-                        lbl2.Visible = true;
-                        flowLayoutPanel1.Controls.Add(lbl2);
-                        y++;
-                    }
-                    Label lbl = new Label();
-                    lbl.Text = reader[0].ToString();
-                    lbl.Visible = true;
-                    flowLayoutPanel1.Controls.Add(lbl);
 
                 }
-                //foreach (ListViewGroup list in month){
-                //    listView1.Groups.Add(list);
-                // }
+                foreach (ListViewGroup list in month)
+                {
+                    listView1.Groups.Add(list);
+                }
 
-
+                db.conn.Close();
             }
             catch (Exception err)
             {
@@ -153,6 +180,8 @@ namespace BookingSystem
                 {
                     test3(selectionDate);
                 }
+
+                db.conn.Close();
             }
             catch (Exception err)
             {
@@ -174,7 +203,9 @@ namespace BookingSystem
                 if (command1.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Success");
-                    test2();
+                    DateTime d = monthCalendar1.SelectionRange.Start;
+                    String date2 = d.Year.ToString() + "-" + d.Month.ToString();
+                    test2(date2);
                 }
             }
             catch (Exception err)
@@ -196,7 +227,7 @@ namespace BookingSystem
                 if (command1.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Success");
-                    test2();
+                    test2("");
                 }
             }
             catch (Exception err)
@@ -261,27 +292,29 @@ namespace BookingSystem
             }
         }
 
-
+        DateTime currentDate = DateTime.Now;
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            MessageBox.Show("Helo " + monthCalendar1.SelectionStart.ToString("yyyy-MM-dd"));
-            test4();
-            monthCalendar1_DateChanged(sender, e);
+            DateTime d = monthCalendar1.SelectionRange.Start;
+            if (currentDate.Date <= d.Date)
+            {
+                test4();
+            }
+            else
+            {
+                MessageBox.Show("Cant add or removed ");
+            }
         }
+
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            monthCalendar1.Refresh();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            DateTime d = monthCalendar1.SelectionRange.Start;
+            String date = d.Year.ToString() + "-" + d.Month.ToString();
+            if (currentDate.Date < d.Date){
+                test2(date);
+            }
+            
         }
 
     }
