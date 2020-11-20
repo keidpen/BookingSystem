@@ -13,16 +13,36 @@ namespace BookingSystem
     public partial class Form2 : Form
     {
         Timer timer = new Timer();
+        Timer timeClock = new Timer();
         public Form2()
         {
             timer.Interval = 1000;
             
             InitializeComponent();
             
-
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
             dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            SocialDistancingMode();
+            //SocialDistancingMode();
+            timeClock.Interval = 500;
+            timeClock.Tick += new EventHandler(TimeClock);
+            timeClock.Start();
+        }
+
+        int countClock = 0;
+        public void TimeClock(object sender, EventArgs e)
+        {
+            DateTime dtClock = DateTime.Now;
+            if (countClock%2==0)
+            {
+                lblTimeClock.Text = dtClock.ToString("MMM dd, yyyy hh:mm:ss tt");
+                countClock++;
+            }
+            else
+            {
+                lblTimeClock.Text = "";
+                countClock--;
+            }
+            
         }
 
         /// ////////////////////////TEST ///////////////////////////////////
