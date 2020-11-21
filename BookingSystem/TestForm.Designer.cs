@@ -60,14 +60,14 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(497, 103);
+            this.dataGridView1.Location = new System.Drawing.Point(272, 52);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(693, 459);
+            this.dataGridView1.Size = new System.Drawing.Size(952, 209);
             this.dataGridView1.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(647, 70);
+            this.button1.Location = new System.Drawing.Point(151, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -77,20 +77,21 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(415, 70);
+            this.button2.Location = new System.Drawing.Point(272, 292);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Daily";
+            this.button2.Text = "Report";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(535, 70);
+            this.button3.Location = new System.Drawing.Point(272, 23);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(130, 23);
             this.button3.TabIndex = 7;
-            this.button3.Text = "Monthly";
+            this.button3.Text = "Contact Tracing";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -101,7 +102,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(18, 316);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(304, 226);
+            this.listView1.Size = new System.Drawing.Size(227, 377);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;

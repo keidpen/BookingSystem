@@ -251,12 +251,13 @@ namespace BookingSystem
                 dataGridView1.Columns[4].Name = "Screen";
                 dataGridView1.Columns[5].Name = "Contact No.";
                 dataGridView1.Columns[6].Name = "Email.";
-
+                DateTime dt = DateTime.Today;
                 Database db = new Database();
                 String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
                                 "FROM bookingdb.bookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
+                      //          "WHERE Date = '" + dt.ToString("yyyy-MM-dd") + "'" +
                                 "ORDER BY bs.ID DESC ";
 
                 db.conn.Open();
@@ -322,11 +323,7 @@ namespace BookingSystem
             
         }
         
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //// Start of C0ntact Tracing /////
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -354,6 +351,18 @@ namespace BookingSystem
             frmData frm = new frmData();
             frm.crystalReportViewer1.ReportSource = cr;
             frm.Show();
+
+        }
+        ////  End   Contact Tracing //////
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        ///         Sales Report        ///
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }
