@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2020 at 01:42 PM
+-- Generation Time: Nov 21, 2020 at 08:51 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -43,78 +43,38 @@ CREATE TABLE `bookedseats` (
 --
 
 INSERT INTO `bookedseats` (`ID`, `ORNO`, `customerID`, `SeatNo`, `Date`, `Time`, `Screen`) VALUES
-(1, '', 1, ' 20,', '09-22-2020', '10:00 am - 12:00 pm', 'Screen 1'),
-(2, '', 2, ' 123,', '09-22-2020', '10:00 am - 12:00 pm', 'Screen 1'),
-(9, '', 9, ' 14, 18,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(10, '', 10, ' 16, 17,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(11, '', 11, ' 125,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(12, '', 12, ' 129,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(13, '', 13, ' 96,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(14, '', 14, ' 99,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(15, '', 15, ' 150,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(16, '', 16, ' 9,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(17, '', 17, ' 36,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(18, '', 18, ' 119,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(19, '', 19, ' 203,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(20, '', 20, ' 210,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(21, '', 21, ' 206,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(22, '', 22, ' 106,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(23, '', 23, ' 164,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(24, '', 24, ' 214,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(25, '', 25, ' 49,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(26, '', 26, ' 131,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(27, '', 27, ' 39,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(28, '', 28, ' 1,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(29, '', 29, ' 171,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(30, '', 30, ' 32,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(31, '', 31, ' 62,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(32, '', 32, ' 27,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(33, '', 33, ' 245,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(34, '', 34, ' 82,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(35, '', 35, ' 100,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(36, '', 36, ' 160,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(37, '', 37, ' 70,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(38, '', 38, ' 239,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(39, '', 39, ' 155,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(40, '', 40, ' 75,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(41, '', 41, ' 80,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(42, '', 42, ' 24,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(43, '', 43, ' 66,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(44, '', 44, ' 153,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(45, '', 45, ' 137,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(46, '', 46, ' 132,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(47, '', 47, ' 111,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(48, '', 48, ' 13,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(49, '', 49, ' 222,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(50, '', 50, ' 232,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(51, '', 51, ' 242, 243, 241,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(52, '', 52, ' 219, 218, 217, 64, 67, 66, 65,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(53, '', 53, ' 72, 73, 74,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(54, '', 54, ' 292, 293, 294,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(55, '', 55, ' 142, 170, 198, 171, 200, 172, 144, 146, 174, 202,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(56, '', 56, ' 203, 204, 176, 148, 156, 147,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(57, '', 57, ' 277,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(58, '', 58, ' 300, 301, 302,', '10-02-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(59, '', 59, ' 8, 9, 10,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(60, '', 60, ' 15, 17, 19,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(61, '', 61, ' 45, 46,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(62, '', 62, ' 125, 126, 127, 129, 130, 131, 132, 133, 134, 135,', '10-03-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(68, 'OR-68', 78, ' 47,', '10-12-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(69, 'OR-69', 79, ' 130,', '10-12-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(71, 'OR-70', 81, ' 95,', '10-12-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(72, 'OR-72', 82, ' 17,', '10-12-2020', '10:00 am - 12:30 pm', 'Screen 1'),
-(73, 'OR-73', 83, ' 5,', '2020-10-12', '10:00 am - 12:30 pm', 'Screen 1'),
-(74, 'OR-74', 84, ' 73, 74, 103, 102, 75, 101, 129, 130, 131, 128,', '2020-10-12', '10:00 am - 12:30 pm', 'Screen 1'),
-(75, 'OR-75', 85, ' 14, 15, 16,', '2020-10-12', '2:00 pm - 4:00 pm', 'Screen 1'),
-(79, 'OR-76', 89, ' 10, 39, 40,', '2020-10-14', '10:00 am - 12:00 pm', 'Screen 1'),
-(80, 'OR-80', 90, ' 14, 15, 16,', '2020-10-22', '', 'Screen 1'),
-(81, 'OR-81', 91, ' 38, 39, 67, 68,', '2020-10-22', '', 'Screen 1'),
-(82, 'OR-82', 92, ' 73, 101, 129,', '2020-10-22', '', 'Screen 1'),
-(83, 'OR-83', 93, ' 122, 123, 124, 125,', '2020-10-22', '', 'Screen 1'),
-(84, 'OR-84', 94, ' 151, 179, 207, 208,', '2020-10-22', '', 'Screen 1'),
-(85, 'OR-85', 95, ' 49, 50, 51,', '2020-10-22', '', 'Screen 1'),
-(86, 'OR-86', 96, ' 61, 89, 117,', '2020-10-22', '', 'Screen 1'),
-(87, 'OR-87', 97, ' 211, 212, 213,', '2020-10-22', '', 'Screen 1');
+(1, 'OR-1', 122, ' 67, 99, 102, 75,', '2020-11-09', '', 'Screen 1'),
+(2, 'OR-2', 123, ' 41, 18, 22, 50,', '2020-11-09', '', 'Screen 1'),
+(3, 'OR-3', 124, ' 25, 53,', '2020-11-09', '', 'Screen 1'),
+(4, 'OR-4', 125, ' 14, 16, 44,', '2020-11-09', '', 'Screen 1'),
+(5, 'OR-5', 126, ' 156, 157,', '2020-11-09', '', 'Screen 1'),
+(6, 'OR-6', 127, ' 98, 126, 128,', '2020-11-09', '', 'Screen 1'),
+(7, 'OR-7', 128, ' 21, 49, 105,', '2020-11-09', '', 'Screen 1'),
+(8, 'OR-8', 129, ' 39, 40,', '2020-11-09', '', 'Screen 1'),
+(9, 'OR-9', 130, ' 20, 48,', '2020-11-09', '', 'Screen 1'),
+(10, 'OR-10', 131, ' 94, 122, 123,', '2020-11-09', '', 'Screen 1'),
+(11, 'OR-11', 132, ' 134, 135, 136,', '2020-11-09', '', 'Screen 1'),
+(12, 'OR-12', 133, ' 214, 189, 217,', '2020-11-09', '', 'Screen 1'),
+(13, 'OR-13', 134, ' 118, 90, 119, 91,', '2020-11-09', '', 'Screen 1'),
+(14, 'OR-14', 135, ' 104, 132,', '2020-11-09', '', 'Screen 1'),
+(15, 'OR-15', 136, ' 46, 47, 19, 45, 17,', '2020-11-09', '', 'Screen 1'),
+(16, 'OR-16', 137, ' 71, 72, 100,', '2020-11-09', '', 'Screen 1'),
+(17, 'OR-17', 138, ' 24, 52,', '2020-11-09', '', 'Screen 1'),
+(18, 'OR-18', 139, ' 82, 139,', '2020-11-09', '', 'Screen 1'),
+(19, 'OR-19', 140, ' 117, 145, 173, 202,', '2020-11-09', '', 'Screen 1'),
+(20, 'OR-20', 141, ' 149, 179, 180,', '2020-11-09', '', 'Screen 1'),
+(21, 'OR-21', 142, ' 211, 212, 213,', '2020-11-09', '', 'Screen 1'),
+(22, 'OR-22', 143, ' 289, 264, 267,', '2020-11-09', '', 'Screen 1'),
+(23, 'OR-23', 144, ' 130, 131, 103,', '2020-11-09', '', 'Screen 1'),
+(24, 'OR-24', 145, ' 165, 193, 221, 194, 222, 166,', '2020-11-09', '', 'Screen 1'),
+(25, 'OR-25', 146, ' 80, 108, 109,', '2020-11-09', '', 'Screen 1'),
+(26, 'OR-26', 147, ' 124, 97, 69, 125,', '2020-11-09', '', 'Screen 1'),
+(27, 'OR-27', 148, ' 2, 30, 31, 3,', '2020-11-09', '', 'Screen 1'),
+(28, 'OR-28', 149, ' 271, 273, 275, 248,', '2020-11-09', '', 'Screen 1'),
+(29, 'OR-29', 150, ' 87, 115, 114, 86,', '2020-11-09', '', 'Screen 1'),
+(30, 'OR-30', 151, ' 78, 107, 106, 79, 51, 23, 26, 55, 54, 27,', '2020-11-09', '', 'Screen 1'),
+(31, 'OR-31', 152, ' 127, 155,', '2020-11-09', '', 'Screen 1'),
+(32, 'OR-32', 153, ' 37, 7, 36, 8, 10, 38,', '2020-11-09', '', 'Screen 1');
 
 -- --------------------------------------------------------
 
@@ -139,18 +99,20 @@ CREATE TABLE `movieinfo` (
 --
 
 INSERT INTO `movieinfo` (`movieID`, `Title`, `Director`, `Genre`, `Duration`, `Synopsis`, `Price`, `isDeleted`, `imgPath`) VALUES
-(1, 'The Rocket', 'Kim Jung Un', 'Adventure, Action, Drama, ', '10:00', 'Kim activated the Nuke', 200, 'true', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\wall\\si-un-18-0523-2.jpg'),
-(2, 'Chixx Sa Sabidsa', 'Jose Marichanss', 'Drama, Documentary, ', '2:00:00', 'Hello Marichan21', 240, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\alejandro-burdisio-congurbano-la-yoli-as.jpg'),
-(3, 'The Vanguard', 'Jackie Chan', 'Drama, Documentary, Comedy, ', '2:40:30', 'They jump in the river', 500, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\yuhki-demers-peni-graphics-0000-layer-comp-1.jpg'),
-(5, 'The girl', 'Me', 'Drama, Documentary, ', '123', 'the girl in unif', 200, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\wall\\si-un-18-0523-2.jpg'),
-(6, 'The siht', 'sfa', 'Action, Drama, ', 'asd', 'asd', 123, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\sean-raiko-tay-lord-savior-shaggy.jpg'),
-(7, 'Thew', 'asd', 'Drama, ', '2', 'asd', 213, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\david-noren-hillbillygys2.jpg'),
-(8, 'Test', 'direvtor', 'Action, Drama, ', 'qw', 'asdf', 123, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\jelly.jpg'),
-(11, 'The Hawk', 'mister', 'Action, Drama, ', '12:00:30', 'Santo nino puno ka ng grasya', 123, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\wall\\guilherme-borba-fashion1.jpg'),
-(12, 'the look', 'Mrloor', 'Drama, Documentary, ', '12:00:90', 'Hashahdasd', 3432, 'true', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\wall\\leandro-franci-jponesinha-001.jpg'),
-(13, 'THe rixal', 'asd', 'Adventure, Action, Documentary, ', '124321', 'Noli ', 190, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\wall\\leandro-franci-jponesinha-001.jpg'),
-(14, 'asd', 'asd', 'Drama, Documentary, ', 'sd', 'asd', 0, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\jelly.jpg'),
-(19, 'The rocke a', 'asd', 'Action, Drama, ', '12:32:23', 'chixx', 12341, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\atey-ghailan-orange2b.jpg');
+(1, 'Wonder Woman : Courage', 'Kim Jung Un', 'Action, Romance, Thriller, ', '10:00:00', 'Damn', 400, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\WonderWoman.jpg'),
+(2, 'Harry Potter', 'Jose Marichanss', 'Adventure, Drama, Fantasy, Romance, ', '2:00:00', 'Hello Marichan21', 240, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Harry Potter and the Sorcerers Stone.png'),
+(3, 'Vanguard', 'Jackie Chan', 'Adventure, Action, Comedy, ', '2:40:30', 'They jump in the river', 500, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Vangurad.jpg'),
+(5, 'Aquaman', 'Me', 'Adventure, Action, Sci-Fi, ', '01:30:00', 'FishMan', 200, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Aquaman.jpg'),
+(6, 'Scooby Doo Instinct', 'sfa', 'Action, Drama, ', 'asd', 'asd', 123, 'false', 'C:\\Users\\Noli\\Pictures\\SPIDEY\\sean-raiko-tay-lord-savior-shaggy.jpg'),
+(7, 'US', 'asd', 'Horror, Thriller, ', '2:00:00', 'Twins', 213, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\US.jpg'),
+(8, 'Aladdin', 'Disney', 'Adventure, Drama, Romance, ', '02:12:11', 'Alladin ', 500, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Alladin.jpg'),
+(11, 'The Beauty and The Beast', 'mister', 'Drama, Romance, Thriller, ', '12:00:30', 'Maganda si emma watson', 500, 'true', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\The Beauty and The Beast.jpg'),
+(12, 'The Greatest Showman', 'Mrloor', 'Drama, Romance, ', '12:00:90', 'Hashahdasd', 3432, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\greatestShowman.jpg'),
+(13, 'Joker', 'asd', 'Action, Drama, Horror, Romance, Thriller, ', '12:43:21', 'Clown', 590, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Joker.jpg'),
+(14, 'Parasyte', 'asd', 'Horror, Sci-Fi, Thriller, ', '12:00:12', 'Worms', 200, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Parasyte.jpg'),
+(19, 'Spider Man: Into Spider-Verse', 'asd', 'Adventure, Action, Drama, Fantasy, Sci-Fi, ', '12:32:23', 'Uncle Ben?', 900, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\spiderman_into_the_spiderverse.jpg'),
+(20, 'John Wick 2', 'Mema', 'Action, ', '12:12:12', 'kill my ddog i kill you', 12000, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\John Wick 2.jpg'),
+(21, 'End Game', 'John', 'Action, ', '12:12:12', 'Iron man is dead', 300, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Avengers Endgame.jpg');
 
 -- --------------------------------------------------------
 
@@ -160,21 +122,41 @@ INSERT INTO `movieinfo` (`movieID`, `Title`, `Director`, `Genre`, `Duration`, `S
 
 CREATE TABLE `moviesched` (
   `schedID` int(50) NOT NULL,
-  `StartDate` datetime NOT NULL,
-  `EndDate` datetime NOT NULL,
+  `SchedPosition` varchar(99) NOT NULL,
+  `Date` varchar(100) NOT NULL,
+  `StartDate` date NOT NULL,
+  `EndDate` date NOT NULL,
   `Time` varchar(50) NOT NULL,
   `Screen` varchar(10) NOT NULL,
-  `movieID` int(50) NOT NULL
+  `movieID` int(50) NOT NULL,
+  `isDeleted` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `moviesched`
 --
 
-INSERT INTO `moviesched` (`schedID`, `StartDate`, `EndDate`, `Time`, `Screen`, `movieID`) VALUES
-(1, '2020-10-20 18:00:00', '2020-10-24 20:00:00', ' 06:00 PM -  08:00 PM', 'Screen 2', 5),
-(2, '2020-10-20 21:00:00', '2020-10-26 23:00:00', ' 09:00 PM -  11:00 PM', 'Screen 1', 0),
-(3, '2020-10-20 18:07:00', '2020-10-20 18:07:00', ' 06:07 PM -  06:07 PM', 'Screen 2', 0);
+INSERT INTO `moviesched` (`schedID`, `SchedPosition`, `Date`, `StartDate`, `EndDate`, `Time`, `Screen`, `movieID`, `isDeleted`) VALUES
+(1, ' 2,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 11, 'true'),
+(2, ' 4,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 11, 'true'),
+(3, ' 6,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 11, 'true'),
+(4, ' 2,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(5, ' 2,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(6, ' 3,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(7, ' 4,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 19, 'true'),
+(8, ' 5,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(9, ' 6,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(10, ' 7,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(11, ' 3,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
+(12, ' 4,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 7, 'false'),
+(13, ' 2,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'false'),
+(14, ' 3,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(15, ' 5,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 21, 'false'),
+(16, ' 12,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 6, 'false'),
+(17, ' 20,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '1:00 PM to 4:00 PM', 'Screen 1', 2, 'true'),
+(18, ' 21,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '1:00 PM to 4:00 PM', 'Screen 1', 2, 'true'),
+(19, ' 27,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false'),
+(20, ' 28,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false');
 
 -- --------------------------------------------------------
 
@@ -280,27 +262,98 @@ INSERT INTO `tblcustomer` (`customerID`, `Name`, `ContactNo`, `Email`) VALUES
 (94, '21', 'sdf', '12'),
 (95, 'noli', 'noli', 'noli'),
 (96, 'noli', 'moli', '123'),
-(97, 'noli', '123', '@aaad');
+(97, 'noli', '123', '@aaad'),
+(98, 'l.', 'l8', 'uki'),
+(99, 'sd', 'asd', 'asd'),
+(100, 'erw', 'qer', 'qwr'),
+(101, 'noli', '12332', '12313'),
+(102, '234', '1234', '14'),
+(103, 'noli', '123132', '@gmail.com'),
+(104, '1324', 'feafs', 'asd'),
+(105, 'th', 'dsfs', 'sdfs'),
+(106, 'sgds', 'asdfas', 'afa'),
+(107, 'qrd', 'sdfs', 'asdas'),
+(108, 'fdaf', 'asfd', 'asd'),
+(109, 'asd', 'asd', 'asd'),
+(110, '1243', '123', '123'),
+(111, 'asd', 'asd', 'asd'),
+(112, 'asd', 'asd', 'asd'),
+(113, 'hgfj', 'ghj', 'gfhj'),
+(114, 'Noli', '09312341', 'haha@gmail.Com'),
+(115, 'asd', 'asd', 'asd'),
+(116, 'sdf', 'sdf', 'asd'),
+(117, 'asd', 'asd', 'asd'),
+(118, 'asd', 'asd', 'asd'),
+(119, 'asd', 'asd', 'asd'),
+(120, 'qwe', 'qwe', 'qwe'),
+(121, '123', '12312', '23'),
+(122, '123', '123', '123'),
+(123, '142', '123', '123'),
+(124, '123', '123', '123'),
+(125, 'asd', 'asd', 'asd'),
+(126, '213', '123', '123'),
+(127, 'ac', 'asd', 'asd'),
+(128, 'asd', 'asdasdasd', 'asd'),
+(129, '312', '123', '123'),
+(130, '213', '123', '123'),
+(131, 'wqeq', 'ewqqwe', 'qwe'),
+(132, 'gf', 'sdf', 'asd'),
+(133, 'asfd', 'asd', 'asd'),
+(134, 'asd', 'asd', 'asd'),
+(135, 'asd', 'asd', 'asd'),
+(136, '123', '123', '123'),
+(137, 'dsf', 'asf', 'asd'),
+(138, 'daf', 'asf', 'afs'),
+(139, 'asd', 'asd', 'd'),
+(140, 'asd', 'asd', 'asd'),
+(141, 'd', 'asd', 'asd'),
+(142, 'asd', 'asd', 'asd'),
+(143, 'sad', 'sd', 'asd'),
+(144, 'qwe', 'qwe', 'qwe'),
+(145, 'asdas', 'asd', 'sd'),
+(146, 'asd', 'asd', 'asd'),
+(147, 'asdasd', 'asd', 'asd'),
+(148, 'asd', 'asd', 'asd'),
+(149, 'asdasd', 'asd', 'sd'),
+(150, 'asd', 'asdas', 'asd'),
+(151, 'asd', 'asd', 'asd'),
+(152, 'ad', 'asda', 'sad'),
+(153, 'asd', 'asd', 'asd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblsettings`
+-- Table structure for table `tblsocialdistancing`
 --
 
-CREATE TABLE `tblsettings` (
+CREATE TABLE `tblsocialdistancing` (
   `id` int(11) NOT NULL,
   `sdmode` varchar(6) NOT NULL,
-  `StartDate` date NOT NULL,
-  `EndDate` date NOT NULL
+  `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tblsettings`
+-- Dumping data for table `tblsocialdistancing`
 --
 
-INSERT INTO `tblsettings` (`id`, `sdmode`, `StartDate`, `EndDate`) VALUES
-(1, 'false', '2020-10-14', '2020-10-20');
+INSERT INTO `tblsocialdistancing` (`id`, `sdmode`, `Date`) VALUES
+(1, 'true', '2020-12-09'),
+(2, 'true', '2020-11-25'),
+(3, 'true', '2020-12-23'),
+(4, 'true', '2021-01-13'),
+(5, 'true', '2021-01-27'),
+(6, 'true', '2021-02-25'),
+(7, 'true', '2020-12-24'),
+(8, 'true', '2021-01-21'),
+(9, 'true', '2021-02-18'),
+(10, 'true', '2020-12-17'),
+(11, 'true', '2021-01-14'),
+(12, 'true', '2020-11-28'),
+(13, 'true', '2021-03-24'),
+(14, 'true', '2021-06-08'),
+(15, 'true', '2022-01-13'),
+(16, 'true', '2020-12-27'),
+(17, 'true', '2020-11-27');
 
 -- --------------------------------------------------------
 
@@ -319,8 +372,8 @@ CREATE TABLE `userfield` (
 --
 
 INSERT INTO `userfield` (`Username`, `Password`, `Usertype`) VALUES
-('janina', 'janina', 'Employee'),
-('noli', 'noli', 'Admin');
+('Admin', 'Admin', 'Admin'),
+('Employee', 'Employee', 'Employee');
 
 --
 -- Indexes for dumped tables
@@ -354,9 +407,9 @@ ALTER TABLE `tblcustomer`
   ADD PRIMARY KEY (`customerID`);
 
 --
--- Indexes for table `tblsettings`
+-- Indexes for table `tblsocialdistancing`
 --
-ALTER TABLE `tblsettings`
+ALTER TABLE `tblsocialdistancing`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -373,31 +426,31 @@ ALTER TABLE `userfield`
 -- AUTO_INCREMENT for table `bookedseats`
 --
 ALTER TABLE `bookedseats`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `movieinfo`
 --
 ALTER TABLE `movieinfo`
-  MODIFY `movieID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `movieID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `moviesched`
 --
 ALTER TABLE `moviesched`
-  MODIFY `schedID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `schedID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tblcustomer`
 --
 ALTER TABLE `tblcustomer`
-  MODIFY `customerID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `customerID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
--- AUTO_INCREMENT for table `tblsettings`
+-- AUTO_INCREMENT for table `tblsocialdistancing`
 --
-ALTER TABLE `tblsettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tblsocialdistancing`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

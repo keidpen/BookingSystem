@@ -316,6 +316,42 @@ namespace BookingSystem
             }
             
         }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Databindings();   
+        }
+
+        public void Databindings()
+        {
+            Database db = new Database();
+            db.conn.Open();
+            String query = "SELECT * FROM tblcustomer";
+
+            String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                "FROM bookingdb.bookedseats bs " +
+                "JOIN tblcustomer " +
+                "ON tblcustomer.customerID = bs.customerID " +
+                "ORDER BY bs.ID DESC ";
+
+            MySqlCommand cmd = new MySqlCommand(query, db.conn);
+            MySqlDataAdapter adt = new MySqlDataAdapter(cmd);
+            DataSet set = new DataSet();
+            adt.Fill(set);
+
+            DataTable tb = new DataTable();
+            adt.Fill(tb);
+
+            dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = tb;
+
+            CrystalReport2 rpt = new CrystalReport2();
+            rpt.SetDataSource(tb);
+
+            frmData form = new frmData();
+            form.crystalReportViewer1.ReportSource = rpt;
+            form.ShowDialog();
+        }
 
     }
 }
