@@ -60,7 +60,6 @@ namespace BookingSystem
                 listView1.View = View.Tile;
                 List<ListViewGroup> month = new List<ListViewGroup>();
                 bool turnOff = true;
-                flowLayoutPanel1.Controls.Clear();
                 while (reader.Read())
                 {
                     Label l = new Label();
@@ -243,16 +242,22 @@ namespace BookingSystem
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
 
-                dataGridView1.ColumnCount = 6;
-                dataGridView1.Columns[0].Name = "ORNo.";
-                dataGridView1.Columns[1].Name = "Name";
-                dataGridView1.Columns[2].Name = "Seat No.";
-                dataGridView1.Columns[3].Name = "Date";
-                dataGridView1.Columns[4].Name = "Time";
-                dataGridView1.Columns[5].Name = "Screen";
+                dataGridView1.ColumnCount = 7;
+
+                dataGridView1.Columns[0].Name = "Name";
+                dataGridView1.Columns[1].Name = "Seat No.";
+                dataGridView1.Columns[2].Name = "Date";
+                dataGridView1.Columns[3].Name = "Time";
+                dataGridView1.Columns[4].Name = "Screen";
+                dataGridView1.Columns[5].Name = "Contact No.";
+                dataGridView1.Columns[6].Name = "Email.";
 
                 Database db = new Database();
-                String query1 = "SELECT * FROM bookedseats";
+                String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                                "FROM bookingdb.bookedseats bs " +
+                                "JOIN tblcustomer " +
+                                "ON tblcustomer.customerID = bs.customerID " +
+                                "ORDER BY bs.ID DESC ";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -268,7 +273,7 @@ namespace BookingSystem
                     AL.Add(reader[3].ToString());
                     AL.Add(reader[4].ToString());
                     AL.Add(reader[5].ToString());
-                    // AL.Add(reader[6].ToString());
+                    AL.Add(reader[6].ToString());
                     // AL.Add(reader[7].ToString());
                     dataGridView1.Rows.Add(AL.ToArray());
                 }
@@ -319,39 +324,37 @@ namespace BookingSystem
         
         private void button1_Click(object sender, EventArgs e)
         {
-            Databindings();   
+
         }
 
-        public void Databindings()
+
+        private void button3_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
-            db.conn.Open();
-            String query = "SELECT * FROM tblcustomer";
+            DataSet ds = new DataSet();
 
-            String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
-                "FROM bookingdb.bookedseats bs " +
-                "JOIN tblcustomer " +
-                "ON tblcustomer.customerID = bs.customerID " +
-                "ORDER BY bs.ID DESC ";
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Name");
+            dt.Columns.Add("Seat No", typeof(string));
+            dt.Columns.Add("Date", typeof(string));
+            dt.Columns.Add("Time", typeof(string));
+            dt.Columns.Add("Screen", typeof(string));
+            dt.Columns.Add("Contact No.", typeof(string));
+            dt.Columns.Add("Email", typeof(string));
 
-            MySqlCommand cmd = new MySqlCommand(query, db.conn);
-            MySqlDataAdapter adt = new MySqlDataAdapter(cmd);
-            DataSet set = new DataSet();
-            adt.Fill(set);
+            foreach (DataGridViewRow dgv in dataGridView1.Rows)
+            {
+                dt.Rows.Add(dgv.Cells[0].Value, dgv.Cells[1].Value, dgv.Cells[2].Value, dgv.Cells[3].Value, dgv.Cells[4].Value, dgv.Cells[5].Value, dgv.Cells[6].Value);
+            }
 
-            DataTable tb = new DataTable();
-            adt.Fill(tb);
+            ds.Tables.Add(dt);
+            ds.WriteXmlSchema("Sample.xml");
 
-            dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = tb;
+            ContactTracing cr = new ContactTracing();
+            cr.SetDataSource(ds);
+            frmData frm = new frmData();
+            frm.crystalReportViewer1.ReportSource = cr;
+            frm.Show();
 
-            CrystalReport2 rpt = new CrystalReport2();
-            rpt.SetDataSource(tb);
-
-            frmData form = new frmData();
-            form.crystalReportViewer1.ReportSource = rpt;
-            form.ShowDialog();
         }
-
     }
 }

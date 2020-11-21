@@ -16,14 +16,14 @@ namespace BookingSystem {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport2 : ReportClass {
+    public class ContactTracing : ReportClass {
         
-        public CrystalReport2() {
+        public ContactTracing() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport2.rpt";
+                return "ContactTracing.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BookingSystem {
         
         public override string FullResourceName {
             get {
-                return "BookingSystem.CrystalReport2.rpt";
+                return "BookingSystem.ContactTracing.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace BookingSystem {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport2 : Component, ICachedReport {
+    public class CachedContactTracing : Component, ICachedReport {
         
-        public CachedCrystalReport2() {
+        public CachedContactTracing() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace BookingSystem {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport2 rpt = new CrystalReport2();
+            ContactTracing rpt = new ContactTracing();
             rpt.Site = this.Site;
             return rpt;
         }

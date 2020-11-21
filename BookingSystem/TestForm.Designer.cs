@@ -35,8 +35,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +77,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(355, 70);
+            this.button2.Location = new System.Drawing.Point(415, 70);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -88,12 +86,13 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(436, 70);
+            this.button3.Location = new System.Drawing.Point(535, 70);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 7;
             this.button3.Text = "Monthly";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listView1
             // 
@@ -107,30 +106,11 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(202, 21);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 9;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(257, 134);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 160);
-            this.flowLayoutPanel1.TabIndex = 10;
-            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 705);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
@@ -155,7 +135,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

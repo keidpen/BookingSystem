@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.CrystalReport21 = new BookingSystem.CrystalReport2();
+            this.ContactTracing1 = new BookingSystem.ContactTracing();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -40,7 +40,7 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.CrystalReport21;
+            this.crystalReportViewer1.ReportSource = this.ContactTracing1;
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
@@ -62,6 +62,6 @@
         #endregion
 
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private CrystalReport2 CrystalReport21;
+        private ContactTracing ContactTracing1;
     }
 }

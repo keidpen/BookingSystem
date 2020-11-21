@@ -106,16 +106,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bookingdbDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReport1.cs">
+    <Compile Include="ContactTracing.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <DependentUpon>ContactTracing.rpt</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReport2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport2.rpt</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="DateTimeExtensions.cs" />
@@ -158,13 +153,9 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CrystalReport1.rpt">
+    <EmbeddedResource Include="ContactTracing.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport2.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
+      <LastGenOutput>ContactTracing.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
