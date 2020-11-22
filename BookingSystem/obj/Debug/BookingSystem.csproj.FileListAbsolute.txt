@@ -51,7 +51,6 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\MySql.Data.
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csproj.CopyComplete
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.pdb
-C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.TestForm.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form4.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
@@ -74,3 +73,13 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\AxShockwave
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\ShockwaveFlashObjects.dll
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmData.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.pdb
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache

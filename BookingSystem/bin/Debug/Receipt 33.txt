@@ -1,0 +1,5 @@
+=================   OR No.:33    =====================
+
+Schedule Date: 2020-11-22
+Screen No.: Screen 1
+Booked Seat No.:  39, 98, 123, 7, 35, 45,

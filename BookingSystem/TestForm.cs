@@ -1,8 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BookingSystem
@@ -18,7 +21,7 @@ namespace BookingSystem
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-
+            LoadChart();
         }
 
 
@@ -32,7 +35,7 @@ namespace BookingSystem
 
                 DateTime dFirstDayOfThisMonth = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
                 DateTime dt2 = dFirstDayOfThisMonth.AddMonths(+2).AddMinutes(-1);
-                
+
                 bool SwitchOn = true;
                 String query1 = "";
                 if (date == "" || date == null || date == dFirstDayOfThisMonth.ToString("yyyy-MM") || date == dt2.ToString("yyyy-MM"))
@@ -47,7 +50,7 @@ namespace BookingSystem
                 }
 
                 int x = 0, intMonthRef = 0, y = 0;
-                
+
 
                 Database db = new Database();
                 db.conn.Open();
@@ -77,7 +80,7 @@ namespace BookingSystem
                     {
                         if (int.Parse(split[1].ToString()) == i)
                         {
-                            
+
                             IntMonth = i;
                             strMonth = ArrMonth[i].ToString();
                             if (turnOff == true)
@@ -257,7 +260,7 @@ namespace BookingSystem
                                 "FROM bookingdb.bookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
-                      //          "WHERE Date = '" + dt.ToString("yyyy-MM-dd") + "'" +
+                                //          "WHERE Date = '" + dt.ToString("yyyy-MM-dd") + "'" +
                                 "ORDER BY bs.ID DESC ";
 
                 db.conn.Open();
@@ -317,12 +320,13 @@ namespace BookingSystem
         {
             DateTime d = monthCalendar1.SelectionRange.Start;
             String date = d.Year.ToString() + "-" + d.Month.ToString();
-            if (currentDate.Date < d.Date){
+            if (currentDate.Date < d.Date)
+            {
                 test2(date);
             }
-            
+
         }
-        
+
         //// Start of C0ntact Tracing /////
 
         private void button3_Click(object sender, EventArgs e)
@@ -356,14 +360,163 @@ namespace BookingSystem
         ////  End   Contact Tracing //////
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //dataGridView1.DataSource = null;
+                //dataGridView1.Rows.Clear();
+
+                //dataGridView2.ColumnCount = 4;
+
+                //dataGridView1.Columns[0].Name = "Date";
+                //dataGridView1.Columns[1].Name = "Year";
+                //dataGridView1.Columns[2].Name = "Month";
+                //dataGridView1.Columns[3].Name = "Day";
+
+                //DateTime dt = DateTime.Today;
+                Database db = new Database();
+// RollUp dapat
+                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.bookedseats";
+
+                db.conn.Open();
+                ArrayList AL = new ArrayList();
+
+                MySqlCommand command1 = new MySqlCommand(query1, db.conn);
+                MySqlDataAdapter da = new MySqlDataAdapter(command1);
+                
+                DataTable tb = new DataTable();
+                da.Fill(tb);
+
+                DataTable dtCloned = tb.Clone();
+                dtCloned.Columns[0].DataType = typeof(string);
+                dtCloned.Columns[1].DataType = typeof(Int32);
+                dtCloned.Columns[2].DataType = typeof(Int32);
+                dtCloned.Columns[3].DataType = typeof(Int32);
+
+
+                foreach (DataRow row in tb.Rows)
+                {
+                    dtCloned.ImportRow(row);
+                }
+                dtCloned.Columns[1].ColumnName = "Year";
+                dtCloned.Columns[2].ColumnName = "Month";
+                dtCloned.Columns[3].ColumnName = "Day";
+
+                MessageBox.Show(list.Count.ToString());
+                for (int i = 1; i < dtCloned.Rows.Count; i++)
+                {
+                    lvSalesReport sales = new lvSalesReport();
+                    sales.Date = dtCloned.Rows[i][0].ToString();
+                    sales.Year = int.Parse(dtCloned.Rows[i][1].ToString());
+                    sales.Month = int.Parse(dtCloned.Rows[i][2].ToString());
+                    sales.Day = int.Parse(dtCloned.Rows[i][3].ToString());
+                    list.Add(sales);
+                }
+                MessageBox.Show(list.Count.ToString());
+                //list = (from DataRow dr in dtCloned.Rows
+                //               select new lvSalesReport()
+                //               {
+                //                   Date = dr["Date"].ToString(),
+                //                   Year = Convert.ToInt32(dr["Year"]),
+                //                   Month = Convert.ToInt32(dr["Month"]),
+                //                   Day = Convert.ToInt32(dr["Day"])
+                //               }).ToList();
+
+                
+
+                //MySqlDataReader reader = command1.ExecuteReader();
+                //while (reader.Read())
+                //{
+                //    AL = new ArrayList();
+                //    AL.Add(reader[0].ToString());
+                //    AL.Add(int.Parse(reader[1].ToString()));
+                //    AL.Add(int.Parse(reader[2].ToString()));
+                //    AL.Add(int.Parse(reader[3].ToString()));
+                //    dataGridView2.Rows.Add(AL.ToArray());
+
+                //}
+                //reader.Close();
+                command1.Dispose();
+
+                //dataGridView2.AutoResizeColumns();
+                //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                db.conn.Close();
+
+
+                if (dataGridView2.Rows.Count == 0 || dataGridView2.Rows == null)
+                {
+                    MessageBox.Show("No Result Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
-
-
         ///         Sales Report        ///
+        /// 
+
+        List<lvSalesReport> list = new List<lvSalesReport>();
+        public void LoadChart()
+        {
+            lvSalesReportBindingSource.DataSource = list;
+            cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            {
+                Title = "Month",
+                Labels = new[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }
+            });
+            cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+            {
+                Title = "Year",
+                LabelFormatter = value => value.ToString("C")
+            });
+            cartesianChart1.LegendLocation = LiveCharts.LegendLocation.Right;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
+            DataSet ds = new DataSet();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Year", typeof(string));
+            dt.Columns.Add("Month", typeof(string));
+            dt.Columns.Add("Day", typeof(string));
+
+            foreach (DataGridViewRow dgv in dataGridView2.Rows)
+            {
+                dt.Rows.Add(dgv.Cells[0].Value, dgv.Cells[1].Value, dgv.Cells[2].Value, dgv.Cells[3].Value);
+            }
+
+            ds.Tables.Add(dt);
+
+            
+
+            cartesianChart1.Series.Clear();
+            SeriesCollection series = new SeriesCollection();
+            var years = (from o in lvSalesReportBindingSource.DataSource as List<lvSalesReport>
+                         select new { Year = o.Year }).Distinct();
+            foreach(var year in years){
+                List<int> values = new List<int>();
+                for (int month =1; month<=12; month++)
+                {
+                    int value = 0;
+                    var data = from o in lvSalesReportBindingSource.DataSource as List<lvSalesReport>
+                               where o.Year.Equals(year.Year) && o.Month.Equals(month)
+                               orderby o.Month ascending
+                               select new {o.Day ,o.Month };
+                    if (data.SingleOrDefault()!=null)
+                    {
+                        value = data.SingleOrDefault().Day;
+                        values.Add(value);
+                    }
+                    series.Add(new LineSeries() { Title = year.Year.ToString(), Values = new ChartValues<int>(values) });
+                }
+                cartesianChart1.Series = series; 
+            }
+
 
         }
+
     }
 }
