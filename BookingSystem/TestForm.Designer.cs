@@ -38,11 +38,11 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.lvSalesReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lvSalesReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvSalesReportBindingSource)).BeginInit();
@@ -140,10 +140,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(666, 209);
             this.dataGridView2.TabIndex = 10;
             // 
-            // lvSalesReportBindingSource
-            // 
-            this.lvSalesReportBindingSource.DataSource = typeof(BookingSystem.lvSalesReport);
-            // 
             // dateDataGridViewTextBoxColumn
             // 
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
@@ -168,6 +164,10 @@
             this.dayDataGridViewTextBoxColumn.HeaderText = "Day";
             this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
             // 
+            // lvSalesReportBindingSource
+            // 
+            this.lvSalesReportBindingSource.DataSource = typeof(BookingSystem.lvSalesReport);
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,6 +182,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "TestForm";
             this.Text = "TestForm";
             this.Load += new System.EventHandler(this.TestForm_Load);

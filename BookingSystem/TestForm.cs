@@ -257,7 +257,7 @@ namespace BookingSystem
                 DateTime dt = DateTime.Today;
                 Database db = new Database();
                 String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
-                                "FROM bookingdb.bookedseats bs " +
+                                "FROM bookingdb.tblbookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
                                 //          "WHERE Date = '" + dt.ToString("yyyy-MM-dd") + "'" +
@@ -375,7 +375,7 @@ namespace BookingSystem
                 //DateTime dt = DateTime.Today;
                 Database db = new Database();
 // RollUp dapat
-                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.bookedseats";
+                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.tblbookedseats";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();

@@ -83,3 +83,5 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmMenu.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSocialDistancing.resources

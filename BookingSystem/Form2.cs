@@ -406,7 +406,7 @@ namespace BookingSystem
                 }
 
                 //Database read seat
-                MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM bookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
+                MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblbookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
@@ -530,7 +530,7 @@ namespace BookingSystem
 
                 Database db = new Database();
                 String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
-                                "FROM bookingdb.bookedseats bs " +
+                                "FROM bookingdb.tblbookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
                                 "ORDER BY bs.ID DESC ";
@@ -585,7 +585,7 @@ namespace BookingSystem
                 dataGridView1.Rows.Clear();
 
                 Database db = new Database();
-                String query1 = "SELECT bookedseats.ORNO, tblcustomer.Name, bookedseats.SeatNo,bookedseats.Date,bookedseats.Time,bookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.bookedseats JOIN tblcustomer ON tblcustomer.customerID = bookedseats.customerID WHERE tblcustomer.Name='" + keyword + "' ORDER BY ID DESC";
+                String query1 = "SELECT tblbookedseats.ORNO, tblcustomer.Name, tblbookedseats.SeatNo,tblbookedseats.Date,tblbookedseats.Time,tblbookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.tblbookedseats JOIN tblcustomer ON tblcustomer.customerID = tblbookedseats.customerID WHERE tblcustomer.Name='" + keyword + "' ORDER BY ID DESC";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
