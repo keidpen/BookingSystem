@@ -117,4 +117,132 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="dataGridView2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 75</value>
+  </data>
+  <data name="dataGridView2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1197, 495</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="dataGridView2.TabIndex" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Name" xml:space="preserve">
+    <value>dataGridView2</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Items" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Items1" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Items2" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Items3" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>692, 41</value>
+  </data>
+  <data name="cbCategoryMovieInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 28</value>
+  </data>
+  <data name="cbCategoryMovieInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>77</value>
+  </data>
+  <data name="&gt;&gt;cbCategoryMovieInfo.Name" xml:space="preserve">
+    <value>cbCategoryMovieInfo</value>
+  </data>
+  <data name="&gt;&gt;cbCategoryMovieInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbCategoryMovieInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbCategoryMovieInfo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tbSearchMovieInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="tbSearchMovieInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>855, 41</value>
+  </data>
+  <data name="tbSearchMovieInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="tbSearchMovieInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>78</value>
+  </data>
+  <data name="&gt;&gt;tbSearchMovieInfo.Name" xml:space="preserve">
+    <value>tbSearchMovieInfo</value>
+  </data>
+  <data name="&gt;&gt;tbSearchMovieInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbSearchMovieInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tbSearchMovieInfo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnSearchMovieInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="btnSearchMovieInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1108, 39</value>
+  </data>
+  <data name="btnSearchMovieInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 30</value>
+  </data>
+  <data name="btnSearchMovieInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>79</value>
+  </data>
+  <data name="btnSearchMovieInfo.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="&gt;&gt;btnSearchMovieInfo.Name" xml:space="preserve">
+    <value>btnSearchMovieInfo</value>
+  </data>
+  <data name="&gt;&gt;btnSearchMovieInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSearchMovieInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSearchMovieInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1219, 605</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>SearchMov</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmSearchMov</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

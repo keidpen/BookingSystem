@@ -105,10 +105,7 @@ namespace BookingSystem
         {
             Application.Exit();
         }
-        private void pnlBooking_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+ 
 
         private void lblHome_Click(object sender, EventArgs e)
         {

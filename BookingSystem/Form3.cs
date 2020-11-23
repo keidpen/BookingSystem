@@ -93,7 +93,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query1 = "SELECT COALESCE(MAX(id), 0)+1  FROM bookingdb.bookedseats";
+                String query1 = "SELECT COALESCE(MAX(id), 0)+1  FROM bookingdb.tblbookedseats";
                 db.conn.Open();
                 MySqlCommand command1 = new MySqlCommand(query1,db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
@@ -126,7 +126,7 @@ namespace BookingSystem
 
 
 
-                String query3 = "INSERT INTO bookingdb.bookedseats(ORNO, SeatNo,customerID,Date,Time,Screen) " +
+                String query3 = "INSERT INTO bookingdb.tblbookedseats(ORNO, SeatNo,customerID,Date,Time,Screen) " +
                     "VALUES('"+"OR-"+ORnum.Peek() + "','"+newSeatNo+"'," +
                     "(SELECT customerID FROM tblcustomer WHERE customerID = " +
                     "(SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')),'"+newDate+"','"+ SelSchedTime + "','"+newScreen+"')";

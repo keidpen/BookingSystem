@@ -85,3 +85,12 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\LiveCharts.
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmMenu.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSocialDistancing.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmBooking.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmCustomer.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSchedule.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmAddMov.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmUpdateMov.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\en\BookingSystem.resources.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\en\BookingSystem.resources.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSearchMov.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSearchMov.en.resources

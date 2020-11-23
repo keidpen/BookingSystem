@@ -18,7 +18,9 @@ namespace BookingSystem
         {
             InitializeComponent();
             SDMode();
-            LayoutDes();
+            listView1.Visible = false;
+            monthCalendar1.Visible = false;
+            label2.Visible = false;
         }
 
         DateTime currentDate = DateTime.Now;
@@ -302,7 +304,7 @@ namespace BookingSystem
 
         public void LayoutDes()
         {
-            if (btnActivate.Text=="Activated")
+            if (btnActivate.Text=="Deactivated")
             {
                 //current
                 monthCalendar1.Location = new System.Drawing.Point(260, 41);
@@ -337,7 +339,6 @@ namespace BookingSystem
                             btnActivate.Text = "Deactivated";
                             listView1.Enabled = false;
                             monthCalendar1.Enabled = false;
-                            LayoutDes();
                         }
                         else
                         {
@@ -363,7 +364,6 @@ namespace BookingSystem
                             listView1.Enabled = true;
                             monthCalendar1.Enabled = true;
                             SDModeDate("");
-                            LayoutDes();
                         }
                         else
                         {
