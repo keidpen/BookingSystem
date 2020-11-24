@@ -375,7 +375,7 @@ namespace BookingSystem
                 //DateTime dt = DateTime.Today;
                 Database db = new Database();
 // RollUp dapat
-                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.tblbookedseats";
+                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.tblbookedseats ";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -518,5 +518,9 @@ namespace BookingSystem
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

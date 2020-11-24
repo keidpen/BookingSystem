@@ -91,5 +91,13 @@ namespace BookingSystem
             pnlMenu.Controls.Add(frm);
             frm.Show();
         }
+
+        private void lblContactTracing_Click(object sender, EventArgs e)
+        {
+            pnlMenu.Controls.Clear();
+            frmContactTracing frm = new frmContactTracing() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            pnlMenu.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

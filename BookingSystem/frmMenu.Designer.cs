@@ -38,6 +38,7 @@
             this.lblAddMov = new System.Windows.Forms.Label();
             this.lblUpdateMov = new System.Windows.Forms.Label();
             this.lblSearchMovie = new System.Windows.Forms.Label();
+            this.lblContactTracing = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -149,11 +150,23 @@
             this.lblSearchMovie.Text = "Search Movie";
             this.lblSearchMovie.Click += new System.EventHandler(this.lblSearchMovie_Click);
             // 
+            // lblContactTracing
+            // 
+            this.lblContactTracing.AutoSize = true;
+            this.lblContactTracing.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContactTracing.Location = new System.Drawing.Point(752, 103);
+            this.lblContactTracing.Name = "lblContactTracing";
+            this.lblContactTracing.Size = new System.Drawing.Size(143, 23);
+            this.lblContactTracing.TabIndex = 16;
+            this.lblContactTracing.Text = "Contact Tracing";
+            this.lblContactTracing.Click += new System.EventHandler(this.lblContactTracing_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 741);
+            this.Controls.Add(this.lblContactTracing);
             this.Controls.Add(this.lblSearchMovie);
             this.Controls.Add(this.lblUpdateMov);
             this.Controls.Add(this.lblAddMov);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.Label lblAddMov;
         private System.Windows.Forms.Label lblUpdateMov;
         private System.Windows.Forms.Label lblSearchMovie;
+        private System.Windows.Forms.Label lblContactTracing;
     }
 }

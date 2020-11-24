@@ -74,6 +74,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(952, 209);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -172,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1265, 750);
+            this.ClientSize = new System.Drawing.Size(1265, 746);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cartesianChart1);
             this.Controls.Add(this.button3);

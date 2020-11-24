@@ -352,8 +352,8 @@ namespace BookingSystem
                     if (dialogResult == DialogResult.Yes)
                     {
                         Database db = new Database();
-                        String query = "UPDATE tblsocialdistancing SET sdmode = 'true' " +
-                            "WHERE Date != ALL (SELECT DATE FROM tblbookedseats WHERE Status = 'occupied')";
+                        String query = "UPDATE tblsocialdistancing SET sdmode = 'true' ";// +
+                           // "WHERE Date != ALL (SELECT DATE FROM tblbookedseats )";
 
                         db.conn.Open();
                         MySqlCommand command = new MySqlCommand(query, db.conn);

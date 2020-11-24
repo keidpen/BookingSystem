@@ -94,3 +94,4 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\en\BookingS
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\en\BookingSystem.resources.dll
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSearchMov.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmSearchMov.en.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmContactTracing.resources

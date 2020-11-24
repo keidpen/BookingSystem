@@ -50,8 +50,11 @@ namespace BookingSystem
             seatnum.Clear();
             seatnumcount = 0;
             pnlBooking.Controls.Clear();
+            SelSchedTime = cbSched.SelectedItem.ToString();
             BtnSeatArray();
         }
+
+        
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             if (tries == true)
@@ -95,6 +98,7 @@ namespace BookingSystem
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = cbScreen.SelectedItem.ToString();
 
+
                 r = new Refresh();
                 r.GetRefreshFrame(1);
                 timer.Tick += new EventHandler(RefreshPanelSeats);
@@ -103,7 +107,7 @@ namespace BookingSystem
                 Form3 form = new Form3();
                 form.GetData(seatnum, date, screen, SelSchedTime);
                 form.ShowDialog(this);
-
+                
 
             }
         }
@@ -130,12 +134,15 @@ namespace BookingSystem
             }
 
             Database db = new Database();
-            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblsocialdistancing WHERE sdmode = 'true' AND '" + sdDate + "'= Date ", db.conn);
+           // String query = "SELECT COUNT(*) FROM tblsocialdistancing WHERE sdmode = 'true' AND '" + sdDate + "' = Date";
+            String query = "SELECT COUNT(*) FROM tblsocialdistancing WHERE sdmode = 'true' ";
+            MySqlDataAdapter sda = new MySqlDataAdapter(query ,db.conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
 
-            if (dt.Rows[0][0].ToString() == "1")
+            //if (dt.Rows[0][0].ToString() == "1")
+            if (int.Parse(dt.Rows[0][0].ToString()) >= 1)
             {
                 sdMode = true;
             }
@@ -143,6 +150,7 @@ namespace BookingSystem
             {
                 sdMode = false;
             }
+            db.conn.Close();
         }
 
 
@@ -151,7 +159,7 @@ namespace BookingSystem
 
         public void BtnSeatArray()
         {
-
+            //nextlayer = true;
             String date = DateTime.Now.ToString("yyyy-MM-dd");
             String screen = "";
 
@@ -160,28 +168,31 @@ namespace BookingSystem
             date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             selectedDate = date;
             screen = cbScreen.SelectedItem.ToString();
+            
+
             if (cbSched.Items.Count > 1)
             {
                 SelSchedTime = cbSched.SelectedItem.ToString();
             }
-            SocialDistancingMode();
 
+            SocialDistancingMode();
             int x = 10, y = 10, z = 28;
 
-            for (int i = 1; i <= 308; i++)
+            for (int i = 1,j=1; i <= 308;j++,i++)
             {
+                //SocialDistancingMode();
                 Button btnSeats = new Button();
                 btnSeats.Size = new Size(40, 40);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
                 btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
 
-                if (sdMode == true && i % 2 == 0 && nextlayer == true)
+                if (sdMode == true && j % 2 == 0 && nextlayer == true)
                 {
                     btnSeats.Enabled = false;
                     btnSeats.Text = "";
                 }
-                else if (sdMode == true && i % 2 != 0 && nextlayer == false)
+                else if (sdMode == true && j % 2 != 0 && nextlayer == false)
                 {
                     btnSeats.Enabled = false;
                     btnSeats.Text = "";
@@ -196,6 +207,18 @@ namespace BookingSystem
                 {
                     //this should be Green
                     btnSeats.BackColor = Color.FromArgb(119, 221, 119);
+                    
+                    //if (nextlayer==false)
+                    if(btnSeats.Text=="")// && nextlayer==false)
+                    {
+                        //i++;
+                        btnSeats.Text = i.ToString();
+                        nextlayer = true;
+                        btnSeats.Enabled = true;
+                        //                        sdMode = false;
+                        j++;
+                    }
+
                 }
                 else
                 {
