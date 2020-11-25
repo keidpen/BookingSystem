@@ -40,10 +40,17 @@ namespace BookingSystem
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6)
+            try
             {
-                var s = dataGridView1[0, e.RowIndex].Value.ToString();
-                MessageBox.Show(" Dont click me!  " + s);
+                if (e.ColumnIndex == 6)
+                {
+                    var s = dataGridView1[0, e.RowIndex].Value.ToString();
+                    MessageBox.Show(" Dont click me!  " + s);
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.ToString());
             }
         }
 
@@ -77,11 +84,14 @@ namespace BookingSystem
 
 
                 Database db = new Database();
-                String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
-                                "FROM bookingdb.tblbookedseats bs " +
-                                "JOIN tblcustomer " +
-                                "ON tblcustomer.customerID = bs.customerID " +
-                                "ORDER BY bs.ID DESC ";
+                String trySql = "(SELECT ';' + sn.SeatNo FROM SeatNo sn WHERE tblseatno.SeatNoID = bs.SeatNoID FOR XML PATH(''))";
+                String query1 = "SELECT bs.ORNO, c.Name, SeatNo, bs.Date,bs.Time,bs.Screen, c.ContactNo, c.Email " +
+                               //  String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                               "FROM bookingdb.tblbookedseats bs " +
+                                "INNER JOIN tblcustomer c " +
+                                "ON c.customerID = bs.customerID,tblseatno " +
+                                "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
+                                "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
 

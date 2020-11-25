@@ -66,6 +66,7 @@ namespace BookingSystem
 
 
         String newSeatNo="", newDate = "", newScreen="", SelSchedTime="";
+        List<int> seatNo = new List<int>();
 
 
 
@@ -76,6 +77,7 @@ namespace BookingSystem
                 if (seat != null)
                 {
                     newSeatNo += " "+seat +",";
+                    this.seatNo.Add(int.Parse(seat));
                 }
             }
 
@@ -93,7 +95,7 @@ namespace BookingSystem
             try
             {
                 Database db = new Database();
-                String query1 = "SELECT COALESCE(MAX(id), 0)+1  FROM bookingdb.tblbookedseats";
+                String query1 = "SELECT COALESCE(MAX(SeatNoID), 0)+1  FROM bookingdb.tblbookedseats";
                 db.conn.Open();
                 MySqlCommand command1 = new MySqlCommand(query1,db.conn);
                 MySqlDataReader reader = command1.ExecuteReader();
@@ -115,7 +117,7 @@ namespace BookingSystem
                 MySqlCommand command2 = new MySqlCommand(query2, db.conn);
                 if (command2.ExecuteNonQuery() == 1)
                 {
-                   // this.Close();
+                    //this.Close();
                 }
                 else
                 {
@@ -126,17 +128,18 @@ namespace BookingSystem
 
 
 
-                String query3 = "INSERT INTO bookingdb.tblbookedseats(ORNO, SeatNo,customerID,Date,Time,Screen) " +
-                    "VALUES('"+"OR-"+ORnum.Peek() + "','"+newSeatNo+"'," +
-                    "(SELECT customerID FROM tblcustomer WHERE customerID = " +
-                    "(SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')),'"+newDate+"','"+ SelSchedTime + "','"+newScreen+"')";
+                String query3 =  "INSERT INTO bookingdb.tblbookedseats(ORNO,customerID,Date,Time,Screen) " +
+                    "VALUES('"+"OR-"+ORnum.Peek()+"', " +
+                    //"(SELECT customerID FROM tblcustomer WHERE customerID = (SELECT MAX(customerID) FROM tblcustomer WHERE Name = '"+name+"')), " +
+                    "(SELECT customerID FROM tblcustomer WHERE (customerID = (SELECT MAX(customerID) AS Expr1 FROM tblcustomer tblcustomer_1 WHERE (Name = '"+name+"')))) ," +
+                    " '"+newDate+"','"+ SelSchedTime + "','"+newScreen+"')";
                 
                 db.conn.Open();
 
                 MySqlCommand command3 = new MySqlCommand(query3,db.conn);
                 if(command3.ExecuteNonQuery()==1)
                 {
-                    MessageBox.Show("Booked Seat!");
+                    //MessageBox.Show("Booked Seat!");
                 }
                 else
                 {
@@ -145,6 +148,29 @@ namespace BookingSystem
                 command3.Dispose();
                 db.conn.Close();
 
+                bool swith = true;
+                for (int i=0,j=0; i<seatNo.Count ;i++) {
+                    String query4 = "INSERT INTO bookingdb.tblseatno(SeatNoID,SeatNo,Date,Status) " +
+                    "VALUES((SELECT MAX(SeatNoID) AS Expr1 FROM tblbookedseats) , '" + seatNo[i]+"' , '"+newDate+"', 'occupied' )";
+
+                    db.conn.Open();
+
+                    command3 = new MySqlCommand(query4, db.conn);
+                    if (command3.ExecuteNonQuery() == j)
+                    {
+                        MessageBox.Show("Booked Seat!");
+                        swith = false;
+                        j++;
+                    }
+                    else
+                    {
+                        if (swith==true) {
+                            MessageBox.Show("Failed to Book Seat");
+                        } 
+                    }
+                    command3.Dispose();
+                    db.conn.Close();
+                }
             }
             catch(Exception ex)
             {

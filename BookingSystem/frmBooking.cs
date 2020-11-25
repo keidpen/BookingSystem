@@ -199,7 +199,9 @@ namespace BookingSystem
                 }
 
                 //Database read seat
-                MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblbookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
+                String query = "SELECT COUNT(*) FROM tblseatno sn INNER JOIN tblbookedseats bs ON bs.SeatNoID = sn.SeatNoID WHERE(sn.Status = 'occupied') AND (sn.SeatNo = '"+i+"') AND (bs.Time = '"+SelSchedTime+"') AND (bs.Date = '"+date+"') AND (bs.Screen='"+screen+"')";
+                //MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblbookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 

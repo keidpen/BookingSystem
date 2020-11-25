@@ -1,5 +1,5 @@
 =================   OR No.:16    =====================
 
-Schedule Date: 2020-11-24
+Schedule Date: 2020-11-25
 Screen No.: Screen 1
-Booked Seat No.:  2, 3,
+Booked Seat No.:  271, 262,
