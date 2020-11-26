@@ -216,6 +216,7 @@
     <Compile Include="frmSearchMov.Designer.cs">
       <DependentUpon>frmSearchMov.cs</DependentUpon>
     </Compile>
+    <Compile Include="RetrieveSeatCatPrice.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 08:51 AM
+-- Generation Time: Nov 26, 2020 at 04:26 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,60 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookingdb`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bookedseats`
---
-
-CREATE TABLE `bookedseats` (
-  `ID` int(50) NOT NULL,
-  `ORNO` varchar(50) NOT NULL,
-  `customerID` int(50) NOT NULL,
-  `SeatNo` varchar(50) NOT NULL,
-  `Date` varchar(50) NOT NULL,
-  `Time` varchar(50) NOT NULL,
-  `Screen` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bookedseats`
---
-
-INSERT INTO `bookedseats` (`ID`, `ORNO`, `customerID`, `SeatNo`, `Date`, `Time`, `Screen`) VALUES
-(1, 'OR-1', 122, ' 67, 99, 102, 75,', '2020-11-09', '', 'Screen 1'),
-(2, 'OR-2', 123, ' 41, 18, 22, 50,', '2020-11-09', '', 'Screen 1'),
-(3, 'OR-3', 124, ' 25, 53,', '2020-11-09', '', 'Screen 1'),
-(4, 'OR-4', 125, ' 14, 16, 44,', '2020-11-09', '', 'Screen 1'),
-(5, 'OR-5', 126, ' 156, 157,', '2020-11-09', '', 'Screen 1'),
-(6, 'OR-6', 127, ' 98, 126, 128,', '2020-11-09', '', 'Screen 1'),
-(7, 'OR-7', 128, ' 21, 49, 105,', '2020-11-09', '', 'Screen 1'),
-(8, 'OR-8', 129, ' 39, 40,', '2020-11-09', '', 'Screen 1'),
-(9, 'OR-9', 130, ' 20, 48,', '2020-11-09', '', 'Screen 1'),
-(10, 'OR-10', 131, ' 94, 122, 123,', '2020-11-09', '', 'Screen 1'),
-(11, 'OR-11', 132, ' 134, 135, 136,', '2020-11-09', '', 'Screen 1'),
-(12, 'OR-12', 133, ' 214, 189, 217,', '2020-11-09', '', 'Screen 1'),
-(13, 'OR-13', 134, ' 118, 90, 119, 91,', '2020-11-09', '', 'Screen 1'),
-(14, 'OR-14', 135, ' 104, 132,', '2020-11-09', '', 'Screen 1'),
-(15, 'OR-15', 136, ' 46, 47, 19, 45, 17,', '2020-11-09', '', 'Screen 1'),
-(16, 'OR-16', 137, ' 71, 72, 100,', '2020-11-09', '', 'Screen 1'),
-(17, 'OR-17', 138, ' 24, 52,', '2020-11-09', '', 'Screen 1'),
-(18, 'OR-18', 139, ' 82, 139,', '2020-11-09', '', 'Screen 1'),
-(19, 'OR-19', 140, ' 117, 145, 173, 202,', '2020-11-09', '', 'Screen 1'),
-(20, 'OR-20', 141, ' 149, 179, 180,', '2020-11-09', '', 'Screen 1'),
-(21, 'OR-21', 142, ' 211, 212, 213,', '2020-11-09', '', 'Screen 1'),
-(22, 'OR-22', 143, ' 289, 264, 267,', '2020-11-09', '', 'Screen 1'),
-(23, 'OR-23', 144, ' 130, 131, 103,', '2020-11-09', '', 'Screen 1'),
-(24, 'OR-24', 145, ' 165, 193, 221, 194, 222, 166,', '2020-11-09', '', 'Screen 1'),
-(25, 'OR-25', 146, ' 80, 108, 109,', '2020-11-09', '', 'Screen 1'),
-(26, 'OR-26', 147, ' 124, 97, 69, 125,', '2020-11-09', '', 'Screen 1'),
-(27, 'OR-27', 148, ' 2, 30, 31, 3,', '2020-11-09', '', 'Screen 1'),
-(28, 'OR-28', 149, ' 271, 273, 275, 248,', '2020-11-09', '', 'Screen 1'),
-(29, 'OR-29', 150, ' 87, 115, 114, 86,', '2020-11-09', '', 'Screen 1'),
-(30, 'OR-30', 151, ' 78, 107, 106, 79, 51, 23, 26, 55, 54, 27,', '2020-11-09', '', 'Screen 1'),
-(31, 'OR-31', 152, ' 127, 155,', '2020-11-09', '', 'Screen 1'),
-(32, 'OR-32', 153, ' 37, 7, 36, 8, 10, 38,', '2020-11-09', '', 'Screen 1');
 
 -- --------------------------------------------------------
 
@@ -112,7 +58,8 @@ INSERT INTO `movieinfo` (`movieID`, `Title`, `Director`, `Genre`, `Duration`, `S
 (14, 'Parasyte', 'asd', 'Horror, Sci-Fi, Thriller, ', '12:00:12', 'Worms', 200, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Parasyte.jpg'),
 (19, 'Spider Man: Into Spider-Verse', 'asd', 'Adventure, Action, Drama, Fantasy, Sci-Fi, ', '12:32:23', 'Uncle Ben?', 900, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\spiderman_into_the_spiderverse.jpg'),
 (20, 'John Wick 2', 'Mema', 'Action, ', '12:12:12', 'kill my ddog i kill you', 12000, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\John Wick 2.jpg'),
-(21, 'End Game', 'John', 'Action, ', '12:12:12', 'Iron man is dead', 300, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Avengers Endgame.jpg');
+(21, 'End Game', 'John', 'Action, ', '12:12:12', 'Iron man is dead', 300, 'false', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Avengers Endgame.jpg'),
+(23, 'para', 'Batman', 'Action, ', '12:12:10', 'Helllo Everyone', 124, 'true', 'C:\\Users\\Noli\\Pictures\\MoviePoster\\Parasyte.jpg');
 
 -- --------------------------------------------------------
 
@@ -149,14 +96,70 @@ INSERT INTO `moviesched` (`schedID`, `SchedPosition`, `Date`, `StartDate`, `EndD
 (10, ' 7,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
 (11, ' 3,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'true'),
 (12, ' 4,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 7, 'false'),
-(13, ' 2,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'false'),
+(13, ' 2,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
 (14, ' 3,', 'Nov 08,2020 --to-- Nov 14,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
 (15, ' 5,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 21, 'false'),
 (16, ' 12,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 6, 'false'),
 (17, ' 20,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '1:00 PM to 4:00 PM', 'Screen 1', 2, 'true'),
 (18, ' 21,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '1:00 PM to 4:00 PM', 'Screen 1', 2, 'true'),
 (19, ' 27,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false'),
-(20, ' 28,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false');
+(20, ' 28,', 'Nov 15,2020 --to-- Nov 21,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false'),
+(21, ' 8,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 2, 'false'),
+(22, ' 10,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 1, 'false'),
+(23, ' 9,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 5, 'false'),
+(24, ' 2,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', '', 3, 'true'),
+(25, ' 2,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 2, 'false'),
+(26, ' 3,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 6, 'true'),
+(27, ' 1,', 'Nov 29,2020 --to-- Dec 05,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(28, ' 2,', 'Nov 29,2020 --to-- Dec 05,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(29, ' 3,', 'Nov 29,2020 --to-- Dec 05,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(30, ' 6,', 'Nov 29,2020 --to-- Dec 05,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(31, ' 7,', 'Nov 29,2020 --to-- Dec 05,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'true'),
+(32, ' 6,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'false'),
+(33, ' 5,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 3, 'false'),
+(34, ' 12,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 2, 'false'),
+(35, ' 4,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '7:00 AM to 10:00 AM', 'Screen 1', 5, 'false'),
+(36, ' 14,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '10:00 AM to 1:00 PM', 'Screen 1', 12, 'false'),
+(37, ' 24,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false'),
+(38, ' 25,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false'),
+(39, ' 26,', 'Nov 22,2020 --to-- Nov 28,2020', '0000-00-00', '0000-00-00', '4:00 PM to 7:00 PM', 'Screen 1', 5, 'false');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblbookedseats`
+--
+
+CREATE TABLE `tblbookedseats` (
+  `SeatNoID` int(50) NOT NULL,
+  `ORNO` varchar(50) NOT NULL,
+  `customerID` int(50) NOT NULL,
+  `Date` varchar(50) NOT NULL,
+  `Time` varchar(50) NOT NULL,
+  `Screen` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblbookedseats`
+--
+
+INSERT INTO `tblbookedseats` (`SeatNoID`, `ORNO`, `customerID`, `Date`, `Time`, `Screen`) VALUES
+(1, 'OR-1', 1, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(2, 'OR-2', 182, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(3, 'OR-3', 183, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(4, 'OR-4', 184, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(5, 'OR-5', 185, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(6, 'OR-6', 186, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(7, 'OR-7', 187, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(8, 'OR-8', 188, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(9, 'OR-9', 189, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(10, 'OR-10', 190, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(11, 'OR-11', 191, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(12, 'OR-12', 192, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(13, 'OR-13', 193, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(14, 'OR-14', 194, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(15, 'OR-15', 195, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1'),
+(16, 'OR-16', 196, '2020-11-25', '4:00 PM to 7:00 PM', 'Screen 1');
 
 -- --------------------------------------------------------
 
@@ -318,7 +321,128 @@ INSERT INTO `tblcustomer` (`customerID`, `Name`, `ContactNo`, `Email`) VALUES
 (150, 'asd', 'asdas', 'asd'),
 (151, 'asd', 'asd', 'asd'),
 (152, 'ad', 'asda', 'sad'),
-(153, 'asd', 'asd', 'asd');
+(153, 'asd', 'asd', 'asd'),
+(154, 'Noli', '0921453', 'Noli@gmail.Com'),
+(155, 'noli', '0921412', 'noli@gmail.Com'),
+(156, 'ka', '2135', 'haha@gmail.com'),
+(157, 'Noliasd', '025561', 'mans@gmail.com'),
+(158, 'asdf', 'asd', 'asd'),
+(159, 'noli', '2345', '12'),
+(160, 'ef', 'qw', '12'),
+(161, '9io', '789', '789'),
+(162, 'n', '123', '123'),
+(163, 'dqw', '123', '123'),
+(164, 'noli', '1231', '@gmail'),
+(165, 'noli112', '312', '123'),
+(166, 'noli', '1234', '112'),
+(167, 'noli', '123', 'vw'),
+(168, 'f', 'q', '4'),
+(169, 'noli', '02941', 'noli312'),
+(170, 'nli', '09812', 'Dmao@gmail.com'),
+(171, 'bw', 'qw', '123'),
+(172, 'bs', '253', 'sdf'),
+(173, '789li', 'iulu', 'luti'),
+(174, 'Noli', '0923113', 'noli@gmail.com'),
+(175, 'no', '4881', 'haha@gmail.com'),
+(176, 'ad', '12', '123'),
+(177, 'ff', 'a23', '123'),
+(178, 'n', '123', '123'),
+(179, 'noli', '09214', '@ham'),
+(180, '8', '578', '78'),
+(181, 'hh', '8', '467'),
+(182, '86', 'ghj', '5'),
+(183, 'noli', '223', '@hand'),
+(184, 'noli', '12', '31'),
+(185, 'noli', '123', 'noi'),
+(186, 'nooli', '31', '234'),
+(187, 'dca', '31', '31'),
+(188, 'noli', '123', '12'),
+(189, 're', '12', '4'),
+(190, 'moli', '1231', '123'),
+(191, 'noli', '1351', '24'),
+(192, 'noli23', '23', '41'),
+(193, 'noliasd', '123', '123'),
+(194, 'noli', '123', '13'),
+(195, 'noli', '123', '41'),
+(196, 'vds', 'as', 'er');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblseatcategory`
+--
+
+CREATE TABLE `tblseatcategory` (
+  `ID` int(11) NOT NULL,
+  `SeatCat` varchar(1) NOT NULL,
+  `Price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblseatcategory`
+--
+
+INSERT INTO `tblseatcategory` (`ID`, `SeatCat`, `Price`) VALUES
+(1, 'A', '500.21'),
+(2, 'B', '550.00'),
+(3, 'C', '400.00'),
+(4, 'D', '200.00'),
+(5, 'E', '500.00'),
+(6, 'F', '550.00'),
+(7, 'G', '200.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblseatno`
+--
+
+CREATE TABLE `tblseatno` (
+  `SeatNoID` varchar(5) NOT NULL,
+  `SeatNo` int(11) NOT NULL,
+  `Date` date NOT NULL,
+  `Status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblseatno`
+--
+
+INSERT INTO `tblseatno` (`SeatNoID`, `SeatNo`, `Date`, `Status`) VALUES
+('1', 1, '2020-11-25', 'occupied'),
+('1', 12, '2020-11-25', 'occupied'),
+('1', 2, '0000-00-00', '3'),
+('3', 2, '0000-00-00', '3'),
+('3', 2, '0000-00-00', '3'),
+('3', 2, '0000-00-00', '3'),
+('4', 18, '2020-11-25', 'occupied'),
+('5', 41, '2020-11-25', 'occupied'),
+('5', 43, '2020-11-25', 'occupied'),
+('5', 45, '2020-11-25', 'occupied'),
+('6', 97, '2020-11-25', 'occupied'),
+('7', 91, '2020-11-25', 'occupied'),
+('7', 119, '2020-11-25', 'occupied'),
+('7', 121, '2020-11-25', 'occupied'),
+('7', 93, '2020-11-25', 'occupied'),
+('8', 123, '2020-11-25', 'occupied'),
+('8', 130, '2020-11-25', 'occupied'),
+('8', 103, '2020-11-25', 'occupied'),
+('9', 214, '2020-11-25', 'occupied'),
+('9', 189, '2020-11-25', 'occupied'),
+('10', 101, '2020-11-25', 'occupied'),
+('10', 24, '2020-11-25', 'occupied'),
+('11', 99, '2020-11-25', 'occupied'),
+('11', 194, '2020-11-25', 'occupied'),
+('12', 211, '2020-11-25', 'occupied'),
+('13', 137, '2020-11-25', 'occupied'),
+('13', 110, '2020-11-25', 'occupied'),
+('14', 80, '2020-11-25', 'occupied'),
+('14', 107, '2020-11-25', 'occupied'),
+('15', 206, '2020-11-25', 'occupied'),
+('15', 181, '2020-11-25', 'occupied'),
+('15', 22, '2020-11-25', 'occupied'),
+('16', 271, '2020-11-25', 'occupied'),
+('16', 262, '2020-11-25', 'occupied');
 
 -- --------------------------------------------------------
 
@@ -337,23 +461,38 @@ CREATE TABLE `tblsocialdistancing` (
 --
 
 INSERT INTO `tblsocialdistancing` (`id`, `sdmode`, `Date`) VALUES
-(1, 'true', '2020-12-09'),
-(2, 'true', '2020-11-25'),
-(3, 'true', '2020-12-23'),
-(4, 'true', '2021-01-13'),
-(5, 'true', '2021-01-27'),
-(6, 'true', '2021-02-25'),
-(7, 'true', '2020-12-24'),
-(8, 'true', '2021-01-21'),
-(9, 'true', '2021-02-18'),
-(10, 'true', '2020-12-17'),
-(11, 'true', '2021-01-14'),
-(12, 'true', '2020-11-28'),
-(13, 'true', '2021-03-24'),
-(14, 'true', '2021-06-08'),
-(15, 'true', '2022-01-13'),
-(16, 'true', '2020-12-27'),
-(17, 'true', '2020-11-27');
+(2, 'false', '2020-12-17'),
+(3, 'false', '2020-12-31'),
+(4, 'false', '2021-01-14'),
+(5, 'false', '2020-12-25'),
+(7, 'false', '2021-02-11'),
+(8, 'false', '2021-02-26'),
+(9, 'false', '2020-12-16'),
+(10, 'false', '2021-01-01'),
+(11, 'false', '2021-01-20'),
+(12, 'false', '2021-01-23'),
+(13, 'false', '2021-01-15'),
+(14, 'false', '2021-01-28'),
+(15, 'false', '2021-01-27'),
+(16, 'false', '2021-01-21'),
+(17, 'false', '2020-12-23'),
+(18, 'false', '2020-12-18'),
+(19, 'false', '2022-01-19'),
+(25, 'false', '2020-11-26'),
+(28, 'false', '2020-11-24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltransaction`
+--
+
+CREATE TABLE `tbltransaction` (
+  `ID` int(11) NOT NULL,
+  `ORNO` varchar(50) NOT NULL,
+  `Ammount` int(11) NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -380,13 +519,6 @@ INSERT INTO `userfield` (`Username`, `Password`, `Usertype`) VALUES
 --
 
 --
--- Indexes for table `bookedseats`
---
-ALTER TABLE `bookedseats`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `customerID` (`customerID`);
-
---
 -- Indexes for table `movieinfo`
 --
 ALTER TABLE `movieinfo`
@@ -401,16 +533,36 @@ ALTER TABLE `moviesched`
   ADD KEY `movieID` (`movieID`);
 
 --
+-- Indexes for table `tblbookedseats`
+--
+ALTER TABLE `tblbookedseats`
+  ADD PRIMARY KEY (`SeatNoID`),
+  ADD KEY `customerID` (`customerID`);
+
+--
 -- Indexes for table `tblcustomer`
 --
 ALTER TABLE `tblcustomer`
   ADD PRIMARY KEY (`customerID`);
 
 --
+-- Indexes for table `tblseatcategory`
+--
+ALTER TABLE `tblseatcategory`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `SeatCat` (`SeatCat`);
+
+--
 -- Indexes for table `tblsocialdistancing`
 --
 ALTER TABLE `tblsocialdistancing`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbltransaction`
+--
+ALTER TABLE `tbltransaction`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `userfield`
@@ -423,43 +575,55 @@ ALTER TABLE `userfield`
 --
 
 --
--- AUTO_INCREMENT for table `bookedseats`
---
-ALTER TABLE `bookedseats`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
 -- AUTO_INCREMENT for table `movieinfo`
 --
 ALTER TABLE `movieinfo`
-  MODIFY `movieID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `movieID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `moviesched`
 --
 ALTER TABLE `moviesched`
-  MODIFY `schedID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `schedID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `tblbookedseats`
+--
+ALTER TABLE `tblbookedseats`
+  MODIFY `SeatNoID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tblcustomer`
 --
 ALTER TABLE `tblcustomer`
-  MODIFY `customerID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `customerID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+
+--
+-- AUTO_INCREMENT for table `tblseatcategory`
+--
+ALTER TABLE `tblseatcategory`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tblsocialdistancing`
 --
 ALTER TABLE `tblsocialdistancing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `tbltransaction`
+--
+ALTER TABLE `tbltransaction`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `bookedseats`
+-- Constraints for table `tblbookedseats`
 --
-ALTER TABLE `bookedseats`
+ALTER TABLE `tblbookedseats`
   ADD CONSTRAINT `test` FOREIGN KEY (`customerID`) REFERENCES `tblcustomer` (`customerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

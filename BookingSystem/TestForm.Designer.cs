@@ -38,6 +38,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,7 +70,15 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.Location = new System.Drawing.Point(272, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(952, 209);
@@ -141,6 +150,16 @@
             this.dataGridView2.Size = new System.Drawing.Size(666, 209);
             this.dataGridView2.TabIndex = 10;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(105, 41);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // dateDataGridViewTextBoxColumn
             // 
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
@@ -174,6 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 746);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cartesianChart1);
             this.Controls.Add(this.button3);
@@ -210,5 +230,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn monthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dayDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource lvSalesReportBindingSource;
+        private System.Windows.Forms.Button button4;
     }
 }

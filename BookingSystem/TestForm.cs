@@ -522,5 +522,19 @@ namespace BookingSystem
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+
+            
+            MessageBox.Show("A" + r.CatSeat_A);
+            MessageBox.Show("B" + r.CatSeat_B);
+            MessageBox.Show("C" + r.CatSeat_C);
+            MessageBox.Show("D" + r.CatSeat_D);
+            MessageBox.Show("E" + r.CatSeat_E);
+            MessageBox.Show("F" + r.CatSeat_F);
+            MessageBox.Show("G" + r.CatSeat_G);
+        }
     }
 }
