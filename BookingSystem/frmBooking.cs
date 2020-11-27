@@ -17,6 +17,8 @@ namespace BookingSystem
         {
             InitializeComponent();
         }
+        Timer timer = new Timer();
+        Refresh refreshPnl = new Refresh();
 
         private void frmBooking_Load(object sender, EventArgs e)
         {
@@ -25,9 +27,6 @@ namespace BookingSystem
             BtnSeatArray();
             timer.Interval=1000;
         }
-
-        Timer timer = new Timer();
-        Refresh r = new Refresh();
 
         Queue<string> sched = new Queue<string>();
         public List<string> seatnum = new List<string>();
@@ -98,26 +97,31 @@ namespace BookingSystem
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = cbScreen.SelectedItem.ToString();
 
+                refreshPnl = new Refresh();
+                refreshPnl.GetRefreshFrame(1);
 
-                r = new Refresh();
-                r.GetRefreshFrame(1);
-                timer.Tick += new EventHandler(RefreshPanelSeats);
+                timer.Tick += new EventHandler(RefreshEvent);
                 timer.Start();
 
-                //Form3 form = new Form3();
-                //FormDetail form = new FormDetail();
+                classOrderDetail c = new classOrderDetail();
+
+                c.ResetData();
+                c.setDate(date);
+                c.setScreen(screen);
+                c.setTime(SelSchedTime);
+                c.setSetseatNo(seatnum);
+
                 frmOrderDetail form = new frmOrderDetail();
-                form.GetData(seatnum, date, screen, SelSchedTime);
                 form.ShowDialog(this);
-                
+
 
             }
         }
 
-        public void RefreshPanelSeats(object sender, EventArgs e)
+        public void RefreshEvent(object sender, EventArgs e)
         {
-            r = new Refresh();
-            if (r.SetRefreshFrame() == 0)
+            refreshPnl = new Refresh();
+            if (refreshPnl.SetRefreshFrame() == 0)
             {
                 dbToListSched();
                 timer.Stop();

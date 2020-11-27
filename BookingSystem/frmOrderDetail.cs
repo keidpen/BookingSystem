@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BookingSystem
@@ -19,7 +16,15 @@ namespace BookingSystem
 
         private void frmOrderDetail_Load(object sender, EventArgs e)
         {
+            classOrderDetail c = new classOrderDetail();
+
+            seatNo = c.getseatNo;
+            lblDate.Text = c.getDate;
+            lblScreen.Text = c.getScreen;
+            lblTime.Text = c.getTime;
+
             CreateColumn();
+            
         }
 
         int intQtyA = 0, intQtyB = 0, intQtyC = 0, intQtyD = 0, intQtyE = 0, intQtyF = 0, intQtyG = 0;
@@ -29,30 +34,39 @@ namespace BookingSystem
 
         }
 
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            frmPaymentCash frm = new frmPaymentCash();
+            frm.ShowDialog(this);
+        }
+
+        List<int> seatNo = new List<int>();
         double PriceA = 0, PriceB = 0, PriceC = 0, PriceD = 0, PriceE = 0, PriceF = 0, PriceG = 0;
         double totalA = 0, totalB = 0, totalC = 0, totalD = 0, totalE = 0, totalF = 0, totalG = 0;
         String strSeatNoA, strSeatNoB, strSeatNoC, strSeatNoD, strSeatNoE, strSeatNoF, strSeatNoG;
 
 
-        List<int> seatNo = new List<int>();
-        public void GetData(List<string> seatNo, String Date, String screen, String SelSchedTime)
-        {
-            foreach (string seat in seatNo)
-            {
-                if (seat != null)
-                {
-                    //newSeatNo += " " + seat + ",";
-                    this.seatNo.Add(int.Parse(seat));
-                }
-            }
+       //public void GetData(List<string> seatNo, String Date, String screen, String SelSchedTime)
+       // {
+       //     foreach (string seat in seatNo)
+       //     {
+       //         if (seat != null)
+       //         {
+       //             //newSeatNo += " " + seat + ",";
+       //             this.seatNo.Add(int.Parse(seat));
+       //         }
+       //     }
 
-            //this.SelSchedTime = SelSchedTime;
-            //lblDate.Text = "Date: " + Date;
-            //lblSeatNo.Text = "Seat No: " + newSeatNo;
+       //     lblDate.Text = Date;
+       //     lblScreen.Text = screen;
+       //     lblTime.Text = SelSchedTime;
 
-            //newDate = Date;
-            //newScreen = screen;
-        }
+       //     //this.SelSchedTime = SelSchedTime;
+       //     //lblSeatNo.Text = "Seat No: " + newSeatNo;
+
+       //     //newDate = Date;
+       //     //newScreen = screen;
+       // }
 
         void CreateColumn()
         {
@@ -60,7 +74,7 @@ namespace BookingSystem
             dataGridView1.Rows.Clear();
 
             dataGridView1.ColumnCount = 5;
-            dataGridView1.Columns[0].Name = "Category.";
+            dataGridView1.Columns[0].Name = "Category";
             dataGridView1.Columns[1].Name = "Seat No.";
             dataGridView1.Columns[2].Name = "Price";
             dataGridView1.Columns[3].Name = "Quantity";
@@ -73,9 +87,9 @@ namespace BookingSystem
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             dataGridView1.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
-            dataGridView1.DefaultCellStyle.Font = new Font("Tahoma",12,FontStyle.Regular);
+            dataGridView1.DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Regular);
 
-            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+            classRetrieveSeatCatPrice r = new classRetrieveSeatCatPrice();
             PriceA = r.CatSeat_A;
             PriceB = r.CatSeat_B;
             PriceC = r.CatSeat_C;
@@ -136,8 +150,7 @@ namespace BookingSystem
             totalF = intQtyF * PriceF;
             totalG = intQtyG * PriceG;
 
-            String TotalAmmount = (totalA + totalB + totalC + totalD + totalE + totalF + totalG).ToString();
-            lblTotalAm.Text = TotalAmmount.ToString();
+            double TotalAmmount = totalA + totalB + totalC + totalD + totalE + totalF + totalG;
 
             if (totalA >= 1)
             {
@@ -220,13 +233,25 @@ namespace BookingSystem
             Divider.DividerHeight = 1;
             dataGridView1.Rows.Add(Divider);
 
-            DataGridViewRow rowF = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-            rowF.DefaultCellStyle.Font = new Font("Tahoma",12,FontStyle.Bold);
-            rowF.Cells[3].Value = "Total Ammount: ";
-            rowF.Cells[4].Value = TotalAmmount.ToString();
-            rowF.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            DataGridViewRow rowSubTotal = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            rowSubTotal.Cells[3].Value = "SubTotal : ";
+            rowSubTotal.Cells[4].Value = TotalAmmount.ToString();
+            rowSubTotal.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Rows.Add(rowSubTotal);
 
-            dataGridView1.Rows.Add(rowF);
+            DataGridViewRow rowTax = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            rowTax.Cells[3].Value = "Add VAT(12%): ";
+            rowTax.Cells[4].Value = String.Format("{0:0.00}", TotalAmmount * .12);
+            rowTax.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            rowTax.DividerHeight = 2;
+            dataGridView1.Rows.Add(rowTax);
+
+            DataGridViewRow rowTotalAmmount = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            rowTotalAmmount.DefaultCellStyle.Font = new Font("Tahoma", 14, FontStyle.Bold);
+            rowTotalAmmount.Cells[3].Value = "Total Ammount: ";
+            rowTotalAmmount.Cells[4].Value = String.Format("{0:0.00}", TotalAmmount * 1.12);
+            rowTotalAmmount.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Rows.Add(rowTotalAmmount);
         }
     }
 }

@@ -120,6 +120,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bookingdbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="classOrderDetail.cs" />
     <Compile Include="ContactTracing.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -200,6 +201,12 @@
     <Compile Include="frmOrderDetail.Designer.cs">
       <DependentUpon>frmOrderDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPaymentCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentCash.Designer.cs">
+      <DependentUpon>frmPaymentCash.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,7 +235,7 @@
     <Compile Include="frmSearchMov.Designer.cs">
       <DependentUpon>frmSearchMov.cs</DependentUpon>
     </Compile>
-    <Compile Include="RetrieveSeatCatPrice.cs" />
+    <Compile Include="classRetrieveSeatCatPrice.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrderDetail.resx">
       <DependentUpon>frmOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentCash.resx">
+      <DependentUpon>frmPaymentCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSchedule.resx">
       <DependentUpon>frmSchedule.cs</DependentUpon>

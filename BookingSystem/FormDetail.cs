@@ -59,7 +59,7 @@ namespace BookingSystem
             dataGridView1.Columns[3].Name = "Quantity";
             dataGridView1.Columns[4].Name = "Ammount";
 
-            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+            classRetrieveSeatCatPrice r = new classRetrieveSeatCatPrice();
             PriceA = r.CatSeat_A;
             PriceB = r.CatSeat_B;
             PriceC = r.CatSeat_C;
@@ -205,7 +205,7 @@ namespace BookingSystem
 
         void RetrievePrices()
         {
-            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+            classRetrieveSeatCatPrice r = new classRetrieveSeatCatPrice();
             lblPriceA.Text = r.CatSeat_A.ToString();
             PriceA = r.CatSeat_A;
             lblPriceB.Text = r.CatSeat_B.ToString();

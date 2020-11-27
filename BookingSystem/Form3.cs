@@ -29,7 +29,7 @@ namespace BookingSystem
         double PriceA = 0, PriceB = 0,PriceC = 0, PriceD = 0, PriceE = 0, PriceF = 0, PriceG = 0;
         void RetrievePrices()
         {
-            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+            classRetrieveSeatCatPrice r = new classRetrieveSeatCatPrice();
             lblPriceA.Text = r.CatSeat_A.ToString();
             PriceA = r.CatSeat_A;
             lblPriceB.Text = r.CatSeat_B.ToString();

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BookingSystem
 {
-    class RetrieveSeatCatPrice
+    class classRetrieveSeatCatPrice
     {
 
-        public RetrieveSeatCatPrice()
+        public classRetrieveSeatCatPrice()
         {
             Database db = new Database();
             db.conn.Open();

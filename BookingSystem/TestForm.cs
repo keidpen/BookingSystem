@@ -525,7 +525,7 @@ namespace BookingSystem
 
         private void button4_Click(object sender, EventArgs e)
         {
-            RetrieveSeatCatPrice r = new RetrieveSeatCatPrice();
+            classRetrieveSeatCatPrice r = new classRetrieveSeatCatPrice();
 
             
             MessageBox.Show("A" + r.CatSeat_A);
