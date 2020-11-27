@@ -104,7 +104,9 @@ namespace BookingSystem
                 timer.Tick += new EventHandler(RefreshPanelSeats);
                 timer.Start();
 
-                Form3 form = new Form3();
+                //Form3 form = new Form3();
+                //FormDetail form = new FormDetail();
+                frmOrderDetail form = new frmOrderDetail();
                 form.GetData(seatnum, date, screen, SelSchedTime);
                 form.ShowDialog(this);
                 
