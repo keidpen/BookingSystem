@@ -256,12 +256,12 @@ namespace BookingSystem
                 dataGridView1.Columns[6].Name = "Email.";
                 DateTime dt = DateTime.Today;
                 Database db = new Database();
-                String query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                String query1 = "SELECT tblcustomer.Name, bs.SeatNoID,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
                                 "FROM bookingdb.tblbookedseats bs " +
                                 "JOIN tblcustomer " +
                                 "ON tblcustomer.customerID = bs.customerID " +
                                 //          "WHERE Date = '" + dt.ToString("yyyy-MM-dd") + "'" +
-                                "ORDER BY bs.ID DESC ";
+                                "ORDER BY bs.SeatNoID DESC ";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -535,6 +535,32 @@ namespace BookingSystem
             MessageBox.Show("E" + r.CatSeat_E);
             MessageBox.Show("F" + r.CatSeat_F);
             MessageBox.Show("G" + r.CatSeat_G);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string constring = "server=localhost;user=root;database=bookingdb;pooling = false;convert zero datetime=True";
+                string file = "C:\\backupBookingSql.sql";
+                using (MySqlConnection conn = new MySqlConnection(constring))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(file);
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
     }
 }

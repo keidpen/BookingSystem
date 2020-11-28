@@ -25,7 +25,6 @@ C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csproj.CopyComplete
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe
 C:\Users\pogia\source\repos\BookingSystem\BookingSystem\obj\Debug\BookingSystem.pdb
-C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.exe.config
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form1.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form2.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.Form3.resources
@@ -98,3 +97,14 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSyst
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmOrderDetail.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.FormDetail.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmPaymentCash.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\MySqlBackup.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\Google.Protobuf.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\Renci.SshNet.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Buffers.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Memory.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
