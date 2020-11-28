@@ -132,7 +132,7 @@
             // 
             this.cartesianChart1.Location = new System.Drawing.Point(272, 293);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(666, 187);
+            this.cartesianChart1.Size = new System.Drawing.Size(445, 187);
             this.cartesianChart1.TabIndex = 9;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -148,7 +148,7 @@
             this.dataGridView2.DataSource = this.lvSalesReportBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(272, 503);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(666, 209);
+            this.dataGridView2.Size = new System.Drawing.Size(445, 209);
             this.dataGridView2.TabIndex = 10;
             // 
             // dateDataGridViewTextBoxColumn
@@ -195,7 +195,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 12;
-            this.button5.Text = "button5";
+            this.button5.Text = "backup db";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 

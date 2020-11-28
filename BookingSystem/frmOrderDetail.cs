@@ -151,6 +151,8 @@ namespace BookingSystem
             totalG = intQtyG * PriceG;
 
             double TotalAmmount = totalA + totalB + totalC + totalD + totalE + totalF + totalG;
+            classTransaction c = new classTransaction();
+            c.setTotalAmmount(TotalAmmount);
 
             if (totalA >= 1)
             {

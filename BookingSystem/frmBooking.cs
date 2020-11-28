@@ -104,12 +104,15 @@ namespace BookingSystem
                 timer.Start();
 
                 classOrderDetail c = new classOrderDetail();
-
                 c.ResetData();
                 c.setDate(date);
                 c.setScreen(screen);
                 c.setTime(SelSchedTime);
                 c.setSetseatNo(seatnum);
+
+                classTransaction t = new classTransaction();
+                t.ResetData();
+                t.setDate(c.getDate);
 
                 frmOrderDetail form = new frmOrderDetail();
                 form.ShowDialog(this);
