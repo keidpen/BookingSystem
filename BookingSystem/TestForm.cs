@@ -562,5 +562,14 @@ namespace BookingSystem
                 MessageBox.Show(err.Message);
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //this is Form2
+            frmReceiptViewer f = new frmReceiptViewer("Hello");
+            f.Visible = true;
+
+            //new frmReceiptViewer("Hello").ShowDialog();
+        }
     }
 }

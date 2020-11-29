@@ -35,7 +35,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.btnPayment = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tbCash = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblChange = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblEmail
@@ -46,6 +49,7 @@
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 14;
             this.lblEmail.Text = "Email:";
+            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
             // 
             // tbEmail
             // 
@@ -89,6 +93,16 @@
             this.tbName.Size = new System.Drawing.Size(192, 26);
             this.tbName.TabIndex = 9;
             // 
+            // tbCash
+            // 
+            this.tbCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCash.Location = new System.Drawing.Point(66, 234);
+            this.tbCash.Name = "tbCash";
+            this.tbCash.Size = new System.Drawing.Size(192, 26);
+            this.tbCash.TabIndex = 16;
+            this.tbCash.TextChanged += new System.EventHandler(this.tbCash_TextChanged);
+            this.tbCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCash_KeyPress);
+            // 
             // btnPayment
             // 
             this.btnPayment.Location = new System.Drawing.Point(280, 352);
@@ -99,23 +113,44 @@
             this.btnPayment.UseVisualStyleBackColor = true;
             this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
-            // button1
+            // label2
             // 
-            this.button1.Location = new System.Drawing.Point(66, 373);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Cash:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 274);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Change:";
+            // 
+            // lblChange
+            // 
+            this.lblChange.AutoSize = true;
+            this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChange.Location = new System.Drawing.Point(90, 274);
+            this.lblChange.Name = "lblChange";
+            this.lblChange.Size = new System.Drawing.Size(70, 18);
+            this.lblChange.TabIndex = 19;
+            this.lblChange.Text = "Change:";
             // 
             // frmPaymentCash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(399, 450);
+            this.Controls.Add(this.lblChange);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnPayment);
+            this.Controls.Add(this.tbCash);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.lblContact);
@@ -138,7 +173,10 @@
         private System.Windows.Forms.TextBox tbContact;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbCash;
         private System.Windows.Forms.Button btnPayment;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblChange;
     }
 }

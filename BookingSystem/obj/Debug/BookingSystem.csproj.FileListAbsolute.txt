@@ -109,3 +109,4 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Memo
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmCancel.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmReceiptViewer.resources

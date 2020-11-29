@@ -33,12 +33,29 @@ namespace BookingSystem
         {
 
         }
-
+        Timer time = new Timer();
         private void btnPayment_Click(object sender, EventArgs e)
         {
-            frmPaymentCash frm = new frmPaymentCash();
-            frm.ShowDialog(this);
+            using (frmPaymentCash frm = new frmPaymentCash())
+            {
+                time.Interval = 1000;
+                time.Tick += new EventHandler(close);
+                time.Start();
+                frm.ShowDialog();
+            }
         }
+
+        public void close(object sender, EventArgs e)
+        {
+            Refresh r = new Refresh();
+            
+            if (r.SetRefreshFrame() == 0)
+            {
+                time.Dispose();
+                this.Close();
+            }
+        }
+
 
         List<int> seatNo = new List<int>();
         double PriceA = 0, PriceB = 0, PriceC = 0, PriceD = 0, PriceE = 0, PriceF = 0, PriceG = 0;
@@ -150,9 +167,8 @@ namespace BookingSystem
             totalF = intQtyF * PriceF;
             totalG = intQtyG * PriceG;
 
-            double TotalAmmount = totalA + totalB + totalC + totalD + totalE + totalF + totalG;
-            classTransaction c = new classTransaction();
-            c.setTotalAmmount(TotalAmmount);
+            double SubTotal = totalA + totalB + totalC + totalD + totalE + totalF + totalG;
+            
 
             if (totalA >= 1)
             {
@@ -237,13 +253,13 @@ namespace BookingSystem
 
             DataGridViewRow rowSubTotal = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             rowSubTotal.Cells[3].Value = "SubTotal : ";
-            rowSubTotal.Cells[4].Value = TotalAmmount.ToString();
+            rowSubTotal.Cells[4].Value = SubTotal.ToString();
             rowSubTotal.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Rows.Add(rowSubTotal);
 
             DataGridViewRow rowTax = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             rowTax.Cells[3].Value = "Add VAT(12%): ";
-            rowTax.Cells[4].Value = String.Format("{0:0.00}", TotalAmmount * .12);
+            rowTax.Cells[4].Value = String.Format("{0:0.00}", SubTotal * .12);
             rowTax.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             rowTax.DividerHeight = 2;
             dataGridView1.Rows.Add(rowTax);
@@ -251,9 +267,13 @@ namespace BookingSystem
             DataGridViewRow rowTotalAmmount = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             rowTotalAmmount.DefaultCellStyle.Font = new Font("Tahoma", 14, FontStyle.Bold);
             rowTotalAmmount.Cells[3].Value = "Total Ammount: ";
-            rowTotalAmmount.Cells[4].Value = String.Format("{0:0.00}", TotalAmmount * 1.12);
+            double TotalAmmount = SubTotal * 1.12;
+            rowTotalAmmount.Cells[4].Value = String.Format("{0:0.00}", TotalAmmount);
             rowTotalAmmount.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Rows.Add(rowTotalAmmount);
+
+            classTransaction c = new classTransaction();
+            c.setTotalAmmount(TotalAmmount);
         }
     }
 }

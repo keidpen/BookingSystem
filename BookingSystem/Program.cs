@@ -16,7 +16,7 @@ namespace BookingSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCancel());
+            Application.Run(new frmMenu());
         }
     }
 }

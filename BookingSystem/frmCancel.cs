@@ -38,15 +38,15 @@ namespace BookingSystem
                 dataGridView1.Columns[1].Name = "Date";
                 dataGridView1.Columns[2].Name = "Status";
 
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.HeaderText = "Update";
-                btnUpdate.Name = "btn";
-                btnUpdate.Text = "More";
-                btnUpdate.FlatStyle = FlatStyle.Popup;
-                btnUpdate.DefaultCellStyle.ForeColor = Color.White;
-                btnUpdate.DefaultCellStyle.BackColor = Color.CornflowerBlue;
-                btnUpdate.UseColumnTextForButtonValue = true;
-                dataGridView1.Columns.Add(btnUpdate);
+                DataGridViewButtonColumn btnCancel = new DataGridViewButtonColumn();
+                btnCancel.HeaderText = "";
+                btnCancel.Name = "btn";
+                btnCancel.Text = "Cancel";
+                btnCancel.FlatStyle = FlatStyle.Popup;
+                btnCancel.DefaultCellStyle.ForeColor = Color.White;
+                btnCancel.DefaultCellStyle.BackColor = Color.OrangeRed;
+                btnCancel.UseColumnTextForButtonValue = true;
+                dataGridView1.Columns.Add(btnCancel);
 
                 String query = "SELECT SeatNo, DATE_FORMAT(Date,'%y-%m-%d'), Status FROM tblseatno WHERE SeatNoID = '1'";
                 Database db = new Database();
@@ -65,6 +65,7 @@ namespace BookingSystem
                     dataGridView1.Rows.Add(AL.ToArray());
                 }
 
+
                 cmd.Dispose();
                 db.conn.Close();
 
@@ -79,16 +80,27 @@ namespace BookingSystem
         {
             try
             {
-                if (e.ColumnIndex == 3)
+                String status = dataGridView1[2, e.RowIndex].Value.ToString();
+
+                if (e.ColumnIndex == 3 && status == "occupied")
                 {
                     var s = dataGridView1[2, e.RowIndex].Value.ToString();
                     MessageBox.Show(" Dont click me!  " + s);
+                }
+                else
+                {
+                    MessageBox.Show("You can't cancel the booking.");
                 }
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.ToString());
             }
+        }
+
+        private void CancelBooking()
+        {
+            
         }
     }
 }

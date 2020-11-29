@@ -15,7 +15,7 @@ namespace BookingSystem
         public MySqlConnection conn;
         public Database()
         {
-             conn = new MySqlConnection("server = localhost; user id = root; database = bookingdb;pooling = false;convert zero datetime=True");
+             conn = new MySqlConnection("server = localhost; user id = root; database = bookingdb");
         }
 
         public void Backup()

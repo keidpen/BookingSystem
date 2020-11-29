@@ -16,6 +16,7 @@ namespace BookingSystem
         public frmBooking()
         {
             InitializeComponent();
+            timer.Interval = 1000;
         }
         Timer timer = new Timer();
         Refresh refreshPnl = new Refresh();
@@ -25,7 +26,6 @@ namespace BookingSystem
             cbScreen.SelectedIndex = 0;
             dbToListSched();
             BtnSeatArray();
-            timer.Interval=1000;
         }
 
         Queue<string> sched = new Queue<string>();
@@ -208,7 +208,7 @@ namespace BookingSystem
                 }
 
                 //Database read seat
-                String query = "SELECT COUNT(*) FROM tblseatno sn INNER JOIN tblbookedseats bs ON bs.SeatNoID = sn.SeatNoID WHERE(sn.Status = 'occupied') AND (sn.SeatNo = '"+i+"') AND (bs.Time = '"+SelSchedTime+"') AND (bs.Date = '"+date+"') AND (bs.Screen='"+screen+"')";
+                String query = "SELECT COUNT(*) FROM tblseatno sn INNER JOIN tblbookedseats bs ON bs.SeatNoID = sn.SeatNoID WHERE sn.Status = 'occupied' AND sn.SeatNo = '"+i+"' AND bs.Time = '"+SelSchedTime+"' AND bs.Date = '"+date+"' AND bs.Screen='"+screen+"' ";
                 //MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblbookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
                 MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
                 DataTable dt = new DataTable();
