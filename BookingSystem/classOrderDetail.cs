@@ -9,8 +9,8 @@ namespace BookingSystem
     class classOrderDetail
     {
         private static String Date, Screen, Time;
-        private static List<int> SeatNo = new List<int>();
-
+        //private static List<int> SeatNo = new List<int>();
+        private static List<String> SeatNo = new List<String>();
         public void ResetData()
         {
             Date = "";
@@ -36,12 +36,14 @@ namespace BookingSystem
             {
                 if (seat != null)
                 {
-                    SeatNo.Add(int.Parse(seat));
+                    //SeatNo.Add(int.Parse(seat));
+                    SeatNo.Add(seat);
                 }
             }
         }
+        public List<String> getseatNo { get { return SeatNo; } }
 
-        public List<int> getseatNo { get { return SeatNo;} }
+        //public List<int> getseatNo { get { return SeatNo;} }
         public String getDate{ get{ return Date; } }
         public String getScreen{ get { return Screen; } }
         public String getTime { get { return Time; } }

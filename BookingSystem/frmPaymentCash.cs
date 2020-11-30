@@ -17,10 +17,10 @@ namespace BookingSystem
         {
             InitializeComponent();
         }
-
-        List<int> seatNo = new List<int>();
+        List<String> seatNo = new List<String>();
+        //List<int> seatNo = new List<int>();
         Queue<string> ORnum = new Queue<string>();
-        String newSeatNo = "", Date = "", Screen = "", Time = "",generateORNO = "";
+        String newSeatNo = "",currentDate="" ,Date = "", Screen = "", Time = "",generateORNO = "";
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
@@ -46,6 +46,8 @@ namespace BookingSystem
             Time = c.getTime;
             seatNo = c.getseatNo;
 
+            classTransaction t = new classTransaction();
+            currentDate = t.getDate;
         }
 
         Timer time = new Timer();
@@ -199,7 +201,7 @@ namespace BookingSystem
                 for (int i = 0; i < seatNo.Count; i++)
                 {
                     String query = "INSERT INTO bookingdb.tblseatno(SeatNoID,SeatNo,Date,Status) " +
-                    "VALUES((SELECT MAX(SeatNoID) AS Expr1 FROM tblbookedseats) , '" + seatNo[i] + "' , '" + Date + "', 'occupied' )";
+                    "VALUES((SELECT MAX(SeatNoID) AS Expr1 FROM tblbookedseats) , '" + seatNo[i] + "' , '" + currentDate + "', 'occupied' )";
 
                     db.conn.Open();
                     MySqlCommand cmd = new MySqlCommand(query, db.conn);

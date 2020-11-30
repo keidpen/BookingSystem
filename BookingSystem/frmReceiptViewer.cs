@@ -33,7 +33,7 @@ namespace BookingSystem
             GenerateReceipt ob = new GenerateReceipt();
             ob.SetParameterValue("orno",t.getORNO);
             ob.SetParameterValue("Name", t.getName);
-            ob.SetParameterValue("date" , od.getDate );
+            ob.SetParameterValue("date" , od.getDate);
             ob.SetParameterValue("time", od.getTime );
             ob.SetParameterValue("screen", od.getScreen );
             crystalReportViewer1.ReportSource = ob;

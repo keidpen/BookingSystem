@@ -94,6 +94,8 @@ namespace BookingSystem
             }
             else
             {
+                DateTime currentDate = DateTime.Now;
+
                 String date = dateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
                 String screen = cbScreen.SelectedItem.ToString();
 
@@ -112,7 +114,7 @@ namespace BookingSystem
 
                 classTransaction t = new classTransaction();
                 t.ResetData();
-                t.setDate(c.getDate);
+                t.setDate(currentDate.ToString("yyyy-MM-dd"));
 
                 frmOrderDetail form = new frmOrderDetail();
                 form.ShowDialog(this);
@@ -165,10 +167,12 @@ namespace BookingSystem
 
 
 
-
+        List<string> colorCoding = new List<string>();
         public void BtnSeatArray()
         {
-            //nextlayer = true;
+            colorCoding.Clear();
+            colorCoding.Add("");
+            nextlayer = false;
             String date = DateTime.Now.ToString("yyyy-MM-dd");
             String screen = "";
 
@@ -186,15 +190,51 @@ namespace BookingSystem
 
             SocialDistancingMode();
             int x = 10, y = 10, z = 28;
+            int intQtyA = 1, intQtyB = 1, intQtyC = 1, intQtyD = 1, intQtyE = 1, intQtyF = 1, intQtyG = 1;
 
             for (int i = 1,j=1; i <= 308;j++,i++)
             {
-                //SocialDistancingMode();
                 Button btnSeats = new Button();
                 btnSeats.Size = new Size(40, 40);
                 btnSeats.Location = new System.Drawing.Point(x, y);
                 btnSeats.Text = i.ToString();
                 btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
+
+
+                //-- Test
+                String refSeat ="";
+                if (i >= 1 && i <= 56){
+                    refSeat = "A-" + intQtyA.ToString();
+                    btnSeats.Text ="A-"+intQtyA.ToString();
+                    intQtyA++;
+                }else if ((i >= 57 && i <= 65) || (i >= 85 && i <= 93) || (i >= 113 && i <= 121)){
+                    refSeat = "B-" + intQtyB.ToString();
+                    btnSeats.Text = "B-" + intQtyB.ToString();
+                    intQtyB++;
+                }else if ((i >= 66 && i <= 75) || (i >= 93 && i <= 103) || (i >= 122 && i <= 131)){
+                    refSeat = "C-" + intQtyC.ToString();
+                    btnSeats.Text = "C-" + intQtyC.ToString();
+                    intQtyC++;
+                }else if ((i >= 76 && i <= 84) || (i >= 104 && i <= 112) || (i >= 132 && i <= 140)){
+                    refSeat = "D-" + intQtyD.ToString();
+                    btnSeats.Text = "D-" + intQtyD.ToString();
+                    intQtyD++;
+                }else if ((i >= 141 && i <= 154) || (i >= 169 && i <= 182) || (i >= 197 && i <= 210)){
+                    refSeat = "E-" + intQtyE.ToString();
+                    btnSeats.Text = "E-" + intQtyE.ToString();
+                    intQtyE++;
+                }else if ((i >= 155 && i <= 168) || (i >= 183 && i <= 196) || (i >= 211 && i <= 224)){
+                    refSeat = "F-" + intQtyF.ToString();
+                    btnSeats.Text = "F-" + intQtyF.ToString();
+                    intQtyF++;
+                }else if (i >= 225 && i <= 308){
+                    refSeat = "G-" + intQtyG.ToString();
+                    btnSeats.Text = "G-" + intQtyG.ToString();
+                    intQtyG++;
+                }
+
+                //
+
 
                 if (sdMode == true && j % 2 == 0 && nextlayer == true)
                 {
@@ -208,7 +248,7 @@ namespace BookingSystem
                 }
 
                 //Database read seat
-                String query = "SELECT COUNT(*) FROM tblseatno sn INNER JOIN tblbookedseats bs ON bs.SeatNoID = sn.SeatNoID WHERE sn.Status = 'occupied' AND sn.SeatNo = '"+i+"' AND bs.Time = '"+SelSchedTime+"' AND bs.Date = '"+date+"' AND bs.Screen='"+screen+"' ";
+                String query = "SELECT COUNT(*) FROM tblseatno sn INNER JOIN tblbookedseats bs ON bs.SeatNoID = sn.SeatNoID WHERE sn.Status = 'occupied' AND sn.SeatNo = '"+refSeat+"' AND bs.Time = '"+SelSchedTime+"' AND bs.Date = '"+date+"' AND bs.Screen='"+screen+"' ";
                 //MySqlDataAdapter sda = new MySqlDataAdapter("SELECT COUNT(*) FROM tblbookedseats WHERE Date ='" + date + "' AND Screen = '" + screen + "' AND SeatNo LIKE '% " + i + ",%' AND Time = '" + SelSchedTime + "' ", db.conn);
                 MySqlDataAdapter sda = new MySqlDataAdapter(query, db.conn);
                 DataTable dt = new DataTable();
@@ -224,12 +264,12 @@ namespace BookingSystem
                     {
                         //i++;
                         btnSeats.Text = i.ToString();
-                        nextlayer = true;
+                        //nextlayer = true;
                         btnSeats.Enabled = true;
                         //                        sdMode = false;
                         j++;
                     }
-
+                    colorCoding.Add("green");
                 }
                 else
                 {
@@ -238,11 +278,13 @@ namespace BookingSystem
                         //this should be Orange or red
                         // btnSeats.BackColor = Color.FromArgb(255, 179, 71);
                         btnSeats.BackColor = Color.FromArgb(255, 105, 97);
+                        colorCoding.Add("red");
                     }
                     else
                     {
                         //this shoud be White
                         btnSeats.BackColor = Color.White;
+                        colorCoding.Add("white");
                     }
                 }
 
@@ -279,14 +321,98 @@ namespace BookingSystem
                 if (i == 65 || i == 93 || i == 121 || i == 75 || i == 103 || i == 131) //seat B,C, D
                 {
                     x += 15;
-                }
-                else if (i == 154 || i == 182 || i == 210) //seat E,F
+                }else if (i == 154 || i == 182 || i == 210) //seat E,F
                 {
                     x += 25;
                 }
             }
 
+            if (sdMode==true)
+            {
+                ReArrange();
+            }
         }
+
+        public void ReArrange()
+        {
+            pnlBooking.Controls.Clear();
+            int intQtyA = 1, intQtyB = 1, intQtyC = 1, intQtyD = 1, intQtyE = 1, intQtyF = 1, intQtyG = 1;
+            int x =10, y=10, z=28;
+            for (int i=1;i<=308 ;i++)
+            {
+                Button btnSeats = new Button();
+                btnSeats.Size = new Size(40, 40);
+                btnSeats.Location = new System.Drawing.Point(x, y);
+                btnSeats.Font = new Font("Arial", 8, FontStyle.Bold);
+                    if (i >= 1 && i <= 56) {
+                        btnSeats.Text = "A-" + intQtyA.ToString();
+                        intQtyA++;
+                    } else if ((i >= 57 && i <= 65) || (i >= 85 && i <= 93) || (i >= 113 && i <= 121)) {
+                        btnSeats.Text = "B-" + intQtyB.ToString();
+                        intQtyB++;
+                    } else if ((i >= 66 && i <= 75) || (i >= 93 && i <= 103) || (i >= 122 && i <= 131)) {
+                        btnSeats.Text = "C-" + intQtyC.ToString();
+                        intQtyC++;
+                    } else if ((i >= 76 && i <= 84) || (i >= 104 && i <= 112) || (i >= 132 && i <= 140)) {
+                        btnSeats.Text = "D-" + intQtyD.ToString();
+                        intQtyD++;
+                    } else if ((i >= 141 && i <= 154) || (i >= 169 && i <= 182) || (i >= 197 && i <= 210)) {
+                        btnSeats.Text = "E-" + intQtyE.ToString();
+                        intQtyE++;
+                    } else if ((i >= 155 && i <= 168) || (i >= 183 && i <= 196) || (i >= 211 && i <= 224)) {
+                        btnSeats.Text = "F-" + intQtyF.ToString();
+                        intQtyF++;
+                    } else if (i >= 225 && i <= 308) {
+                        btnSeats.Text = "G-" + intQtyG.ToString();
+                        intQtyG++;
+                    }
+                
+
+
+                if (i>=2 && i<307 && colorCoding[i-1]=="red" && colorCoding[i]=="white" && colorCoding[i+1]=="green"){
+                    btnSeats.BackColor = Color.FromArgb(255, 105, 97);
+                    btnSeats.Enabled = false;
+                    btnSeats.Text = "";
+                }else if(colorCoding[i]=="red"){
+                    btnSeats.BackColor = Color.FromArgb(255, 105, 97);
+                    btnSeats.Enabled = false;
+                    btnSeats.Text = "";
+                }else if(colorCoding[i]=="green"){
+                    btnSeats.BackColor = Color.FromArgb(119, 221, 119);
+                }else if (colorCoding[i]=="white"){
+                    btnSeats.BackColor = Color.White;
+                }
+
+                if ((i >= 1 && i <= 56) || (i >= 225 && i <= 308)){
+                    x += 41;
+                }else{
+                    x += 40;
+                }
+
+                btnSeats.Click += btn_Click;
+                pnlBooking.Controls.Add(btnSeats);
+
+                if (i == z){
+                    x = 10;
+                    y += 40;
+                    z += 28;
+                    if (nextlayer == true){
+                        nextlayer = false;
+                    }else{
+                        nextlayer = true;
+                    }
+
+                    if (z == 84 || z == 168 || z == 252){
+                        y += 15;
+                    }
+                }if (i == 65 || i == 93 || i == 121 || i == 75 || i == 103 || i == 131){
+                    x += 15;
+                }else if (i == 154 || i == 182 || i == 210){
+                    x += 25;
+                }
+            }
+        }
+
 
         public void btn_Click(object sender, EventArgs e)
         {

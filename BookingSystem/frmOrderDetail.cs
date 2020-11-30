@@ -56,8 +56,8 @@ namespace BookingSystem
             }
         }
 
-
-        List<int> seatNo = new List<int>();
+        List<String> seatNo = new List<String>();
+        //List<int> seatNo = new List<int>();
         double PriceA = 0, PriceB = 0, PriceC = 0, PriceD = 0, PriceE = 0, PriceF = 0, PriceG = 0;
         double totalA = 0, totalB = 0, totalC = 0, totalD = 0, totalE = 0, totalF = 0, totalG = 0;
         String strSeatNoA, strSeatNoB, strSeatNoC, strSeatNoD, strSeatNoE, strSeatNoF, strSeatNoG;
@@ -115,47 +115,83 @@ namespace BookingSystem
             PriceF = r.CatSeat_F;
             PriceG = r.CatSeat_G;
 
-            for (int i = 1; i <= 308; i++)
+            for (int i=0; i <seatNo.Count ;i++) 
+            //for (int i = 1; i <= 308; i++)
             {
-                if (seatNo.Contains(i))
-                {
-                    if (i >= 1 && i <= 56)
-                    {
-                        strSeatNoA += i + ", ";
-                        intQtyA++;
-                    }
-                    else if ((i >= 57 && i <= 65) || (i >= 85 && i <= 93) || (i >= 113 && i <= 121))
-                    {
-                        strSeatNoB += i + ", ";
-                        intQtyB++;
-                    }
-                    else if ((i >= 66 && i <= 75) || (i >= 93 && i <= 103) || (i >= 122 && i <= 131))
-                    {
-                        strSeatNoC += i + ", ";
-                        intQtyC++;
-                    }
-                    else if ((i >= 76 && i <= 84) || (i >= 104 && i <= 112) || (i >= 132 && i <= 140))
-                    {
-                        strSeatNoD += i + ", ";
-                        intQtyD++;
-                    }
-                    else if ((i >= 141 && i <= 154) || (i >= 169 && i <= 182) || (i >= 197 && i <= 210))
-                    {
-                        strSeatNoE += i + ", ";
-                        intQtyE++;
-                    }
-                    else if ((i >= 155 && i <= 168) || (i >= 183 && i <= 196) || (i >= 197 && i <= 210))
-                    {
-                        strSeatNoF += i + ", ";
-                        intQtyF++;
-                    }
-                    else if (i >= 225 && i <= 308)
-                    {
-                        strSeatNoG += i + ", ";
-                        intQtyG++;
-                    }
-
+                if (seatNo[i].Contains("A")){
+                    strSeatNoA += seatNo[i].ToString() + ", ";
+                    intQtyA++;
                 }
+                else if (seatNo[i].Contains("B")){
+                    strSeatNoB += seatNo[i].ToString() + ", ";
+                    intQtyB++;
+                }
+                else if (seatNo[i].Contains("C")){
+                    strSeatNoC += seatNo[i].ToString() + ", ";
+                    intQtyC++;
+                }
+                else if (seatNo[i].Contains("D")){
+                    strSeatNoD += seatNo[i].ToString() + ", ";
+                    intQtyD++;
+                }
+                else if (seatNo[i].Contains("E")){
+                    strSeatNoE += seatNo[i].ToString() + ", ";
+                    intQtyE++;
+                }
+                else if (seatNo[i].Contains("F")){
+                    strSeatNoF += seatNo[i].ToString() + ", ";
+                    intQtyF++;
+                }
+                else if (seatNo[i].Contains("G")){
+                    strSeatNoG += seatNo[i].ToString() + ", ";
+                    intQtyG++;
+                }
+                else
+                {
+                    MessageBox.Show(seatNo[i]);
+                }
+
+
+
+                //if (seatNo.Contains(i))
+                //{
+                //    if (i >= 1 && i <= 56)
+                //    {
+                //        strSeatNoA += i + ", ";
+                //        intQtyA++;
+                //    }
+                //    else if ((i >= 57 && i <= 65) || (i >= 85 && i <= 93) || (i >= 113 && i <= 121))
+                //    {
+                //        strSeatNoB += i + ", ";
+                //        intQtyB++;
+                //    }
+                //    else if ((i >= 66 && i <= 75) || (i >= 93 && i <= 103) || (i >= 122 && i <= 131))
+                //    {
+                //        strSeatNoC += i + ", ";
+                //        intQtyC++;
+                //    }
+                //    else if ((i >= 76 && i <= 84) || (i >= 104 && i <= 112) || (i >= 132 && i <= 140))
+                //    {
+                //        strSeatNoD += i + ", ";
+                //        intQtyD++;
+                //    }
+                //    else if ((i >= 141 && i <= 154) || (i >= 169 && i <= 182) || (i >= 197 && i <= 210))
+                //    {
+                //        strSeatNoE += i + ", ";
+                //        intQtyE++;
+                //    }
+                //    else if ((i >= 155 && i <= 168) || (i >= 183 && i <= 196) || (i >= 197 && i <= 210))
+                //    {
+                //        strSeatNoF += i + ", ";
+                //        intQtyF++;
+                //    }
+                //    else if (i >= 225 && i <= 308)
+                //    {
+                //        strSeatNoG += i + ", ";
+                //        intQtyG++;
+                //    }
+                //
+                //}
             }
 
 
