@@ -1,0 +1,68 @@
+----Daily===================================================
+
+SELECT        YEAR(Date) AS Year, 
+                     QUARTER(Date)  AS Month,
+                     WEEK(Date) AS Week, 
+                     DAY(Date) AS day, 
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY DAY(Date)
+ORDER BY Date ASC
+
+
+----Weekly==================================================
+
+SELECT        YEAR(Date) AS Year, 
+                     QUARTER(Date)  AS Month,
+                      WEEK(Date) AS Week, 
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY WEEK(Date)
+
+option 2========================
+SELECT        YEAR(Date) AS Year, 
+                     QUARTER(Date)  AS Month,
+                     DATE_FORMAT(Date,"%W") AS Week, 
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY WEEK(Date)
+
+
+000000000000000  Monthly==================================================
+
+SELECT        YEAR(Date) AS Year, 
+                     MONTH(Date) AS Month,
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY MONTH(Date)
+
+
+optio 2================
+
+SELECT        YEAR(Date) AS Year, 
+                     DATE_FORMAT(Date,"%M") AS Month,
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+
+
+
+00000000000000000  Quarterly =======================================
+
+SELECT        YEAR(Date) AS Year, 
+                     QUARTER(Date)  AS Quarter,
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY QUARTER(Date)
+
+
+----Yearly
+
+SELECT        YEAR(Date) AS Year, 
+                     MONTH(Date) AS Month,
+                     SUM(Ammount) AS 'Total Ammount'
+FROM            tbltransaction
+GROUP BY YEAR(Date)
+
+
+
+

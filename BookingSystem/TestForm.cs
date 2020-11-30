@@ -370,12 +370,14 @@ namespace BookingSystem
                 //dataGridView1.Columns[0].Name = "Date";
                 //dataGridView1.Columns[1].Name = "Year";
                 //dataGridView1.Columns[2].Name = "Month";
-                //dataGridView1.Columns[3].Name = "Day";
+                //dataGridView1.Columns[3].Name = "Ammount";
 
                 //DateTime dt = DateTime.Today;
                 Database db = new Database();
-// RollUp dapat
-                String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.tblbookedseats ";
+// Group dapat
+                //String query1 = "SELECT Date , YEAR(Date) ,MONTH(Date) ,DAY(Date) FROM bookingdb.tblbookedseats ";
+
+                String query1 = "SELECT Date,YEAR(Date) AS Year, MONTH(Date) AS Month, SUM(Ammount) AS 'Total Ammount' FROM tbltransaction GROUP BY MONTH(Date) ORDER BY Date DESC";
 
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -392,6 +394,7 @@ namespace BookingSystem
                 dtCloned.Columns[2].DataType = typeof(Int32);
                 dtCloned.Columns[3].DataType = typeof(Int32);
 
+                
 
                 foreach (DataRow row in tb.Rows)
                 {
@@ -399,19 +402,22 @@ namespace BookingSystem
                 }
                 dtCloned.Columns[1].ColumnName = "Year";
                 dtCloned.Columns[2].ColumnName = "Month";
-                dtCloned.Columns[3].ColumnName = "Day";
+                dtCloned.Columns[3].ColumnName = "Ammount";
 
-                MessageBox.Show(list.Count.ToString());
+                list.Clear();
                 for (int i = 1; i < dtCloned.Rows.Count; i++)
                 {
                     lvSalesReport sales = new lvSalesReport();
                     sales.Date = dtCloned.Rows[i][0].ToString();
                     sales.Year = int.Parse(dtCloned.Rows[i][1].ToString());
                     sales.Month = int.Parse(dtCloned.Rows[i][2].ToString());
-                    sales.Day = int.Parse(dtCloned.Rows[i][3].ToString());
+                    sales.Ammount = int.Parse(dtCloned.Rows[i][3].ToString());
                     list.Add(sales);
                 }
-                MessageBox.Show(list.Count.ToString());
+
+                dataGridView2.DataSource = list;
+                dataGridView2.Refresh();
+
                 //list = (from DataRow dr in dtCloned.Rows
                 //               select new lvSalesReport()
                 //               {
@@ -497,25 +503,21 @@ namespace BookingSystem
             var years = (from o in lvSalesReportBindingSource.DataSource as List<lvSalesReport>
                          select new { Year = o.Year }).Distinct();
             foreach(var year in years){
-                List<int> values = new List<int>();
+                List<double> values = new List<double>();
                 for (int month =1; month<=12; month++)
                 {
-                    int value = 0;
+                    double value = 0;
                     var data = from o in lvSalesReportBindingSource.DataSource as List<lvSalesReport>
                                where o.Year.Equals(year.Year) && o.Month.Equals(month)
                                orderby o.Month ascending
-                               select new {o.Day ,o.Month };
+                               select new {o.Ammount ,o.Month };
                     if (data.SingleOrDefault()!=null)
-                    {
-                        value = data.SingleOrDefault().Day;
-                        values.Add(value);
-                    }
-                    series.Add(new LineSeries() { Title = year.Year.ToString(), Values = new ChartValues<int>(values) });
+                        value = data.SingleOrDefault().Ammount;
+                    values.Add(value);
                 }
-                cartesianChart1.Series = series; 
+                series.Add(new LineSeries() { Title = year.Year.ToString(), Values = new ChartValues<double>(values) });
             }
-
-
+            cartesianChart1.Series = series;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -570,6 +572,11 @@ namespace BookingSystem
             f.Visible = true;
 
             //new frmReceiptViewer("Hello").ShowDialog();
+        }
+
+        private void lvSalesReportBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
