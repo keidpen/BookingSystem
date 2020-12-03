@@ -48,6 +48,10 @@ namespace BookingSystem
                     MessageBox.Show(" Dont click me!  " + s);
                 }
             }
+            catch (ArgumentOutOfRangeException err)
+            {
+                MessageBox.Show("Cannot Sort Column");
+            }
             catch (Exception err)
             {
                 MessageBox.Show(err.ToString());
@@ -72,6 +76,7 @@ namespace BookingSystem
                 //dataGridView1.Columns[6].Name = "ContactNo.";
                 //dataGridView1.Columns[7].Name = "Email";
 
+
                 DataGridViewButtonColumn Test = new DataGridViewButtonColumn();
                 Test.HeaderText = "View More";
                 Test.Name = "btn";
@@ -83,14 +88,16 @@ namespace BookingSystem
                 dataGridView1.Columns.Add(Test);
 
 
+
                 Database db = new Database();
-                String trySql = "(SELECT ';' + sn.SeatNo FROM SeatNo sn WHERE tblseatno.SeatNoID = bs.SeatNoID FOR XML PATH(''))";
-                String query1 = "SELECT bs.ORNO, c.Name, SeatNo, bs.Date,bs.Time,bs.Screen, c.ContactNo, c.Email " +
+                String query1 = "SELECT bs.ORNO, c.Name, GROUP_CONCAT(SeatNo), bs.Date,bs.Time,bs.Screen, c.ContactNo, c.Email " +
                                //  String query1 = "SELECT bs.ORNO, tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
                                "FROM bookingdb.tblbookedseats bs " +
                                 "INNER JOIN tblcustomer c " +
                                 "ON c.customerID = bs.customerID,tblseatno " +
                                 "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
+                                //"AND bs.ORNO = 'OR-53' " +
+                                "GROUP BY bs.ORNO " +
                                 "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -134,8 +141,14 @@ namespace BookingSystem
                 dataGridView1.Rows.Clear();
 
                 Database db = new Database();
-                String query1 = "SELECT tblbookedseats.ORNO, tblcustomer.Name, tblbookedseats.SeatNo,tblbookedseats.Date,tblbookedseats.Time,tblbookedseats.Screen, tblcustomer.ContactNo, tblcustomer.Email FROM bookingdb.tblbookedseats JOIN tblcustomer ON tblcustomer.customerID = tblbookedseats.customerID WHERE tblcustomer.Name='" + keyword + "' ORDER BY ID DESC";
-
+                String query1 = "SELECT bs.ORNO, c.Name, GROUP_CONCAT(SeatNo), bs.Date,bs.Time,bs.Screen, c.ContactNo, c.Email " +
+                               "FROM bookingdb.tblbookedseats bs " +
+                                "INNER JOIN tblcustomer c " +
+                                "ON c.customerID = bs.customerID,tblseatno " +
+                                "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
+                                "AND bs.ORNO = '"+tbSearch.Text.ToString()+"' " +
+                                "GROUP BY bs.ORNO " +
+                                "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
 
