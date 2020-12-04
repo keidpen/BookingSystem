@@ -24,17 +24,19 @@ namespace BookingSystem
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
-            double cash = double.Parse(tbCash.Text.Trim());
-            double change = double.Parse(lblChange.Text.Trim());
+            if (tbCash.Text.ToString()!="" || tbCash.Text.ToString() !=null) {
+                double cash = double.Parse(tbCash.Text.ToString().Trim());
+                double change = double.Parse(lblChange.Text.ToString().Trim());
 
-            classTransaction t = new classTransaction();
-            t.setCash(cash);
-            t.setChange(change);
-            t.setName(tbName.Text);
+                classTransaction t = new classTransaction();
+                t.setCash(cash);
+                t.setChange(change);
+                t.setName(tbName.Text);
 
-            GenerateORNO();
-            InsertCostumer();
-            GenerateReceipt();
+                GenerateORNO();
+                InsertCostumer();
+                GenerateReceipt();
+            }
         }
 
 

@@ -109,4 +109,6 @@ C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Nume
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmCancel.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.frmReceiptViewer.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.TestForm2.resources
+C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.FormViewerTesting.resources
 C:\Users\Noli\Documents\GitHub\BookingSystem\BookingSystem\obj\Debug\BookingSystem.csprojAssemblyReference.cache

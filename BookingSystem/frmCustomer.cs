@@ -146,7 +146,7 @@ namespace BookingSystem
                                 "INNER JOIN tblcustomer c " +
                                 "ON c.customerID = bs.customerID,tblseatno " +
                                 "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
-                                "AND bs.ORNO = '"+tbSearch.Text.ToString()+"' " +
+                                "AND bs.ORNO = '"+tbSearch.Text.ToString()+ "' " +   
                                 "GROUP BY bs.ORNO " +
                                 "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();

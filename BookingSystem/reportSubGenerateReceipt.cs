@@ -16,14 +16,14 @@ namespace BookingSystem {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class GenerateReceipt : ReportClass {
+    public class reportSubGenerateReceipt : ReportClass {
         
-        public GenerateReceipt() {
+        public reportSubGenerateReceipt() {
         }
         
         public override string ResourceName {
             get {
-                return "GenerateReceipt.rpt";
+                return "reportSubGenerateReceipt.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BookingSystem {
         
         public override string FullResourceName {
             get {
-                return "BookingSystem.GenerateReceipt.rpt";
+                return "BookingSystem.reportSubGenerateReceipt.rpt";
             }
             set {
                 // Do nothing
@@ -87,52 +87,12 @@ namespace BookingSystem {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Name {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_orno {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_date {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_time {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_screen {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedGenerateReceipt : Component, ICachedReport {
+    public class CachedreportSubGenerateReceipt : Component, ICachedReport {
         
-        public CachedGenerateReceipt() {
+        public CachedreportSubGenerateReceipt() {
         }
         
         [Browsable(false)]
@@ -169,7 +129,7 @@ namespace BookingSystem {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            GenerateReceipt rpt = new GenerateReceipt();
+            reportSubGenerateReceipt rpt = new reportSubGenerateReceipt();
             rpt.Site = this.Site;
             return rpt;
         }

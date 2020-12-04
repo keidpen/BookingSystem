@@ -36,6 +36,7 @@ namespace BookingSystem
         Timer time = new Timer();
         private void btnPayment_Click(object sender, EventArgs e)
         {
+
             using (frmPaymentCash frm = new frmPaymentCash())
             {
                 time.Interval = 1000;
@@ -204,10 +205,17 @@ namespace BookingSystem
             totalG = intQtyG * PriceG;
 
             double SubTotal = totalA + totalB + totalC + totalD + totalE + totalF + totalG;
-            
 
-            if (totalA >= 1)
-            {
+
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Category");
+            dt.Columns.Add("Seat No", typeof(string));
+            dt.Columns.Add("Price", typeof(string));
+            dt.Columns.Add("Quantity", typeof(string));
+            dt.Columns.Add("Ammount", typeof(string));
+
+            if (totalA >= 1){
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 row.Cells[0].Value = "A";
                 row.Cells[1].Value = strSeatNoA;
@@ -216,9 +224,8 @@ namespace BookingSystem
                 row.Cells[4].Value = totalA;
                 dataGridView1.Rows.Add(row);
 
-            }
-            if (totalB >= 1)
-            {
+                dt.Rows.Add("A", strSeatNoA, PriceA, intQtyA, totalA);
+            }if (totalB >= 1){
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 row.Cells[0].Value = "B";
                 row.Cells[1].Value = strSeatNoB;
@@ -227,6 +234,7 @@ namespace BookingSystem
                 row.Cells[4].Value = totalB;
                 dataGridView1.Rows.Add(row);
 
+                dt.Rows.Add("B", strSeatNoB, PriceB, intQtyB, totalB);
             }
             if (totalC >= 1)
             {
@@ -249,6 +257,7 @@ namespace BookingSystem
                 row.Cells[4].Value = totalD;
                 dataGridView1.Rows.Add(row);
 
+                dt.Rows.Add("D", strSeatNoD, PriceD, intQtyD, totalD);
             }
             if (totalE >= 1)
             {
@@ -260,6 +269,7 @@ namespace BookingSystem
                 row.Cells[4].Value = totalE;
                 dataGridView1.Rows.Add(row);
 
+                dt.Rows.Add("E", strSeatNoE, PriceE, intQtyE, totalE);
             }
             if (totalF >= 1)
             {
@@ -271,6 +281,7 @@ namespace BookingSystem
                 row.Cells[4].Value = totalF;
                 dataGridView1.Rows.Add(row);
 
+                dt.Rows.Add("F", strSeatNoF, PriceF, intQtyF, totalF);
             }
             if (totalG >= 1)
             {
@@ -282,7 +293,21 @@ namespace BookingSystem
                 row.Cells[4].Value = totalG;
                 dataGridView1.Rows.Add(row);
 
+                dt.Rows.Add("G",strSeatNoG,PriceG,intQtyG,totalG);
             }
+
+            ds.Tables.Add(dt);
+            ds.WriteXmlSchema("OrderDetails.xml");
+
+            reportGenerateReceipt s = new reportGenerateReceipt();
+            s.SetDataSource(ds);
+
+            //FormViewerTesting frm = new FormViewerTesting();
+            frmReceiptViewer frm = new frmReceiptViewer();
+            frm.crystalReportViewer1.ReportSource = s;
+            frm.Show();
+
+
             DataGridViewRow Divider = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             Divider.DividerHeight = 1;
             dataGridView1.Rows.Add(Divider);
@@ -310,6 +335,7 @@ namespace BookingSystem
 
             classTransaction c = new classTransaction();
             c.setTotalAmmount(TotalAmmount);
+
         }
     }
 }

@@ -30,12 +30,14 @@ namespace BookingSystem
             classOrderDetail od = new classOrderDetail();
             classTransaction t = new classTransaction();
 
-            GenerateReceipt ob = new GenerateReceipt();
-            ob.SetParameterValue("orno",t.getORNO);
+            reportGenerateReceipt ob = new reportGenerateReceipt();
+            ob.SetParameterValue("orno", t.getORNO);
             ob.SetParameterValue("Name", t.getName);
-            ob.SetParameterValue("date" , od.getDate);
-            ob.SetParameterValue("time", od.getTime );
-            ob.SetParameterValue("screen", od.getScreen );
+            ob.SetParameterValue("date", od.getDate);
+            ob.SetParameterValue("time", od.getTime);
+            ob.SetParameterValue("screen", od.getScreen);
+            ob.SetParameterValue("Cash", t.getCash);
+            ob.SetParameterValue("Change", t.getChange);
             crystalReportViewer1.ReportSource = ob;
             crystalReportViewer1.Refresh();
 
@@ -51,6 +53,11 @@ namespace BookingSystem
 
             Refresh r = new Refresh();
             r.GetRefreshFrame(0);
+
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
 
         }
     }

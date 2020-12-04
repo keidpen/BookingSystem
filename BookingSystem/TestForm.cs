@@ -350,7 +350,7 @@ namespace BookingSystem
             ds.Tables.Add(dt);
             ds.WriteXmlSchema("Sample.xml");
 
-            ContactTracing cr = new ContactTracing();
+            reportContactTracing cr = new reportContactTracing();
             cr.SetDataSource(ds);
             frmData frm = new frmData();
             frm.crystalReportViewer1.ReportSource = cr;

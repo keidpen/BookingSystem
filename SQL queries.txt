@@ -37,6 +37,7 @@ FROM            tbltransaction
 GROUP BY MONTH(Date)
 
 
+
 optio 2================
 
 SELECT        YEAR(Date) AS Year, 

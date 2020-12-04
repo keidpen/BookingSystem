@@ -171,10 +171,10 @@
     </Compile>
     <Compile Include="classOrderDetail.cs" />
     <Compile Include="classTransaction.cs" />
-    <Compile Include="ContactTracing.cs">
+    <Compile Include="reportContactTracing.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ContactTracing.rpt</DependentUpon>
+      <DependentUpon>reportContactTracing.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Database.cs" />
@@ -202,6 +202,12 @@
     </Compile>
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewerTesting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewerTesting.Designer.cs">
+      <DependentUpon>FormViewerTesting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAddMov.cs">
       <SubType>Form</SubType>
@@ -287,10 +293,10 @@
     <Compile Include="frmUpdateMov.Designer.cs">
       <DependentUpon>frmUpdateMov.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerateReceipt.cs">
+    <Compile Include="reportGenerateReceipt.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GenerateReceipt.rpt</DependentUpon>
+      <DependentUpon>reportGenerateReceipt.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="lvSalesReport.cs" />
@@ -304,15 +310,39 @@
       <DependentUpon>frmSearchMov.cs</DependentUpon>
     </Compile>
     <Compile Include="classRetrieveSeatCatPrice.cs" />
+    <Compile Include="reportMonthSales.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportMonthSales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportSubGenerateReceipt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportSubGenerateReceipt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Test.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Test.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ContactTracing.rpt">
+    <Compile Include="TestForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm2.Designer.cs">
+      <DependentUpon>TestForm2.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="reportContactTracing.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ContactTracing.cs</LastGenOutput>
+      <LastGenOutput>reportContactTracing.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -325,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewerTesting.resx">
+      <DependentUpon>FormViewerTesting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddMov.resx">
       <DependentUpon>frmAddMov.cs</DependentUpon>
@@ -368,9 +401,9 @@
     <EmbeddedResource Include="frmUpdateMov.resx">
       <DependentUpon>frmUpdateMov.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerateReceipt.rpt">
+    <EmbeddedResource Include="reportGenerateReceipt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GenerateReceipt.cs</LastGenOutput>
+      <LastGenOutput>reportGenerateReceipt.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -387,8 +420,23 @@
     <EmbeddedResource Include="frmSearchMov.resx">
       <DependentUpon>frmSearchMov.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportMonthSales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reportMonthSales.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportSubGenerateReceipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reportSubGenerateReceipt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Test.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm2.resx">
+      <DependentUpon>TestForm2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bookingdbDataSet.xsc">
       <DependentUpon>bookingdbDataSet.xsd</DependentUpon>

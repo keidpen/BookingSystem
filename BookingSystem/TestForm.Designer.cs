@@ -38,10 +38,10 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Ammount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.Ammount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -147,10 +147,16 @@
             this.monthDataGridViewTextBoxColumn,
             this.Ammount});
             this.dataGridView2.DataSource = this.lvSalesReportBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(272, 503);
+            this.dataGridView2.Location = new System.Drawing.Point(769, 293);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(445, 209);
             this.dataGridView2.TabIndex = 10;
+            // 
+            // Ammount
+            // 
+            this.Ammount.DataPropertyName = "Ammount";
+            this.Ammount.HeaderText = "Ammount";
+            this.Ammount.Name = "Ammount";
             // 
             // button4
             // 
@@ -174,19 +180,13 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(917, 360);
+            this.button6.Location = new System.Drawing.Point(596, 264);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 13;
             this.button6.Text = "Generate Receipt";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // Ammount
-            // 
-            this.Ammount.DataPropertyName = "Ammount";
-            this.Ammount.HeaderText = "Ammount";
-            this.Ammount.Name = "Ammount";
             // 
             // dateDataGridViewTextBoxColumn
             // 

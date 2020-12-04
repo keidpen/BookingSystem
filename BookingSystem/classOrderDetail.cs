@@ -11,6 +11,7 @@ namespace BookingSystem
         private static String Date, Screen, Time;
         //private static List<int> SeatNo = new List<int>();
         private static List<String> SeatNo = new List<String>();
+
         public void ResetData()
         {
             Date = "";

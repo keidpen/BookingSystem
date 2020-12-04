@@ -45,7 +45,7 @@ namespace BookingSystem
             ds.Tables.Add(dt);
             ds.WriteXmlSchema("Sample.xml");
 
-            ContactTracing cr = new ContactTracing();
+            reportContactTracing cr = new reportContactTracing();
             cr.SetDataSource(ds);
             frmData frm = new frmData();
             frm.crystalReportViewer1.ReportSource = cr;
@@ -83,12 +83,14 @@ namespace BookingSystem
                 //}
                 //else
                 //{
-                    query1 = "SELECT tblcustomer.Name, bs.SeatNo,bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
+                    query1 = "SELECT tblcustomer.Name, GROUP_CONCAT(SeatNo),bs.Date,bs.Time,bs.Screen, tblcustomer.ContactNo, tblcustomer.Email " +
                                     "FROM bookingdb.tblbookedseats bs " +
-                                    "JOIN tblcustomer " +
-                                    "ON tblcustomer.customerID = bs.customerID " +
-                                    "WHERE Date BETWEEN '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' AND '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") +"'" +
-                                    "ORDER BY Date DESC ";
+                                    "INNER JOIN tblcustomer " +
+                                    "ON tblcustomer.customerID = bs.customerID,tblseatno " +
+                                    "WHERE bs.Date BETWEEN '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' AND '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") +"' " +
+                                    "AND tblseatno.SeatNoID = bs.SeatNoID  " +
+                                    "GROUP BY bs.ORNO " +
+                                    "ORDER BY bs.SeatNoID DESC ";
                 //}
                 db.conn.Open();
                 ArrayList AL = new ArrayList();
@@ -138,13 +140,25 @@ namespace BookingSystem
             {
                 dateTimePicker2.Value = dateTimePicker1.Value;
                 RetrieveData();
-                MessageBox.Show(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
             }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            RetrieveData();
+            if (dateTimePicker1.Value < dateTimePicker2.Value)
+            {
+                RetrieveData();
+            }
+            else
+            {
+                dateTimePicker1.Value = dateTimePicker2.Value;
+                RetrieveData();
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

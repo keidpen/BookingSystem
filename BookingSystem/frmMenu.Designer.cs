@@ -39,6 +39,10 @@
             this.lblUpdateMov = new System.Windows.Forms.Label();
             this.lblSearchMovie = new System.Windows.Forms.Label();
             this.lblContactTracing = new System.Windows.Forms.Label();
+            this.lblFeatures = new System.Windows.Forms.Label();
+            this.lblSeats = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.lblTimeClock = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -88,33 +92,36 @@
             // 
             this.lblSocialDistancing.AutoSize = true;
             this.lblSocialDistancing.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSocialDistancing.Location = new System.Drawing.Point(398, 53);
+            this.lblSocialDistancing.Location = new System.Drawing.Point(501, 53);
             this.lblSocialDistancing.Name = "lblSocialDistancing";
             this.lblSocialDistancing.Size = new System.Drawing.Size(150, 23);
             this.lblSocialDistancing.TabIndex = 10;
             this.lblSocialDistancing.Text = "SocialDistancing";
+            this.lblSocialDistancing.Visible = false;
             this.lblSocialDistancing.Click += new System.EventHandler(this.lblSocialDistancing_Click);
             // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(514, 103);
+            this.lblCustomer.Location = new System.Drawing.Point(335, 20);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(93, 23);
             this.lblCustomer.TabIndex = 11;
             this.lblCustomer.Text = "Costumer";
+            this.lblCustomer.Visible = false;
             this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
             // 
             // lblSchedule
             // 
             this.lblSchedule.AutoSize = true;
             this.lblSchedule.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSchedule.Location = new System.Drawing.Point(630, 103);
+            this.lblSchedule.Location = new System.Drawing.Point(481, 103);
             this.lblSchedule.Name = "lblSchedule";
             this.lblSchedule.Size = new System.Drawing.Size(87, 23);
             this.lblSchedule.TabIndex = 12;
             this.lblSchedule.Text = "Schedule";
+            this.lblSchedule.Visible = false;
             this.lblSchedule.Click += new System.EventHandler(this.lblSchedule_Click);
             // 
             // lblAddMov
@@ -126,28 +133,31 @@
             this.lblAddMov.Size = new System.Drawing.Size(104, 23);
             this.lblAddMov.TabIndex = 13;
             this.lblAddMov.Text = "Add Movie";
+            this.lblAddMov.Visible = false;
             this.lblAddMov.Click += new System.EventHandler(this.lblAddMov_Click);
             // 
             // lblUpdateMov
             // 
             this.lblUpdateMov.AutoSize = true;
             this.lblUpdateMov.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateMov.Location = new System.Drawing.Point(193, 103);
+            this.lblUpdateMov.Location = new System.Drawing.Point(177, 103);
             this.lblUpdateMov.Name = "lblUpdateMov";
             this.lblUpdateMov.Size = new System.Drawing.Size(132, 23);
             this.lblUpdateMov.TabIndex = 14;
             this.lblUpdateMov.Text = "Update Movie";
+            this.lblUpdateMov.Visible = false;
             this.lblUpdateMov.Click += new System.EventHandler(this.lblUpdateMov_Click);
             // 
             // lblSearchMovie
             // 
             this.lblSearchMovie.AutoSize = true;
             this.lblSearchMovie.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchMovie.Location = new System.Drawing.Point(346, 103);
+            this.lblSearchMovie.Location = new System.Drawing.Point(330, 103);
             this.lblSearchMovie.Name = "lblSearchMovie";
             this.lblSearchMovie.Size = new System.Drawing.Size(126, 23);
             this.lblSearchMovie.TabIndex = 15;
             this.lblSearchMovie.Text = "Search Movie";
+            this.lblSearchMovie.Visible = false;
             this.lblSearchMovie.Click += new System.EventHandler(this.lblSearchMovie_Click);
             // 
             // lblContactTracing
@@ -159,13 +169,60 @@
             this.lblContactTracing.Size = new System.Drawing.Size(143, 23);
             this.lblContactTracing.TabIndex = 16;
             this.lblContactTracing.Text = "Contact Tracing";
+            this.lblContactTracing.Visible = false;
             this.lblContactTracing.Click += new System.EventHandler(this.lblContactTracing_Click);
+            // 
+            // lblFeatures
+            // 
+            this.lblFeatures.AutoSize = true;
+            this.lblFeatures.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFeatures.Location = new System.Drawing.Point(395, 53);
+            this.lblFeatures.Name = "lblFeatures";
+            this.lblFeatures.Size = new System.Drawing.Size(83, 23);
+            this.lblFeatures.TabIndex = 17;
+            this.lblFeatures.Text = "Features";
+            this.lblFeatures.Click += new System.EventHandler(this.lblFeatures_Click);
+            // 
+            // lblSeats
+            // 
+            this.lblSeats.AutoSize = true;
+            this.lblSeats.Font = new System.Drawing.Font("Lato", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeats.Location = new System.Drawing.Point(274, 20);
+            this.lblSeats.Name = "lblSeats";
+            this.lblSeats.Size = new System.Drawing.Size(55, 23);
+            this.lblSeats.TabIndex = 18;
+            this.lblSeats.Text = "Seats";
+            this.lblSeats.Visible = false;
+            this.lblSeats.Click += new System.EventHandler(this.lblBooking_Click);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(1040, 12);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 19;
+            this.btnLogOut.Text = "LogOut";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
+            // lblTimeClock
+            // 
+            this.lblTimeClock.AutoSize = true;
+            this.lblTimeClock.Location = new System.Drawing.Point(673, 12);
+            this.lblTimeClock.Name = "lblTimeClock";
+            this.lblTimeClock.Size = new System.Drawing.Size(30, 13);
+            this.lblTimeClock.TabIndex = 80;
+            this.lblTimeClock.Text = "Time";
             // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 741);
+            this.Controls.Add(this.lblTimeClock);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.lblSeats);
+            this.Controls.Add(this.lblFeatures);
             this.Controls.Add(this.lblContactTracing);
             this.Controls.Add(this.lblSearchMovie);
             this.Controls.Add(this.lblUpdateMov);
@@ -199,5 +256,9 @@
         private System.Windows.Forms.Label lblUpdateMov;
         private System.Windows.Forms.Label lblSearchMovie;
         private System.Windows.Forms.Label lblContactTracing;
+        private System.Windows.Forms.Label lblFeatures;
+        private System.Windows.Forms.Label lblSeats;
+        private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Label lblTimeClock;
     }
 }

@@ -16,14 +16,14 @@ namespace BookingSystem {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class ContactTracing : ReportClass {
+    public class reportGenerateReceipt : ReportClass {
         
-        public ContactTracing() {
+        public reportGenerateReceipt() {
         }
         
         public override string ResourceName {
             get {
-                return "ContactTracing.rpt";
+                return "reportGenerateReceipt.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BookingSystem {
         
         public override string FullResourceName {
             get {
-                return "BookingSystem.ContactTracing.rpt";
+                return "BookingSystem.reportGenerateReceipt.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,68 @@ namespace BookingSystem {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Name {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_orno {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_date {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_time {
+            get {
+                return this.DataDefinition.ParameterFields[3];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_screen {
+            get {
+                return this.DataDefinition.ParameterFields[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Cash {
+            get {
+                return this.DataDefinition.ParameterFields[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Change {
+            get {
+                return this.DataDefinition.ParameterFields[6];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedContactTracing : Component, ICachedReport {
+    public class CachedreportGenerateReceipt : Component, ICachedReport {
         
-        public CachedContactTracing() {
+        public CachedreportGenerateReceipt() {
         }
         
         [Browsable(false)]
@@ -129,7 +185,7 @@ namespace BookingSystem {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            ContactTracing rpt = new ContactTracing();
+            reportGenerateReceipt rpt = new reportGenerateReceipt();
             rpt.Site = this.Site;
             return rpt;
         }
