@@ -13,9 +13,11 @@ namespace BookingSystem
     class Database
     {
         public MySqlConnection conn;
+        public MySqlConnection connection;
         public Database()
         {
              conn = new MySqlConnection("server = localhost; user id = root; database = bookingdb;convert zero datetime=True");
+             connection = new MySqlConnection("server = localhost; user id = root; database = bookingdb;pooling = false;convert zero datetime=True");
         }
 
         public void Backup()

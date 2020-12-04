@@ -299,14 +299,8 @@ namespace BookingSystem
             ds.Tables.Add(dt);
             ds.WriteXmlSchema("OrderDetails.xml");
 
-            reportGenerateReceipt s = new reportGenerateReceipt();
-            s.SetDataSource(ds);
-
-            //FormViewerTesting frm = new FormViewerTesting();
-            frmReceiptViewer frm = new frmReceiptViewer();
-            frm.crystalReportViewer1.ReportSource = s;
-            frm.Show();
-
+            //FormViewerTesting cd = new FormViewerTesting();
+            //cd.Show();
 
             DataGridViewRow Divider = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             Divider.DividerHeight = 1;

@@ -44,8 +44,10 @@ namespace BookingSystem
             {
                 if (e.ColumnIndex == 6)
                 {
-                    var s = dataGridView1[0, e.RowIndex].Value.ToString();
-                    MessageBox.Show(" Dont click me!  " + s);
+                    String s = dataGridView1[0, e.RowIndex].Value.ToString();
+                    frmCancel c = new frmCancel();
+                    c.RetrieveDetail(s);
+                    c.Visible = true;
                 }
             }
             catch (ArgumentOutOfRangeException err)
@@ -96,7 +98,7 @@ namespace BookingSystem
                                 "INNER JOIN tblcustomer c " +
                                 "ON c.customerID = bs.customerID,tblseatno " +
                                 "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
-                                //"AND bs.ORNO = 'OR-53' " +
+                                //"AND tblseatno.Status = 'occupied' " +
                                 "GROUP BY bs.ORNO " +
                                 "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();
@@ -146,7 +148,8 @@ namespace BookingSystem
                                 "INNER JOIN tblcustomer c " +
                                 "ON c.customerID = bs.customerID,tblseatno " +
                                 "WHERE tblseatno.SeatNoID = bs.SeatNoID " +
-                                "AND bs.ORNO = '"+tbSearch.Text.ToString()+ "' " +   
+                                "AND bs.ORNO = '"+tbSearch.Text.ToString()+ "' " +
+                                //"AND tblseatno.Status = 'occupied' " +
                                 "GROUP BY bs.ORNO " +
                                 "ORDER BY bs.SeatNoID DESC ";
                 db.conn.Open();

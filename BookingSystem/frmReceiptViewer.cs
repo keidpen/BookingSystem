@@ -27,19 +27,22 @@ namespace BookingSystem
 
         private void frmReceiptViewer_Load(object sender, EventArgs e)
         {
-            classOrderDetail od = new classOrderDetail();
-            classTransaction t = new classTransaction();
+            //classOrderDetail od = new classOrderDetail();
+            //classTransaction t = new classTransaction();
 
-            reportGenerateReceipt ob = new reportGenerateReceipt();
-            ob.SetParameterValue("orno", t.getORNO);
-            ob.SetParameterValue("Name", t.getName);
-            ob.SetParameterValue("date", od.getDate);
-            ob.SetParameterValue("time", od.getTime);
-            ob.SetParameterValue("screen", od.getScreen);
-            ob.SetParameterValue("Cash", t.getCash);
-            ob.SetParameterValue("Change", t.getChange);
-            crystalReportViewer1.ReportSource = ob;
-            crystalReportViewer1.Refresh();
+            //reportSubGenerateReceipt s = new reportSubGenerateReceipt();
+
+            //reportGenerateReceipt ob = new reportGenerateReceipt();
+            //ob.SetParameterValue("orno", t.getORNO);
+            //ob.SetParameterValue("Name", t.getName);
+            //ob.SetParameterValue("date", od.getDate);
+            //ob.SetParameterValue("time", od.getTime);
+            //ob.SetParameterValue("screen", od.getScreen);
+            //ob.SetParameterValue("Cash", t.getCash);
+            //ob.SetParameterValue("Change", t.getChange);
+
+            //crystalReportViewer1.ReportSource = ob;
+            //crystalReportViewer1.Refresh();
 
         }
 

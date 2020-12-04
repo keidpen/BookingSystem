@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.reportSubGenerateReceipt1 = new BookingSystem.reportSubGenerateReceipt();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -40,6 +39,7 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.ReportSource = "reportMonthSales.rpt";
             this.crystalReportViewer1.ShowGroupTreeButton = false;
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
@@ -61,6 +61,5 @@
         #endregion
         private reportMonthSales reportMonthSales1;
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private reportSubGenerateReceipt reportSubGenerateReceipt1;
     }
 }
