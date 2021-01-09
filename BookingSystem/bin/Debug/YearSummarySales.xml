@@ -6,8 +6,8 @@
         <xs:element name="Table1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Year" type="xs:int" minOccurs="0" />
-              <xs:element name="Month" type="xs:int" minOccurs="0" />
+              <xs:element name="Year" type="xs:string" minOccurs="0" />
+              <xs:element name="Month" type="xs:string" minOccurs="0" />
               <xs:element name="Total_x0020_Ammount" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

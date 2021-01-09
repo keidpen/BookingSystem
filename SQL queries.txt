@@ -67,3 +67,19 @@ GROUP BY YEAR(Date)
 
 
 
+
+
+
+
+==============YEAR============
+SELECT DATE_FORMAT(Date, '%Y') AS Year, SUM(Ammount) AS 'Total Ammount' 
+FROM tbltransaction 
+GROUP BY YEAR(Date)
+
+
+
+
+
+
+
+

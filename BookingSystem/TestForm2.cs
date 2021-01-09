@@ -58,9 +58,11 @@ namespace BookingSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DateTime dtYear = DateTime.Now;
+
             String query = "SELECT DATE_FORMAT(Date, '%Y') AS Year,DATE_FORMAT(Date, '%m. %b') AS Month, SUM(Ammount) AS 'Total Ammount' " +
                     "FROM tbltransaction " +
-                    "WHERE YEAR(Date) = '2020' " +
+                    "WHERE YEAR(Date) = '"+dtYear.ToString("yyyy")+"' " +
                     "GROUP BY MONTH(Date)";
 
             Database db = new Database();
@@ -73,6 +75,34 @@ namespace BookingSystem
             DataSet ds = new DataSet();
             ds.Tables.Add(tb);
             ds.WriteXmlSchema("MonthSummarySales.xml");
+
+            reportMonthSales ms = new reportMonthSales();
+            ms.SetDataSource(ds);
+
+            FormViewerTesting frm = new FormViewerTesting();
+            frm.crystalReportViewer1.ReportSource = ms;
+            frm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            DateTime dtYear = DateTime.Now;
+
+            String query = "SELECT DATE_FORMAT(Date, '%Y') AS Year,DATE_FORMAT(Date, '%m. %b') AS Month, SUM(Ammount) AS 'Total Ammount' " +
+                    "FROM tbltransaction " +
+                    "GROUP BY YEAR(Date)";
+
+            Database db = new Database();
+            db.conn.Open();
+            MySqlDataAdapter da = new MySqlDataAdapter(query, db.conn);
+            DataTable tb = new DataTable();
+            da.Fill(tb);
+            db.conn.Close();
+
+            DataSet ds = new DataSet();
+            ds.Tables.Add(tb);
+            ds.WriteXmlSchema("YearSummarySales.xml");
 
             reportMonthSales ms = new reportMonthSales();
             ms.SetDataSource(ds);
