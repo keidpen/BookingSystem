@@ -45,9 +45,11 @@ namespace BookingSystem
                 if (e.ColumnIndex == 6)
                 {
                     String s = dataGridView1[0, e.RowIndex].Value.ToString();
+                    
                     frmCancel c = new frmCancel();
                     c.RetrieveDetail(s);
-                    c.Visible = true;
+                    c.ShowDialog(this);
+                    //c.Visible = true;
                 }
             }
             catch (ArgumentOutOfRangeException err)

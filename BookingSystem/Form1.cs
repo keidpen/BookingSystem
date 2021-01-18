@@ -56,18 +56,25 @@ namespace BookingSystem
 
                 if (cbUsertype.SelectedItem.Equals("Admin"))
                 {
-                    Form2 home = new Form2();
-                    home.LockBooking();
-                    home.Show();
+                    //Form2 home = new Form2();
+                    //home.LockBooking();
+                    //home.Show();
+
+                    frmMenu menu = new frmMenu();
+                    menu.Show();
                     this.Hide();
                 }
                 else if (cbUsertype.SelectedItem.Equals("Employee"))
                 {
-                    Form2 home = new Form2();
-                    home.LockMovie();
-                    home.Show();
+                    //Form2 home = new Form2();
+                    //home.LockMovie();
+                    //home.Show();
+
+                    frmMenu menu = new frmMenu();
+                    menu.Show();
                     this.Hide();
                 }
+
 
             }
             else

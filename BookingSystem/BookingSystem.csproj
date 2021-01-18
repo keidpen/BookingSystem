@@ -141,6 +141,7 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -171,6 +172,12 @@
     </Compile>
     <Compile Include="classOrderDetail.cs" />
     <Compile Include="classTransaction.cs" />
+    <Compile Include="frmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHome.Designer.cs">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportContactTracing.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -340,6 +347,9 @@
     <Compile Include="TestForm2.Designer.cs">
       <DependentUpon>TestForm2.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmHome.resx">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportContactTracing.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>reportContactTracing.cs</LastGenOutput>
@@ -470,6 +480,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Wallpaper.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Ava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\booking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\seat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -47,9 +47,9 @@
             // btnSignIn
             // 
             this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignIn.Location = new System.Drawing.Point(473, 339);
+            this.btnSignIn.Location = new System.Drawing.Point(459, 339);
             this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(237, 43);
+            this.btnSignIn.Size = new System.Drawing.Size(251, 43);
             this.btnSignIn.TabIndex = 0;
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.UseVisualStyleBackColor = true;

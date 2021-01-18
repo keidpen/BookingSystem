@@ -19,20 +19,35 @@ namespace BookingSystem
         Timer timeClock = new Timer();
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            timeClock.Interval = 550;
-            timeClock.Tick += new EventHandler(TimeClock);
-            timeClock.Start();
+            //timeClock.Interval = 550;
+            //timeClock.Tick += new EventHandler(TimeClock);
+            //timeClock.Start();
         }
+
+        Color col = Color.WhiteSmoke;
+        Color colBlack = Color.Black;
 
         private void lblHome_Click(object sender, EventArgs e)
         {
-            lblMovie.ForeColor = Color.Black;
+            DisableBookings();
+            DisableFeatures();
+            DisableReport();
+
+            lblMovie.ForeColor = col;
             lblHome.ForeColor = Color.DarkViolet;
-            lblBooking.ForeColor = Color.Black;
-            lblFeatures.ForeColor = Color.Black;
+            lblBooking.ForeColor = col;
+            lblFeatures.ForeColor = col;
+            lblReport.ForeColor = col;
+
+            TabSel1.Visible = true;
+            TabSel2.Visible = false;
+            TabSel3.Visible = false;
+            TabSel4.Visible = false;
+            TabSel5.Visible = false;
+
 
             pnlMenu.Controls.Clear();
-            TestForm frm = new TestForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmHome frm = new frmHome() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             pnlMenu.Controls.Add(frm);
             frm.Show();
         }
@@ -41,21 +56,29 @@ namespace BookingSystem
         {
             DisableBookings();
             DisableFeatures();
+            DisableReport();
 
             lblMovie.ForeColor = Color.DarkViolet;
-            lblHome.ForeColor = Color.Black;
-            lblBooking.ForeColor = Color.Black;
-            lblFeatures.ForeColor = Color.Black;
+            lblHome.ForeColor = col;
+            lblBooking.ForeColor = col;
+            lblFeatures.ForeColor = col;
+            lblReport.ForeColor = col;
 
             lblAddMov.ForeColor = Color.DarkViolet;
-            lblUpdateMov.ForeColor = Color.Black;
-            lblSearchMovie.ForeColor = Color.Black;
-            lblSchedule.ForeColor = Color.Black;
+            lblUpdateMov.ForeColor = colBlack;
+            lblSearchMovie.ForeColor = colBlack;
+            lblSchedule.ForeColor = colBlack;
 
             lblAddMov.Visible = true;
             lblUpdateMov.Visible = true;
             lblSearchMovie.Visible = true;
             lblSchedule.Visible = true;
+
+            TabSel1.Visible = false;
+            TabSel2.Visible = true;
+            TabSel3.Visible = false;
+            TabSel4.Visible = false;
+            TabSel5.Visible = false;
 
             pnlMenu.Controls.Clear();
             frmAddMov frm = new frmAddMov() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -69,14 +92,22 @@ namespace BookingSystem
         {
             DisableMovie();
             DisableFeatures();
+            DisableReport();
 
-            lblMovie.ForeColor = Color.Black;
-            lblHome.ForeColor = Color.Black;
+            TabSel1.Visible = false;
+            TabSel2.Visible = false;
+            TabSel3.Visible = true;
+            TabSel4.Visible = false;
+            TabSel5.Visible = false;
+
+            lblMovie.ForeColor = col;
+            lblHome.ForeColor = col;
             lblBooking.ForeColor = Color.DarkViolet;
-            lblFeatures.ForeColor = Color.Black;
+            lblFeatures.ForeColor = col;
+            lblReport.ForeColor = col;
 
             lblSeats.ForeColor = Color.DarkViolet;
-            lblCustomer.ForeColor = Color.Black;
+            lblCustomer.ForeColor = colBlack;
 
             lblCustomer.Visible = true;
             lblSeats.Visible = true;
@@ -99,7 +130,7 @@ namespace BookingSystem
         private void lblCustomer_Click(object sender, EventArgs e)
         {
             lblCustomer.ForeColor = Color.DarkViolet;
-            lblSeats.ForeColor = Color.Black;
+            lblSeats.ForeColor = colBlack;
 
             pnlMenu.Controls.Clear();
             frmCustomer frm = new frmCustomer() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -109,9 +140,9 @@ namespace BookingSystem
 
         private void lblSchedule_Click(object sender, EventArgs e)
         {
-            lblAddMov.ForeColor = Color.Black;
-            lblUpdateMov.ForeColor = Color.Black;
-            lblSearchMovie.ForeColor = Color.Black;
+            lblAddMov.ForeColor = colBlack;
+            lblUpdateMov.ForeColor = colBlack;
+            lblSearchMovie.ForeColor = colBlack;
             lblSchedule.ForeColor = Color.DarkViolet;
 
             pnlMenu.Controls.Clear();
@@ -127,10 +158,10 @@ namespace BookingSystem
 
         private void lblUpdateMov_Click(object sender, EventArgs e)
         {
-            lblAddMov.ForeColor = Color.Black;
+            lblAddMov.ForeColor = colBlack;
             lblUpdateMov.ForeColor = Color.DarkViolet;
-            lblSearchMovie.ForeColor = Color.Black;
-            lblSchedule.ForeColor = Color.Black;
+            lblSearchMovie.ForeColor = colBlack;
+            lblSchedule.ForeColor = colBlack;
 
             pnlMenu.Controls.Clear();
             frmUpdateMov frm = new frmUpdateMov() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -140,10 +171,10 @@ namespace BookingSystem
 
         private void lblSearchMovie_Click(object sender, EventArgs e)
         {
-            lblAddMov.ForeColor = Color.Black;
-            lblUpdateMov.ForeColor = Color.Black;
+            lblAddMov.ForeColor = colBlack;
+            lblUpdateMov.ForeColor = colBlack;
             lblSearchMovie.ForeColor = Color.DarkViolet;
-            lblSchedule.ForeColor = Color.Black;
+            lblSchedule.ForeColor = colBlack;
 
             pnlMenu.Controls.Clear();
             frmSearchMov frm = new frmSearchMov() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -163,11 +194,19 @@ namespace BookingSystem
         {
             DisableMovie();
             DisableBookings();
+            DisableReport();
 
-            lblMovie.ForeColor = Color.Black;
-            lblHome.ForeColor = Color.Black;
-            lblBooking.ForeColor = Color.Black;
+            TabSel1.Visible = false;
+            TabSel2.Visible = false;
+            TabSel3.Visible = false;
+            TabSel4.Visible = true;
+            TabSel5.Visible = false;
+
+            lblMovie.ForeColor = col;
+            lblHome.ForeColor = col;
+            lblBooking.ForeColor = col;
             lblFeatures.ForeColor = Color.DarkViolet;
+            lblReport.ForeColor = col;
 
             lblSocialDistancing.ForeColor = Color.DarkViolet;
 
@@ -193,6 +232,12 @@ namespace BookingSystem
         {
             lblSocialDistancing.Visible = false;
         }
+
+        private void DisableReport()
+        {
+            lblContactTracing.Visible = false;
+        }
+
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -220,6 +265,45 @@ namespace BookingSystem
                 countClock--;
             }
 
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Want to Exit the Program?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void lblReport_Click(object sender, EventArgs e)
+        {
+            DisableBookings();
+            DisableFeatures();
+            DisableMovie();
+
+            lblContactTracing.Visible = true;
+
+            lblMovie.ForeColor = col;
+            lblHome.ForeColor = col;
+            lblBooking.ForeColor = col;
+            lblFeatures.ForeColor = col;
+            lblReport.ForeColor = Color.DarkViolet;
+
+            TabSel1.Visible = false;
+            TabSel2.Visible = false;
+            TabSel3.Visible = false;
+            TabSel4.Visible = false;
+            TabSel5.Visible = true;
+
+            lblContactTracing.ForeColor = Color.DarkViolet;
+
+            lblContactTracing_Click(sender,e);
         }
     }
 }
